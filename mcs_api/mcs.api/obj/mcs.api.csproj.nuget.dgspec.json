@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/nasareddaoui/mcs/git/net_core/MCS_CRM_NET_CORE/mcs_api/mcs.api/mcs.api.csproj": {}
+    "/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/mcs.api.csproj": {}
   },
   "projects": {
-    "/home/nasareddaoui/mcs/git/net_core/MCS_CRM_NET_CORE/mcs_api/mcs.api/mcs.api.csproj": {
+    "/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/mcs.api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/nasareddaoui/mcs/git/net_core/MCS_CRM_NET_CORE/mcs_api/mcs.api/mcs.api.csproj",
+        "projectUniqueName": "/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/mcs.api.csproj",
         "projectName": "mcs.api",
-        "projectPath": "/home/nasareddaoui/mcs/git/net_core/MCS_CRM_NET_CORE/mcs_api/mcs.api/mcs.api.csproj",
+        "projectPath": "/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/mcs.api.csproj",
         "packagesPath": "/home/nasareddaoui/.nuget/packages/",
-        "outputPath": "/home/nasareddaoui/mcs/git/net_core/MCS_CRM_NET_CORE/mcs_api/mcs.api/obj/",
+        "outputPath": "/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/nasareddaoui/.nuget/NuGet/NuGet.Config"
