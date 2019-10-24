@@ -34,3 +34,12 @@
 /home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/obj/Debug/netcoreapp3.0/mcs.api.RazorTargetAssemblyInfo.cache
 /home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/obj/Debug/netcoreapp3.0/mcs.api.dll
 /home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/obj/Debug/netcoreapp3.0/mcs.api.pdb
+/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Logging.dll
+/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Protocols.dll
+/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Tokens.dll
+/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/Newtonsoft.Json.dll
+/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/System.IdentityModel.Tokens.Jwt.dll
+/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/obj/Debug/netcoreapp3.0/mcs.api.csproj.CopyComplete
