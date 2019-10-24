@@ -19,10 +19,12 @@ namespace mcs.api.Controllers
                 var claim = new[]
                 {
                     new Claim(JwtRegisteredClaimNames.Sub, "Nasar"),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new Claim(ClaimTypes.Role, "Admin")
                 };
                 var jwt = new JwtAuthenticator();
-                return Ok(jwt.CreateJwtToken(claim));
+
+                return Ok(null);
             }
             return Unauthorized();
         }

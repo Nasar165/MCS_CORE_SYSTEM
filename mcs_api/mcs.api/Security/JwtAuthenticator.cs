@@ -1,15 +1,17 @@
 using System;
+using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using mcs.api.Security.Interface;
 using Microsoft.IdentityModel.Tokens;
 
 namespace mcs.api.Security
 {
-    public class JwtAuthenticator
+    public class JwtAuthenticator : IJwtAuthenticator
     {
         private SymmetricSecurityKey GetSecurityKey()
-            => new SymmetricSecurityKey(Encoding.UTF8.GetBytes(""));
+            => new SymmetricSecurityKey(Encoding.UTF8.GetBytes("MySuperSecretToken"));
 
         private Object ConvertToken(JwtSecurityToken token)
         {
@@ -27,11 +29,11 @@ namespace mcs.api.Security
                 SigningCredentials(key, SecurityAlgorithms.HmacSha256);
         }
 
-        public object CreateJwtToken(Claim[] claim)
+        public object CreateJwtToken(List<Claim> claim, string audiance, string issuer)
         {
             var token = new JwtSecurityToken(
-                issuer: "mcsunity.net",
-                audience: "reader",
+                issuer: issuer,
+                audience: audiance,
                 expires: DateTime.UtcNow.AddHours(1),
                 claims: claim,
                 signingCredentials: GenerateSigningCredential()
