@@ -4,13 +4,12 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
-
 namespace mcs.api.Security
 {
     public class JwtAuthenticator
     {
         private SymmetricSecurityKey GetSecurityKey()
-            => new SymmetricSecurityKey(Encoding.UTF8.GetBytes("MySuperSecureKey"));
+            => new SymmetricSecurityKey(Encoding.UTF8.GetBytes(""));
 
         private Object ConvertToken(JwtSecurityToken token)
         {
@@ -32,7 +31,7 @@ namespace mcs.api.Security
         {
             var token = new JwtSecurityToken(
                 issuer: "mcsunity.net",
-                audience: "mcsunity.net",
+                audience: "reader",
                 expires: DateTime.UtcNow.AddHours(1),
                 claims: claim,
                 signingCredentials: GenerateSigningCredential()

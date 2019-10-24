@@ -2,8 +2,8 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using mcs.api.Models;
+using mcs.api.Security;
 using Microsoft.AspNetCore.Mvc;
-
 
 namespace mcs.api.Controllers
 {
@@ -14,12 +14,16 @@ namespace mcs.api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] AccessKey accessKey)
         {
-            var claim = new[]
+            if (ModelState.IsValid)
             {
-                new Claim(JwtRegisteredClaimNames.Sub, "Nasar"),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            };
-
+                var claim = new[]
+                {
+                    new Claim(JwtRegisteredClaimNames.Sub, "Nasar"),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                };
+                var jwt = new JwtAuthenticator();
+                return Ok(jwt.CreateJwtToken(claim));
+            }
             return Unauthorized();
         }
     }
