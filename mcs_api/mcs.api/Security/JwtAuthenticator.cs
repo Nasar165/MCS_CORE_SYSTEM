@@ -13,6 +13,13 @@ namespace mcs.api.Security
         private SymmetricSecurityKey GetSecurityKey()
             => new SymmetricSecurityKey(Encoding.UTF8.GetBytes("MySuperSecretToken"));
 
+        private SigningCredentials GenerateSigningCredential()
+        {
+            var key = GetSecurityKey();
+            return new Microsoft.IdentityModel.Tokens.
+                SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+        }
+
         private Object ConvertToken(JwtSecurityToken token)
         {
             return new
@@ -20,13 +27,6 @@ namespace mcs.api.Security
                 token = new JwtSecurityTokenHandler().WriteToken(token),
                 expiration = token.ValidTo
             };
-        }
-
-        private SigningCredentials GenerateSigningCredential()
-        {
-            var key = GetSecurityKey();
-            return new Microsoft.IdentityModel.Tokens.
-                SigningCredentials(key, SecurityAlgorithms.HmacSha256);
         }
 
         public object CreateJwtToken(List<Claim> claim, string audiance, string issuer)
