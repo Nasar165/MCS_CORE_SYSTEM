@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\mcs.components\mcs.components.csproj" />
   </ItemGroup>
 
   <ItemGroup>

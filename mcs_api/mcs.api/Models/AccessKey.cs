@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using mcs.api.Models.Interface;
+using mcs.components;
 
 namespace mcs.api.Models
 {
