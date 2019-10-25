@@ -1,13 +1,14 @@
 using System.ComponentModel.DataAnnotations;
+using mcs.api.Models.Interface;
 
 namespace mcs.api.Models
 {
-    public class AccessKey
+    public class AccessKey : IAccessKey
     {
         [Required]
-        public string CompanyId { get; set; }
+        public string TokenKey { get; set; }
         [Required]
-        public int GroupId { get; set; }
+        public string GroupKey { get; set; }
 
     }
 }
