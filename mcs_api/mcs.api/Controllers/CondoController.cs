@@ -19,6 +19,5 @@ namespace mcs.api.Controllers
         {
             return Ok("Hello Admin");
         }
-
     }
 }

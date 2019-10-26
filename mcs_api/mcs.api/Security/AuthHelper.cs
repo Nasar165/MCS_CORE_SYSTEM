@@ -1,3 +1,4 @@
+using System;
 using mcs.api.Security.AuthTemplate.Interface;
 using mcs.api.Security.Interface;
 
@@ -7,15 +8,38 @@ namespace mcs.api.Security
     {
         IClaimHelper _ClaimHelper { get; set; }
         IJwtAuthenticator _JwtAuthenticator { get; set; }
+        public AuthHelper()
+        {
+            _ClaimHelper = new ClaimsHelper();
+            _JwtAuthenticator = new JwtAuthenticator();
+        }
 
         public object AuthentiacteAPI(IAccessKey ApiKey)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var claimList = _ClaimHelper.AddDataToClaim<IAccessKey>(ApiKey);
+                var Token = _JwtAuthenticator.CreateJwtToken(claimList, "API", "mcsunity.net");
+                return Token;
+            }
+            catch (Exception error)
+            {
+                throw error;
+            }
         }
 
         public object AuthenticateUser(IUserAccount user)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var claimList = _ClaimHelper.AddDataToClaim<IUserAccount>(user);
+                var Token = _JwtAuthenticator.CreateJwtToken(claimList, "API", "mcsunity.net");
+                return Token;
+            }
+            catch (Exception error)
+            {
+                throw error;
+            }
         }
     }
 }
