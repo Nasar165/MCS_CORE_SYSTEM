@@ -6,6 +6,7 @@ namespace mcs.components
     public class ErroLogger : IErrorLogger
     {
         IFileWriter _FileWriter { get; set; }
+
         public ErroLogger()
         {
 
@@ -13,6 +14,7 @@ namespace mcs.components
 
         public void LogError(Exception error)
         {
+            var exceptionHelper = new ExceptionHelper(error);
             throw new NotImplementedException();
         }
     }

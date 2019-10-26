@@ -1,4 +1,3 @@
-using mcs.api.Models.Interface;
 using mcs.api.Security.Interface;
 
 namespace mcs.api.Security

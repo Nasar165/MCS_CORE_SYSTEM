@@ -1,4 +1,4 @@
-namespace mcs.api.Models.Interface
+namespace mcs.api.Security.Interface
 {
     public interface IAccessKey
     {
