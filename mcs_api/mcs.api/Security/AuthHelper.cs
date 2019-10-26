@@ -14,12 +14,25 @@ namespace mcs.api.Security
             _JwtAuthenticator = new JwtAuthenticator();
         }
 
+        private object GenerateToken<T>(T data, string audiance)
+        {
+            try
+            {
+                var claimList = _ClaimHelper.AddDataToClaim<T>(data);
+                var Token = _JwtAuthenticator.CreateJwtToken(claimList, audiance, "mcsunity.net");
+                return Token;
+            }
+            catch (Exception error)
+            {
+                throw error;
+            }
+        }
+
         public object AuthentiacteAPI(IAccessKey ApiKey)
         {
             try
             {
-                var claimList = _ClaimHelper.AddDataToClaim<IAccessKey>(ApiKey);
-                var Token = _JwtAuthenticator.CreateJwtToken(claimList, "API", "mcsunity.net");
+                var Token = GenerateToken(ApiKey, "API");
                 return Token;
             }
             catch (Exception error)
@@ -32,8 +45,7 @@ namespace mcs.api.Security
         {
             try
             {
-                var claimList = _ClaimHelper.AddDataToClaim<IUserAccount>(user);
-                var Token = _JwtAuthenticator.CreateJwtToken(claimList, "API", "mcsunity.net");
+                var Token = GenerateToken(user, "user");
                 return Token;
             }
             catch (Exception error)
