@@ -1,6 +1,6 @@
 using System;
 
-namespace mcs.components.Interface
+namespace mcs.components.Errorhandler.Interface
 {
     public interface IErrorLogger
     {

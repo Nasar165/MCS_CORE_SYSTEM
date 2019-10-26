@@ -1,8 +1,8 @@
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using mcs.api.Models;
 using mcs.api.Security;
+using mcs.api.Security.AuthTemplate;
 using Microsoft.AspNetCore.Mvc;
 
 namespace mcs.api.Controllers

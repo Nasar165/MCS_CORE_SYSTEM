@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using mcs.api.Security.Interface;
+using mcs.api.Security.AuthTemplate.Interface;
 
-namespace mcs.api.Models
+namespace mcs.api.Security.AuthTemplate
 {
     public class AccessKey : IAccessKey
     {

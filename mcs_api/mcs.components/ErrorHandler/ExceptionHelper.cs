@@ -1,8 +1,8 @@
 using System;
 using System.Diagnostics;
-using mcs.components.Interface;
+using mcs.components.Errorhandler.Interface;
 
-namespace mcs.components
+namespace mcs.components.Errorhandler
 {
     public class ExceptionHelper : IExceptionHelper
     {

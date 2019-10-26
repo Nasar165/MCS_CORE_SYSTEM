@@ -1,4 +1,4 @@
-using mcs.api.Security.Interface;
+using mcs.api.Security.AuthTemplate.Interface;
 
 namespace mcs.api.Security.Interface
 {
