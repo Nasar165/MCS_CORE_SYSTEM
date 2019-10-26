@@ -811,6 +811,16 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
         }
+      },
+      "mcs.components/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/mcs.components.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/mcs.components.dll": {}
+        }
       }
     }
   },
@@ -3570,11 +3580,17 @@
         "system.xml.xmldocument.4.3.0.nupkg.sha512",
         "system.xml.xmldocument.nuspec"
       ]
+    },
+    "mcs.components/1.0.0": {
+      "type": "project",
+      "path": "../mcs.components/mcs.components.csproj",
+      "msbuildProject": "../mcs.components/mcs.components.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.0": [
-      "Microsoft.AspNetCore.Authentication.JwtBearer >= 3.0.0"
+      "Microsoft.AspNetCore.Authentication.JwtBearer >= 3.0.0",
+      "mcs.components >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3600,7 +3616,11 @@
       },
       "frameworks": {
         "netcoreapp3.0": {
-          "projectReferences": {}
+          "projectReferences": {
+            "/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.components/mcs.components.csproj": {
+              "projectPath": "/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.components/mcs.components.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

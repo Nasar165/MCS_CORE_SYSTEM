@@ -43,3 +43,5 @@
 /home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/Newtonsoft.Json.dll
 /home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/System.IdentityModel.Tokens.Jwt.dll
 /home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/obj/Debug/netcoreapp3.0/mcs.api.csproj.CopyComplete
+/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/mcs.components.dll
+/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/mcs.components.pdb
