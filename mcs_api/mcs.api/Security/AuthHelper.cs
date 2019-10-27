@@ -28,12 +28,31 @@ namespace mcs.api.Security
             }
         }
 
+        private object NotAuthorized(string name, string param)
+        {
+            return new
+            {
+                status = 401,
+                message = $"{name} Authentication failed! Please check {param}."
+            };
+        }
+
         public object AuthentiacteAPI(IAccessKey ApiKey)
         {
             try
             {
-                var Token = GenerateToken(ApiKey, "API");
-                return Token;
+                var DbAccessKey = new
+                {
+                    TokenKey = "",
+                    GroupKey = ""
+                };
+                if (DbAccessKey.TokenKey == ApiKey.TokenKey)
+                {
+                    var Token = GenerateToken(ApiKey, "API");
+                    return Token;
+                }
+                return NotAuthorized("API", "(TokenKey and GroupKey)");
+
             }
             catch (Exception error)
             {
@@ -45,8 +64,17 @@ namespace mcs.api.Security
         {
             try
             {
-                var Token = GenerateToken(user, "user");
-                return Token;
+                var userAccount = new
+                {
+                    Username = "",
+                    Password = ""
+                };
+                if (userAccount.Username == user.Username)
+                {
+                    var Token = GenerateToken(user, "User");
+                    return Token;
+                }
+                return NotAuthorized("User", "(Username and Password)");
             }
             catch (Exception error)
             {
