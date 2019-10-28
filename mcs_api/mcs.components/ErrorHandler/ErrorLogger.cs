@@ -9,19 +9,36 @@ namespace mcs.components.Errorhandler
         IFileWriter _FileWriter { get; set; }
         private string DirectoryPath { get; set; }
 
+        public ErrorLogger()
+        {
+            _FileWriter = new FileWriter();
+        }
+
         // Begin Singelton 
         private static Lazy<ErrorLogger> _Instance = new Lazy<ErrorLogger>();
         public static ErrorLogger Instance => _Instance != null ? _Instance.Value : new Lazy<ErrorLogger>().Value;
+        // End Singelton
+
+        public void IsErrorLogFilePathValid()
+        {
+            if (!_FileWriter.DirecortyPathExists(DirectoryPath))
+                _FileWriter.CreateDirectoryPath(DirectoryPath);
+
+            if (!_FileWriter.FilePathExists($"{DirectoryPath}error.txt"))
+                _FileWriter.CreateFile($"{DirectoryPath}error.txt");
+        }
+
         public void SetWorkingDirectory(string directory)
         {
-            DirectoryPath = $"{directory}/Logs/Error/";
+            DirectoryPath = $"{directory}/logs/error/";
+            IsErrorLogFilePathValid();
+
         }
 
         public void LogError(Exception error)
         {
             var exceptionHelper = new ExceptionHelper(error);
-            var test = DirectoryPath;
-            throw new NotImplementedException();
+            _FileWriter.AppendTextToFile("Hello World", $"{DirectoryPath}error.txt");
         }
 
     }

@@ -1,7 +1,12 @@
 namespace mcs.components.Interface
 {
-    public interface IFileWriter
+    interface IFileWriter
     {
-        void SaveDataAsFile(string text, string filePath);
+
+        bool DirecortyPathExists(string direcortyPath);
+        bool FilePathExists(string filePath);
+        void CreateDirectoryPath(string directoryPath);
+        void CreateFile(string filePath);
+        void AppendTextToFile(string text, string filePath);
     }
 }

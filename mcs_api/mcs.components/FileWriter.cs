@@ -8,13 +8,34 @@ namespace mcs.components
     public class FileWriter : IFileWriter
     {
 
+        public bool DirecortyPathExists(string direcortyPath)
+            => Directory.Exists(direcortyPath);
+
+        public bool FilePathExists(string filePath)
+            => File.Exists(filePath);
+
+        public void CreateDirectoryPath(string directoryPath)
+        {
+            if (!DirecortyPathExists(directoryPath))
+                Directory.CreateDirectory(directoryPath);
+        }
+
+        public void CreateFile(string filePath)
+        {
+            if (!FilePathExists(filePath))
+            {
+                var file = File.Create(filePath);
+                file.Close();
+            }
+        }
+
         private void AddTextToFile(FileStream fs, string text)
         {
             byte[] byteArray = new UTF8Encoding(true).GetBytes(text + Environment.NewLine);
             fs.Write(byteArray, 0, byteArray.Length);
         }
 
-        public void SaveDataAsFile(string text, string filePath)
+        public void AppendTextToFile(string text, string filePath)
         {
             try
             {
