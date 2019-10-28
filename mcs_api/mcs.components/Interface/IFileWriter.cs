@@ -2,6 +2,6 @@ namespace mcs.components.Interface
 {
     public interface IFileWriter
     {
-        void SaveDataAsFile();
+        void SaveDataAsFile(string text, string filePath);
     }
 }

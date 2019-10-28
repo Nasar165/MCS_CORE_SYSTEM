@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using mcs.api.Models;
+using System.IO;
+using mcs.components.Errorhandler;
 
 namespace mcs.api
 {
@@ -15,7 +17,9 @@ namespace mcs.api
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            AppConfigHelper._AppConfig.SetIConfiguration(configuration);
+            AppConfigHelper.Instance.SetIConfiguration(configuration);
+            var log = new ErrorLogger();
+            //ErrorLogger.Instance.SetDirectory(Directory.GetCurrentDirectory);
         }
 
         public IConfiguration Configuration { get; }
@@ -30,7 +34,7 @@ namespace mcs.api
             })
             .AddJwtBearer(x =>
             {
-                var secretKey = AppConfigHelper._AppConfig.GetSecreatKey();
+                var secretKey = AppConfigHelper.Instance.GetSecreatKey();
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = true;
                 x.TokenValidationParameters = new TokenValidationParameters

@@ -7,10 +7,14 @@ namespace mcs.components.Errorhandler
     public class ErroLogger : IErrorLogger
     {
         IFileWriter _FileWriter { get; set; }
+        private string DirectoryPath { get; set; }
 
-        public ErroLogger()
+        // Begin Singelton 
+        private static Lazy<ErroLogger> _Instance = new Lazy<ErroLogger>();
+        public static ErroLogger Instance => _Instance != null ? _Instance.Value : new Lazy<ErroLogger>().Value;
+        public void SetWorkingDirectory(string directory)
         {
-
+            DirectoryPath = $"{directory}/Logs/Error";
         }
 
         public void LogError(Exception error)
@@ -18,5 +22,6 @@ namespace mcs.components.Errorhandler
             var exceptionHelper = new ExceptionHelper(error);
             throw new NotImplementedException();
         }
+
     }
 }

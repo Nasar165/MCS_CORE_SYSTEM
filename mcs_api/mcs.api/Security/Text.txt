@@ -5,5 +5,3 @@ var claim = new[]
     new Claim(ClaimTypes.Role, "Admin"),
     new Claim(ClaimTypes.Role, "AdminAPI")
 };
-
-fffffffffff

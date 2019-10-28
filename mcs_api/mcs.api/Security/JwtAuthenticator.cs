@@ -15,7 +15,7 @@ namespace mcs.api.Security
 
         private SymmetricSecurityKey GetSecurityKey()
         {
-            var secretKey = AppConfigHelper._AppConfig.GetSecreatKey();
+            var secretKey = AppConfigHelper.Instance.GetSecreatKey();
             return new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
         }
 
