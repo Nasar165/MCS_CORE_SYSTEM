@@ -1,3 +1,3 @@
-/mcs_api/mcs.api/appsettings.json
-/mcs_api/mcs.api/Content/Images
-.jpg
+appsettings.json
+Content/Images
+*.jpg
