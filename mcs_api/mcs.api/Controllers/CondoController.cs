@@ -39,7 +39,7 @@ namespace mcs.api.Controllers
 
         [Route("[action]")]
         [Authorize(Roles = "API")]
-        public ActionResult GetCondo()
+        public ActionResult GetCondo(int id)
         {   // Get single Property where website statet is set to true
             throw new System.Exception("Not Ready Yet");
         }

@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using mcs.api.Models;
 
 namespace mcs.api
 {
@@ -14,6 +15,7 @@ namespace mcs.api
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            AppConfigHelper._AppConfig.SetIConfiguration(configuration);
         }
 
         public IConfiguration Configuration { get; }
@@ -29,12 +31,13 @@ namespace mcs.api
             })
             .AddJwtBearer(x =>
             {
+                var secretKey = AppConfigHelper._AppConfig.GetSecreatKey();
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = true;
                 x.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("MySuperSecretToken")),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey)),
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };

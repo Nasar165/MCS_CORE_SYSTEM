@@ -5,13 +5,19 @@ using System.Security.Claims;
 using System.Text;
 using mcs.api.Security.Interface;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Configuration;
+using mcs.api.Models;
 
 namespace mcs.api.Security
 {
     public class JwtAuthenticator : IJwtAuthenticator
     {
+
         private SymmetricSecurityKey GetSecurityKey()
-            => new SymmetricSecurityKey(Encoding.UTF8.GetBytes("MySuperSecretToken"));
+        {
+            var secretKey = AppConfigHelper._AppConfig.GetSecreatKey();
+            return new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
+        }
 
         private SigningCredentials GenerateSigningCredential()
         {
