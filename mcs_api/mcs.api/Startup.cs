@@ -18,8 +18,8 @@ namespace mcs.api
         {
             Configuration = configuration;
             AppConfigHelper.Instance.SetIConfiguration(configuration);
-            var log = new ErrorLogger();
-            //ErrorLogger.Instance.SetDirectory(Directory.GetCurrentDirectory);
+            ErrorLogger.Instance.SetWorkingDirectory(Directory.GetCurrentDirectory());
+            ErrorLogger.Instance.LogError(new System.Exception("new Error"));
         }
 
         public IConfiguration Configuration { get; }
