@@ -11,6 +11,8 @@ MCS unity crm back end developed in .NET Core making it deployable on both Linux
 ### Deployment
 
 ### Built With
+* [Visual Studio Code](https://code.visualstudio.com/) - Visual Studio Code
+* [PostgreSql](https://www.postgresql.org/) - Sql Database 
 
 ### Contributing
 
