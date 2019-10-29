@@ -37,8 +37,8 @@ This web api was built with the following tools in a Linux Enviroment(CentOs 7).
 ### Contributing
 
 ### Versioning
-We use [SemVer](http://semver.org/) for versioning. Pleasea visit their website for more 
-information to understand how different versions might affetc you.
+We use [SemVer](http://semver.org/) for versioning. Please visit their website for more 
+information to understand how different versions might affect you and your project.
 
 ### Authors
 
