@@ -1,3 +1,4 @@
+using mcs.components.Errorhandler;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,7 +32,8 @@ namespace mcs.api.Controllers
         //Low Level API front end Data
         ///
         [Route("[action]")]
-        [Authorize(Roles = "API")]
+        //[Authorize(Roles = "API")]
+        [AllowAnonymous]
         public ActionResult GetCondos()
         {   // Get Property where website statet is set to true
             throw new System.Exception("Not Ready Yet");

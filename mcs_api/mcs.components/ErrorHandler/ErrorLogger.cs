@@ -38,7 +38,8 @@ namespace mcs.components.Errorhandler
         public void LogError(Exception error)
         {
             var exceptionHelper = new ExceptionHelper(error);
-            _FileWriter.AppendTextToFile("Hello World", $"{DirectoryPath}error.txt");
+            IsErrorLogFilePathValid();
+            _FileWriter.AppendTextToFile(exceptionHelper.GetFormatedErrorMessage(), $"{DirectoryPath}error.txt");
         }
 
     }
