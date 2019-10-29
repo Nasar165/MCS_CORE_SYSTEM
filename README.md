@@ -2,22 +2,22 @@
 
 MCS unity crm back end developed in .NET Core making it deployable on both Linux and win server
 
-## Getting started
+### Getting started
 
-## Prerequisites
+### Prerequisites
 
-## Installing
+### Installing
 
-## Deployment
+### Deployment
 
-## Built With
+### Built With
 
-## Contributing
+### Contributing
 
-## Versioning
+### Versioning
 
-## Authors
+### Authors
 
-## License
+### License
 
-## Acknowledgments
+### Acknowledgments
