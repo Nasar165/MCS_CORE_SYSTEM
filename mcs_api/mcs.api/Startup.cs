@@ -1,11 +1,8 @@
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 using mcs.api.Models;
 using System.IO;
 using mcs.components.Errorhandler;
@@ -19,7 +16,6 @@ namespace mcs.api
             Configuration = configuration;
             AppConfigHelper.Instance.SetIConfiguration(configuration);
             ErrorLogger.Instance.SetWorkingDirectory(Directory.GetCurrentDirectory());
-            ErrorLogger.Instance.LogError(new System.Exception("new Error"));
         }
 
         public IConfiguration Configuration { get; }
@@ -27,25 +23,7 @@ namespace mcs.api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(x =>
-            {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(x =>
-            {
-                var secretKey = AppConfigHelper.Instance.GetSecreatKey();
-                x.RequireHttpsMetadata = false;
-                x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey)),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-            });
-
+            JwtStarter.InitJwtTokenAuth(services);
             services.AddControllers();
 
         }
@@ -62,7 +40,6 @@ namespace mcs.api
 
             app.UseRouting();
 
-            //Authentication section
             app.UseAuthentication();
             app.UseAuthorization();
 
