@@ -41,6 +41,10 @@
               "target": "Package",
               "version": "[2.0.3, )",
               "autoReferenced": true
+            },
+            "npgsql": {
+              "target": "Package",
+              "version": "[4.1.1, )"
             }
           },
           "imports": [
