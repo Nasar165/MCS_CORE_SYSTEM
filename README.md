@@ -21,7 +21,7 @@ act as a inhouse database storing clients information such as username, password
 and much more. While the client DB contains all the clients private information. 
 
 * [MainDB](https://github.com) - Main Script
-* [ClientDB] (https://github.com) - Client DB Script
+* [ClientDB](https://github.com) - Client DB Script
 
 ### Deployment
 #### Deploying to Linux (IIS)
