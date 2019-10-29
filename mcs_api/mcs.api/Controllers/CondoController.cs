@@ -1,4 +1,3 @@
-using mcs.components.Errorhandler;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
