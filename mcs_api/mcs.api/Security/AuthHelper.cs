@@ -1,6 +1,11 @@
 using System;
+using mcs.api.Models;
+using mcs.api.Security.AuthTemplate;
 using mcs.api.Security.AuthTemplate.Interface;
 using mcs.api.Security.Interface;
+using mcs.components;
+using mcs.components.DbConnection;
+using mcs.components.Errorhandler;
 
 namespace mcs.api.Security
 {
@@ -37,18 +42,22 @@ namespace mcs.api.Security
             };
         }
 
-        public object AuthentiacteAPI(IAccessKey ApiKey)
+        private T GetCredentialsFromSql<T>(string tableName)
+        {
+            var mcsdbcon = AppConfigHelper.Instance.GetDbConnection();
+            var sql = new NpgSqlHelper(mcsdbcon);
+            var dataTable = sql.SelectQuery($"Select * from {tableName}");
+            return ObjectConverter.ConvertDataTableToList<T>(dataTable)[0];
+        }
+
+        public object AuthentiacteAPI(IAccessKey apiKey)
         {
             try
             {
-                var DbAccessKey = new
+                var dbApiKey = GetCredentialsFromSql<AccessKey>($"token where tokenkey = '{apiKey.TokenKey}'");
+                if (apiKey.TokenKey == dbApiKey.TokenKey && apiKey.GroupKey == dbApiKey.GroupKey)
                 {
-                    TokenKey = "",
-                    GroupKey = ""
-                };
-                if (DbAccessKey.TokenKey == ApiKey.TokenKey)
-                {
-                    var Token = GenerateToken(ApiKey, "API");
+                    var Token = GenerateToken(dbApiKey, "API");
                     return Token;
                 }
                 return NotAuthorized("API", "(TokenKey and GroupKey)");
@@ -56,6 +65,7 @@ namespace mcs.api.Security
             }
             catch (Exception error)
             {
+                ErrorLogger.Instance.LogError(error);
                 throw error;
             }
         }
@@ -64,20 +74,17 @@ namespace mcs.api.Security
         {
             try
             {
-                var userAccount = new
+                var dbuser = GetCredentialsFromSql<UserAccount>($"useraccount where username = '{user.Username}'");
+                if (user.Username == dbuser.Username && user.Password == dbuser.Password)
                 {
-                    Username = "",
-                    Password = ""
-                };
-                if (userAccount.Username == user.Username)
-                {
-                    var Token = GenerateToken(user, "User");
+                    var Token = GenerateToken(dbuser, "User");
                     return Token;
                 }
                 return NotAuthorized("User", "(Username and Password)");
             }
             catch (Exception error)
             {
+                ErrorLogger.Instance.LogError(error);
                 throw error;
             }
         }

@@ -1,6 +1,5 @@
 using System;
 using System.Data;
-using mcs.components.Errorhandler;
 using mcs.components.Interface;
 using Npgsql;
 
@@ -26,16 +25,18 @@ namespace mcs.components.DbConnection
             try
             {
                 connection.Open();
-                throw new System.NotImplementedException();
+                var sqlDataReader = new NpgsqlDataAdapter(query, connection);
+                var table = new DataTable();
+                sqlDataReader.Fill(table);
+                return table;
             }
             catch (Exception error)
             {
-                ErrorLogger.Instance.LogError(error);
+                throw error;
             }
             finally
             {
                 connection.Close();
-                throw new System.NotImplementedException();
             }
         }
 
@@ -48,7 +49,7 @@ namespace mcs.components.DbConnection
             }
             catch (Exception error)
             {
-                ErrorLogger.Instance.LogError(error);
+                throw error;
             }
             finally
             {
@@ -65,7 +66,7 @@ namespace mcs.components.DbConnection
             }
             catch (Exception error)
             {
-                ErrorLogger.Instance.LogError(error);
+                throw error;
             }
             finally
             {
@@ -83,7 +84,7 @@ namespace mcs.components.DbConnection
             }
             catch (Exception error)
             {
-                ErrorLogger.Instance.LogError(error);
+                throw error;
             }
             finally
             {

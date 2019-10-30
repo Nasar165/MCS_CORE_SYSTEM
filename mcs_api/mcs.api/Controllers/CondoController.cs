@@ -9,20 +9,20 @@ namespace mcs.api.Controllers
     public class CondoController : ControllerBase
     {
         [Authorize(Roles = "Admin")]
-        public ActionResult Get()
+        public IActionResult Get()
         {   // Get all Property no mather the website state
             return Ok("Hello World");
         }
 
         [Authorize(Roles = "Admin")]
-        public ActionResult Get(int id)
+        public IActionResult Get(int id)
         {   // Get Singel property
             throw new System.Exception("Not Ready Yet");
         }
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public ActionResult Post()
+        public IActionResult Post()
         {
             return Ok("Hello Admin");
         }
@@ -33,14 +33,14 @@ namespace mcs.api.Controllers
         [Route("[action]")]
         //[Authorize(Roles = "API")]
         [AllowAnonymous]
-        public ActionResult GetCondos()
+        public IActionResult GetCondos()
         {   // Get Property where website statet is set to true
             throw new System.Exception("Not Ready Yet");
         }
 
         [Route("[action]")]
         [Authorize(Roles = "API")]
-        public ActionResult GetCondo(int id)
+        public IActionResult GetCondo(int id)
         {   // Get single Property where website statet is set to true
             throw new System.Exception("Not Ready Yet");
         }

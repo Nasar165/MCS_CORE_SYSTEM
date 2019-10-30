@@ -11,6 +11,9 @@ namespace mcs.api.Models
         public string GetSecreatKey()
             => AppConfig.GetSection("AppSettings").GetSection("SecretKey").Value;
 
+        public string GetDbConnection()
+            => AppConfig.GetSection("ConnectionStrings").GetSection("mcscon").Value;
+
         public void SetIConfiguration(IConfiguration config)
             => AppConfig = config;
 
