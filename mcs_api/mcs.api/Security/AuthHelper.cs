@@ -1,4 +1,5 @@
 using System;
+using System.Security.Authentication;
 using mcs.api.Models;
 using mcs.api.Security.AuthTemplate;
 using mcs.api.Security.AuthTemplate.Interface;
@@ -33,40 +34,35 @@ namespace mcs.api.Security
             }
         }
 
-        private object NotAuthorized(string name, string param)
-        {
-            return new
-            {
-                status = 401,
-                message = $"{name} Authentication failed! Please check {param}."
-            };
-        }
-
-        private T GetCredentialsFromSql<T>(string tableName)
+        private T GetCredentialsFromSql<T>(string tableName, string account)
         {
             var mcsdbcon = AppConfigHelper.Instance.GetDbConnection();
             var sql = new NpgSqlHelper(mcsdbcon);
             var dataTable = sql.SelectQuery($"Select * from {tableName}");
-            return ObjectConverter.ConvertDataTableToList<T>(dataTable)[0];
+            if (dataTable.Rows.Count > 0)
+                return ObjectConverter.ConvertDataTableToList<T>(dataTable)[0];
+            else
+                throw new InvalidCredentialException($"{account} Authentication failed! ");
         }
 
         public object AuthentiacteAPI(IAccessKey apiKey)
         {
             try
             {
-                var dbApiKey = GetCredentialsFromSql<AccessKey>($"token where tokenkey = '{apiKey.TokenKey}'");
+                var dbApiKey = GetCredentialsFromSql<AccessKey>(
+                    $"token where tokenkey = '{apiKey.TokenKey}'", apiKey.TokenKey);
                 if (apiKey.TokenKey == dbApiKey.TokenKey && apiKey.GroupKey == dbApiKey.GroupKey)
                 {
                     var Token = GenerateToken(dbApiKey, "API");
                     return Token;
                 }
-                return NotAuthorized("API", "(TokenKey and GroupKey)");
+                return false;
 
             }
             catch (Exception error)
             {
                 ErrorLogger.Instance.LogError(error);
-                throw error;
+                return false;
             }
         }
 
@@ -74,18 +70,19 @@ namespace mcs.api.Security
         {
             try
             {
-                var dbuser = GetCredentialsFromSql<UserAccount>($"useraccount where username = '{user.Username}'");
+                var dbuser = GetCredentialsFromSql<UserAccount>(
+                    $"useraccount where username = '{user.Username}'", user.Username);
                 if (user.Username == dbuser.Username && user.Password == dbuser.Password)
                 {
                     var Token = GenerateToken(dbuser, "User");
                     return Token;
                 }
-                return NotAuthorized("User", "(Username and Password)");
+                return false;
             }
             catch (Exception error)
             {
                 ErrorLogger.Instance.LogError(error);
-                throw error;
+                return false;
             }
         }
     }

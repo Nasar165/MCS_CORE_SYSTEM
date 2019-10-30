@@ -9,5 +9,13 @@ namespace mcs.api.Security.AuthTemplate
         public string Username { get; set; }
         [Required]
         public string Password { get; set; }
+        private string[] Role { get; set; }
+
+        public void SetRoles(params string[] roles)
+            => Role = roles;
+
+        public string[] GetRoles()
+            => Role;
+
     }
 }

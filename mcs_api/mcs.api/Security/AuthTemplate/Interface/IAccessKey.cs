@@ -4,5 +4,7 @@ namespace mcs.api.Security.AuthTemplate.Interface
     {
         string TokenKey { get; set; }
         string GroupKey { get; set; }
+        void SetRoles(params string[] roles);
+        string[] GetRoles();
     }
 }

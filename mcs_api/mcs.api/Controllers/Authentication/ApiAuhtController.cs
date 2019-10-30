@@ -13,8 +13,11 @@ namespace mcs.api.Controllers.Authentication
         {
             if (ModelState.IsValid)
             {
-                var authHelper = new AuthHelper();
-                return Ok(authHelper.AuthentiacteAPI(accessKey));
+                var auth = new AuthHelper();
+                var result = auth.AuthentiacteAPI(accessKey);
+                if (result is bool)
+                    return Unauthorized();
+                return Ok(result);
             }
             return Unauthorized();
         }
