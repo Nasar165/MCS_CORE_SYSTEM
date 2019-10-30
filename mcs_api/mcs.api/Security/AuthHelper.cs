@@ -25,7 +25,8 @@ namespace mcs.api.Security
             try
             {
                 var claimList = _ClaimHelper.AddDataToClaim<T>(data);
-                var Token = _JwtAuthenticator.CreateJwtToken(claimList, audiance, "mcsunity.net");
+                var Token = _JwtAuthenticator.CreateJwtToken(claimList
+                    , audiance, "mcsunity.net");
                 return Token;
             }
             catch (Exception error)
@@ -34,11 +35,12 @@ namespace mcs.api.Security
             }
         }
 
-        private T GetCredentialsFromSql<T>(string tableName, string account)
+        private T GetCredentialsFromSql<T>(string tableQuery, string account)
         {
             var mcsdbcon = AppConfigHelper.Instance.GetDbConnection();
             var sql = new NpgSqlHelper(mcsdbcon);
-            var dataTable = sql.SelectQuery($"Select * from {tableName}");
+            // SQL INJECTION VULNERABILITY DETECTED
+            var dataTable = sql.SelectQuery($"Select * from {tableQuery}");
             if (dataTable.Rows.Count > 0)
                 return ObjectConverter.ConvertDataTableToList<T>(dataTable)[0];
             else

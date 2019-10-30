@@ -6,6 +6,7 @@ namespace mcs.api.Security.AuthTemplate
     public class UserAccount : IUserAccount
     {
         [Required]
+        [StringLength(11, ErrorMessage = "The {0} value cannot exceed {1} characters. ")]
         public string Username { get; set; }
         [Required]
         public string Password { get; set; }

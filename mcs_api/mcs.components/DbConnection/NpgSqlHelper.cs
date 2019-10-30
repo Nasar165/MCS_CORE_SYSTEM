@@ -24,7 +24,6 @@ namespace mcs.components.DbConnection
         {
             try
             {
-                connection.Open();
                 var sqlDataReader = new NpgsqlDataAdapter(query, connection);
                 var table = new DataTable();
                 sqlDataReader.Fill(table);
