@@ -20,14 +20,32 @@ namespace mcs.components.DbConnection
         private void CreateConnectionString(string sqlConnectionString)
            => connection = new NpgsqlConnection(sqlConnectionString);
 
+        private NpgsqlCommand AddParametersToSqlCommand(NpgsqlCommand command, object model)
+        {
+            foreach (var propertie in model.GetType().GetProperties())
+            {
+                var objectValue = propertie.GetValue(model);
+                if (!Validation.ObjectIsNull(objectValue))
+                    command.Parameters.AddWithValue($"@{propertie.Name}", objectValue);
+            }
+            return command;
+        }
+
+        public DataTable ReadDataFromDatabase(NpgsqlCommand command)
+        {
+            NpgsqlDataReader reader = command.ExecuteReader();
+            var dataTable = new DataTable();
+            dataTable.Load(reader);
+            return dataTable;
+        }
+
         public DataTable SelectQuery(string query)
         {
             try
             {
-                var sqlDataReader = new NpgsqlDataAdapter(query, connection);
-                var table = new DataTable();
-                sqlDataReader.Fill(table);
-                return table;
+                connection.Open();
+                var sqlCommand = new NpgsqlCommand(query, connection);
+                return ReadDataFromDatabase(sqlCommand); ;
             }
             catch (Exception error)
             {
