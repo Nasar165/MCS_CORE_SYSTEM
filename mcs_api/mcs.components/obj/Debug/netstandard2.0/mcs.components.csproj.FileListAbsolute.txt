@@ -6,3 +6,11 @@
 /home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.components/obj/Debug/netstandard2.0/mcs.components.AssemblyInfo.cs
 /home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.components/obj/Debug/netstandard2.0/mcs.components.dll
 /home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.components/obj/Debug/netstandard2.0/mcs.components.pdb
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.components\bin\Debug\netstandard2.0\mcs.components.deps.json
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.components\bin\Debug\netstandard2.0\mcs.components.dll
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.components\bin\Debug\netstandard2.0\mcs.components.pdb
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.components\obj\Debug\netstandard2.0\mcs.components.csprojAssemblyReference.cache
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.components\obj\Debug\netstandard2.0\mcs.components.AssemblyInfoInputs.cache
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.components\obj\Debug\netstandard2.0\mcs.components.AssemblyInfo.cs
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.components\obj\Debug\netstandard2.0\mcs.components.dll
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.components\obj\Debug\netstandard2.0\mcs.components.pdb
