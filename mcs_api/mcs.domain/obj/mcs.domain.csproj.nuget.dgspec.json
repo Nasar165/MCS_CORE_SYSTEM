@@ -43,7 +43,7 @@
           "dependencies": {
             "Microsoft.AspNetCore.Mvc.DataAnnotations": {
               "target": "Package",
-              "version": "(, )"
+              "version": "[2.2.0, )"
             },
             "NETStandard.Library": {
               "suppressParent": "All",

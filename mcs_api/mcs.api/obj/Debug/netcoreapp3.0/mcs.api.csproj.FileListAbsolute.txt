@@ -76,3 +76,7 @@ C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\obj\Debug\netcor
 C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\obj\Debug\netcoreapp3.0\mcs.api.csproj.CopyComplete
 C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\obj\Debug\netcoreapp3.0\mcs.api.dll
 C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\obj\Debug\netcoreapp3.0\mcs.api.pdb
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\mcs.domain.dll
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\mcs.domain.pdb

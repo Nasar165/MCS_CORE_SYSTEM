@@ -15,7 +15,7 @@ namespace mcs.domain.Templates
 
         [Required(ErrorMessage = "A rating must be either 0 or more but not higher than 5")]
         public int Rating { get; set; }
-        [Required(ErrorMessage = "Please assigne a price ")]
+        [Required(ErrorMessage = "Please assigne a price")]
         public double Price { get; set; }
         public int Parent_Ref_Id { get; set; }
         public int Address_Id { get; set; }

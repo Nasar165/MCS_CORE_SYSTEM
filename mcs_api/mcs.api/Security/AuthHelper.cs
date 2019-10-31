@@ -20,6 +20,24 @@ namespace mcs.api.Security
             _JwtAuthenticator = new JwtAuthenticator();
         }
 
+        private T GetCredentialsFromSql<T>(string tableQuery, string account)
+        {
+            var mcsdbcon = AppConfigHelper.Instance.GetDbConnection();
+            var sql = new NpgSqlHelper(mcsdbcon);
+            // SQL INJECTION VULNERABILITY DETECTED
+            var dataTable = sql.SelectQuery($"Select * from {tableQuery}");
+            if (dataTable.Rows.Count > 0)
+                return ObjectConverter.ConvertDataTableToList<T>(dataTable)[0];
+            else
+                throw new InvalidCredentialException($"{account} Authentication failed! ");
+        }
+
+        private void LogAuthentication(string name)
+        {
+            var mcsdbcon = AppConfigHelper.Instance.GetDbConnection();
+            var sql = new NpgSqlHelper(mcsdbcon);
+        }
+
         private object GenerateToken<T>(T data, string audiance)
         {
             try
@@ -35,18 +53,6 @@ namespace mcs.api.Security
             }
         }
 
-        private T GetCredentialsFromSql<T>(string tableQuery, string account)
-        {
-            var mcsdbcon = AppConfigHelper.Instance.GetDbConnection();
-            var sql = new NpgSqlHelper(mcsdbcon);
-            // SQL INJECTION VULNERABILITY DETECTED
-            var dataTable = sql.SelectQuery($"Select * from {tableQuery}");
-            if (dataTable.Rows.Count > 0)
-                return ObjectConverter.ConvertDataTableToList<T>(dataTable)[0];
-            else
-                throw new InvalidCredentialException($"{account} Authentication failed! ");
-        }
-
         public object AuthentiacteAPI(IAccessKey apiKey)
         {
             try
@@ -55,6 +61,7 @@ namespace mcs.api.Security
                     $"token where tokenkey = '{apiKey.TokenKey}'", apiKey.TokenKey);
                 if (apiKey.TokenKey == dbApiKey.TokenKey && apiKey.GroupKey == dbApiKey.GroupKey)
                 {
+                    LogAuthentication(apiKey.TokenKey);
                     var Token = GenerateToken(dbApiKey, "API");
                     return Token;
                 }
@@ -76,6 +83,7 @@ namespace mcs.api.Security
                     $"useraccount where username = '{user.Username}'", user.Username);
                 if (user.Username == dbuser.Username && user.Password == dbuser.Password)
                 {
+                    LogAuthentication(user.Username);
                     var Token = GenerateToken(dbuser, "User");
                     return Token;
                 }

@@ -7,6 +7,43 @@ namespace mcs.components
 {
     public class ObjectConverter
     {
+        private static T assignValueToObject<T>(PropertyInfo pro, DataColumn column, DataRow dr, T obj)
+        {
+            if (pro.PropertyType.Name == "Boolean")
+                pro.SetValue(obj, Convert.ToBoolean(dr[column.ColumnName]), null);
+            else
+                pro.SetValue(obj, dr[column.ColumnName], null);
+            return obj;
+        }
+
+        private static bool ObjectAssignmentIsValid(string name, string columnName, object obj)
+            => Validation.StringsAreEqual(name, columnName) && !Convert.IsDBNull(obj);
+
+        private static T IterateColumns<T>(T obj, DataColumn column, DataRow dr)
+        {
+            var properties = obj.GetType().GetProperties();
+            foreach (PropertyInfo pro in properties)
+            {
+                if (ObjectAssignmentIsValid(pro.Name, column.ColumnName, dr[column.ColumnName]))
+                {
+                    obj = assignValueToObject(pro, column, dr, obj);
+                    break;
+                }
+                continue;
+            }
+            return obj;
+        }
+
+        private static T GetItem<T>(DataRow dr)
+        {
+            T obj = Activator.CreateInstance<T>();
+            foreach (DataColumn column in dr.Table.Columns)
+            {
+                obj = IterateColumns<T>(obj, column, dr);
+            }
+            return obj;
+        }
+
         public static List<T> ConvertDataTableToList<T>(DataTable dt)
         {
             var data = new List<T>();
@@ -16,32 +53,6 @@ namespace mcs.components
                 data.Add(item);
             }
             return data;
-        }
-        // Clean up this method in to smaller functions
-        private static T GetItem<T>(DataRow dr)
-        {
-            Type temp = typeof(T);
-            T obj = Activator.CreateInstance<T>();
-
-            foreach (DataColumn column in dr.Table.Columns)
-            {
-                foreach (PropertyInfo pro in temp.GetProperties())
-                {
-                    if (Validation.StringsAreEqual(pro.Name, column.ColumnName))
-                    {
-                        if (!Convert.IsDBNull(dr[column.ColumnName]))
-                        {
-                            if (pro.PropertyType.Name == "Boolean")
-                                pro.SetValue(obj, Convert.ToBoolean(dr[column.ColumnName]), null);
-                            else
-                                pro.SetValue(obj, dr[column.ColumnName], null);
-                        }
-                        break;
-                    }
-                    continue;
-                }
-            }
-            return obj;
         }
     }
 }

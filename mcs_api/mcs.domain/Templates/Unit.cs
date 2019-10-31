@@ -19,7 +19,7 @@ namespace mcs.domain.Templates
         [Required(ErrorMessage = "Enter a valid unit size!")]
         public double Size { get; set; }
         public double LandSize { get; set; }
-        [Required(ErrorMessage = "Enter a valid floor")]
+        [Required(ErrorMessage = "Enter a valid floor.")]
         public int Floor { get; set; }
         [Required(ErrorMessage = "Enter a valid ownership type ID!")]
         public int Ownership_Type_Id { get; set; }
