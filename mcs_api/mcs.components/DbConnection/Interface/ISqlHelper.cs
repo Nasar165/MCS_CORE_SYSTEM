@@ -4,7 +4,7 @@ namespace mcs.components.Interface
 {
     public interface ISqlHelper
     {
-        DataTable SelectQuery(string query);
+        DataTable SelectQuery(string query, object data = null);
 
         void InsertQuery<T>(string query, T data);
 

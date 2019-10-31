@@ -20,31 +20,33 @@ namespace mcs.components.DbConnection
         private void CreateConnectionString(string sqlConnectionString)
            => connection = new NpgsqlConnection(sqlConnectionString);
 
-        private NpgsqlCommand AddParametersToSqlCommand(NpgsqlCommand command, object model)
+        private NpgsqlCommand AddParametersToSqlCommand(NpgsqlCommand sqlCommand, object model)
         {
             foreach (var propertie in model.GetType().GetProperties())
             {
                 var objectValue = propertie.GetValue(model);
                 if (!Validation.ObjectIsNull(objectValue))
-                    command.Parameters.AddWithValue($"@{propertie.Name}", objectValue);
+                    sqlCommand.Parameters.AddWithValue($"@{propertie.Name.ToLower()}", objectValue);
             }
-            return command;
+            return sqlCommand;
         }
 
-        public DataTable ReadDataFromDatabase(NpgsqlCommand command)
+        public DataTable ReadDataFromDatabase(NpgsqlCommand sqlCommand)
         {
-            NpgsqlDataReader reader = command.ExecuteReader();
+            NpgsqlDataReader reader = sqlCommand.ExecuteReader();
             var dataTable = new DataTable();
             dataTable.Load(reader);
             return dataTable;
         }
 
-        public DataTable SelectQuery(string query)
+        public DataTable SelectQuery(string query, object data = null)
         {
             try
             {
                 connection.Open();
                 var sqlCommand = new NpgsqlCommand(query, connection);
+                if (!Validation.ObjectIsNull(data))
+                    AddParametersToSqlCommand(sqlCommand, data);
                 return ReadDataFromDatabase(sqlCommand); ;
             }
             catch (Exception error)

@@ -20,12 +20,11 @@ namespace mcs.api.Security
             _JwtAuthenticator = new JwtAuthenticator();
         }
 
-        private T GetCredentialsFromSql<T>(string tableQuery, string account)
+        private T GetCredentialsFromSql<T>(string tableQuery, T account)
         {
             var mcsdbcon = AppConfigHelper.Instance.GetDbConnection();
             var sql = new NpgSqlHelper(mcsdbcon);
-            // SQL INJECTION VULNERABILITY DETECTED
-            var dataTable = sql.SelectQuery($"Select * from {tableQuery}");
+            var dataTable = sql.SelectQuery($"Select * from {tableQuery}", account);
             if (dataTable.Rows.Count > 0)
                 return ObjectConverter.ConvertDataTableToList<T>(dataTable)[0];
             else
@@ -58,7 +57,7 @@ namespace mcs.api.Security
             try
             {
                 var dbApiKey = GetCredentialsFromSql<AccessKey>(
-                    $"token where tokenkey = '{apiKey.TokenKey}'", apiKey.TokenKey);
+                    $"token where tokenkey = @tokenkey", (AccessKey)apiKey);
                 if (apiKey.TokenKey == dbApiKey.TokenKey && apiKey.GroupKey == dbApiKey.GroupKey)
                 {
                     LogAuthentication(apiKey.TokenKey);
@@ -80,7 +79,7 @@ namespace mcs.api.Security
             try
             {
                 var dbuser = GetCredentialsFromSql<UserAccount>(
-                    $"useraccount where username = '{user.Username}'", user.Username);
+                    $"useraccount where username = '@username'", (UserAccount)user);
                 if (user.Username == dbuser.Username && user.Password == dbuser.Password)
                 {
                     LogAuthentication(user.Username);
