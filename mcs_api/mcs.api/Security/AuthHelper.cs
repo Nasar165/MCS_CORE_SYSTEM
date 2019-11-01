@@ -62,7 +62,8 @@ namespace mcs.api.Security
                 if (apiKey.TokenKey == dbApiKey.TokenKey && apiKey.GroupKey == dbApiKey.GroupKey)
                 {
                     LogAuthentication(apiKey.TokenKey);
-                    var Token = GenerateToken(dbApiKey, "API");
+                    var tokenClaim = CreateExtension(dbApiKey.Database_Id, dbApiKey.Active);
+                    var Token = GenerateToken(tokenClaim, "API");
                     return Token;
                 }
                 return false;
@@ -75,6 +76,9 @@ namespace mcs.api.Security
             }
         }
 
+        private DataExtension CreateExtension(int dbId, bool active)
+            => new DataExtension() { Database_Id = dbId, Active = active };
+
         public object AuthenticateUser(IUserAccount user)
         {
             try
@@ -85,7 +89,8 @@ namespace mcs.api.Security
                 if (user.Username == dbuser.Username && user.Password == dbuser.Password)
                 {
                     LogAuthentication(user.Username);
-                    var Token = GenerateToken(dbuser, "User");
+                    var tokenClaim = CreateExtension(dbuser.Database_Id, dbuser.Active);
+                    var Token = GenerateToken(tokenClaim, "User");
                     return Token;
                 }
                 return false;
