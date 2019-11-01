@@ -20,15 +20,15 @@ namespace mcs.api.Security
             _JwtAuthenticator = new JwtAuthenticator();
         }
 
-        private T GetCredentialsFromSql<T>(string tableQuery, T account)
+        private T GetCredentialsFromSql<T>(string tableQuery, SqlCommandHelper<T> account, string name)
         {
             var mcsdbcon = AppConfigHelper.Instance.GetDbConnection();
             var sql = new NpgSqlHelper(mcsdbcon);
-            var dataTable = sql.SelectQuery($"Select * from {tableQuery}", account);
+            var dataTable = sql.SelectQuery($"Select * from {tableQuery};", account);
             if (dataTable.Rows.Count > 0)
                 return ObjectConverter.ConvertDataTableToList<T>(dataTable)[0];
             else
-                throw new InvalidCredentialException($"{account} Authentication failed! ");
+                throw new InvalidCredentialException($"{name} Authentication failed! ");
         }
 
         private void LogAuthentication(string name)
@@ -56,8 +56,9 @@ namespace mcs.api.Security
         {
             try
             {
+                var sqlcommand = new SqlCommandHelper<AccessKey>((AccessKey)apiKey, "groupkey");
                 var dbApiKey = GetCredentialsFromSql<AccessKey>(
-                    $"token where tokenkey = @tokenkey", (AccessKey)apiKey);
+                    $"token where tokenkey = @tokenkey", sqlcommand, apiKey.TokenKey);
                 if (apiKey.TokenKey == dbApiKey.TokenKey && apiKey.GroupKey == dbApiKey.GroupKey)
                 {
                     LogAuthentication(apiKey.TokenKey);
@@ -78,8 +79,9 @@ namespace mcs.api.Security
         {
             try
             {
+                var sqlcommand = new SqlCommandHelper<UserAccount>((UserAccount)user, "password");
                 var dbuser = GetCredentialsFromSql<UserAccount>(
-                    $"useraccount where username = '@username'", (UserAccount)user);
+                    $"useraccount where username = @username", sqlcommand, user.Username);
                 if (user.Username == dbuser.Username && user.Password == dbuser.Password)
                 {
                     LogAuthentication(user.Username);
