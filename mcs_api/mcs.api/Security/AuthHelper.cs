@@ -52,6 +52,9 @@ namespace mcs.api.Security
             }
         }
 
+        private DataExtension ProvideMinimalDataToToken(int dbId, bool active)
+            => new DataExtension() { Database_Id = dbId, Active = active };
+
         public object AuthentiacteAPI(IAccessKey apiKey)
         {
             try
@@ -62,7 +65,7 @@ namespace mcs.api.Security
                 if (apiKey.TokenKey == dbApiKey.TokenKey && apiKey.GroupKey == dbApiKey.GroupKey)
                 {
                     LogAuthentication(apiKey.TokenKey);
-                    var tokenClaim = CreateExtension(dbApiKey.Database_Id, dbApiKey.Active);
+                    var tokenClaim = ProvideMinimalDataToToken(dbApiKey.Database_Id, dbApiKey.Active);
                     var Token = GenerateToken(tokenClaim, "API");
                     return Token;
                 }
@@ -76,9 +79,6 @@ namespace mcs.api.Security
             }
         }
 
-        private DataExtension CreateExtension(int dbId, bool active)
-            => new DataExtension() { Database_Id = dbId, Active = active };
-
         public object AuthenticateUser(IUserAccount user)
         {
             try
@@ -89,7 +89,7 @@ namespace mcs.api.Security
                 if (user.Username == dbuser.Username && user.Password == dbuser.Password)
                 {
                     LogAuthentication(user.Username);
-                    var tokenClaim = CreateExtension(dbuser.Database_Id, dbuser.Active);
+                    var tokenClaim = ProvideMinimalDataToToken(dbuser.Database_Id, dbuser.Active);
                     var Token = GenerateToken(tokenClaim, "User");
                     return Token;
                 }
