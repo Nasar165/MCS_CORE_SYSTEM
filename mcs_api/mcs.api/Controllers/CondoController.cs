@@ -31,8 +31,7 @@ namespace mcs.api.Controllers
         //Low Level API front end Data
         ///
         [Route("[action]")]
-        //[Authorize(Roles = "API")]
-        [AllowAnonymous]
+        [Authorize(Roles = "API")]
         public IActionResult GetCondos()
         {   // Get Property where website statet is set to true
             throw new System.Exception("Not Ready Yet");

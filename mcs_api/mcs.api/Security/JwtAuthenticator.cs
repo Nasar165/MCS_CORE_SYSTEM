@@ -5,7 +5,6 @@ using System.Security.Claims;
 using System.Text;
 using mcs.api.Security.Interface;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.Extensions.Configuration;
 using mcs.api.Models;
 
 namespace mcs.api.Security
@@ -31,7 +30,8 @@ namespace mcs.api.Security
             return new
             {
                 token = new JwtSecurityTokenHandler().WriteToken(token),
-                expiration = token.ValidTo
+                authType = "Bearer",
+                expiration = $"UTC:{token.ValidTo}"
             };
         }
 
@@ -40,7 +40,7 @@ namespace mcs.api.Security
             var token = new JwtSecurityToken(
                 issuer: issuer,
                 audience: audiance,
-                expires: DateTime.UtcNow.AddHours(1),
+                expires: DateTime.Now.AddHours(1),
                 claims: claim,
                 signingCredentials: GenerateSigningCredential()
             );

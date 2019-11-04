@@ -20,6 +20,23 @@ namespace mcs.api.Security
             _JwtAuthenticator = new JwtAuthenticator();
         }
 
+        private T GetCredentialsFromSql<T>(string tableQuery, SqlCommandHelper<T> account, string name)
+        {
+            var mcsdbcon = AppConfigHelper.Instance.GetDbConnection();
+            var sql = new NpgSqlHelper(mcsdbcon);
+            var dataTable = sql.SelectQuery($"Select * from {tableQuery};", account);
+            if (dataTable.Rows.Count > 0)
+                return ObjectConverter.ConvertDataTableToList<T>(dataTable)[0];
+            else
+                throw new InvalidCredentialException($"{name} Authentication failed! ");
+        }
+
+        private void LogAuthentication(string name)
+        {
+            var mcsdbcon = AppConfigHelper.Instance.GetDbConnection();
+            var sql = new NpgSqlHelper(mcsdbcon);
+        }
+
         private object GenerateToken<T>(T data, string audiance)
         {
             try
@@ -35,27 +52,21 @@ namespace mcs.api.Security
             }
         }
 
-        private T GetCredentialsFromSql<T>(string tableQuery, string account)
-        {
-            var mcsdbcon = AppConfigHelper.Instance.GetDbConnection();
-            var sql = new NpgSqlHelper(mcsdbcon);
-            // SQL INJECTION VULNERABILITY DETECTED
-            var dataTable = sql.SelectQuery($"Select * from {tableQuery}");
-            if (dataTable.Rows.Count > 0)
-                return ObjectConverter.ConvertDataTableToList<T>(dataTable)[0];
-            else
-                throw new InvalidCredentialException($"{account} Authentication failed! ");
-        }
+        private DataExtension ProvideMinimalDataToToken(int dbId, bool active)
+            => new DataExtension() { Database_Id = dbId, Active = active };
 
         public object AuthentiacteAPI(IAccessKey apiKey)
         {
             try
             {
+                var sqlcommand = new SqlCommandHelper<AccessKey>((AccessKey)apiKey, "groupkey");
                 var dbApiKey = GetCredentialsFromSql<AccessKey>(
-                    $"token where tokenkey = '{apiKey.TokenKey}'", apiKey.TokenKey);
+                    $"token where tokenkey = @tokenkey", sqlcommand, apiKey.TokenKey);
                 if (apiKey.TokenKey == dbApiKey.TokenKey && apiKey.GroupKey == dbApiKey.GroupKey)
                 {
-                    var Token = GenerateToken(dbApiKey, "API");
+                    LogAuthentication(apiKey.TokenKey);
+                    var tokenClaim = ProvideMinimalDataToToken(dbApiKey.Database_Id, dbApiKey.Active);
+                    var Token = GenerateToken(tokenClaim, "API");
                     return Token;
                 }
                 return false;
@@ -72,11 +83,14 @@ namespace mcs.api.Security
         {
             try
             {
+                var sqlcommand = new SqlCommandHelper<UserAccount>((UserAccount)user, "password");
                 var dbuser = GetCredentialsFromSql<UserAccount>(
-                    $"useraccount where username = '{user.Username}'", user.Username);
+                    $"useraccount where username = @username", sqlcommand, user.Username);
                 if (user.Username == dbuser.Username && user.Password == dbuser.Password)
                 {
-                    var Token = GenerateToken(dbuser, "User");
+                    LogAuthentication(user.Username);
+                    var tokenClaim = ProvideMinimalDataToToken(dbuser.Database_Id, dbuser.Active);
+                    var Token = GenerateToken(tokenClaim, "User");
                     return Token;
                 }
                 return false;

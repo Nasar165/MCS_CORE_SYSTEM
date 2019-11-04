@@ -1,32 +1,40 @@
 {
   "format": 1,
   "restore": {
-    "/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/mcs.api.csproj": {}
+    "C:\\Users\\Nasar\\Desktop\\VS Code\\MCS_CRM_NET_CORE\\mcs_api\\mcs.api\\mcs.api.csproj": {}
   },
   "projects": {
-    "/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/mcs.api.csproj": {
+    "C:\\Users\\Nasar\\Desktop\\VS Code\\MCS_CRM_NET_CORE\\mcs_api\\mcs.api\\mcs.api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/mcs.api.csproj",
+        "projectUniqueName": "C:\\Users\\Nasar\\Desktop\\VS Code\\MCS_CRM_NET_CORE\\mcs_api\\mcs.api\\mcs.api.csproj",
         "projectName": "mcs.api",
-        "projectPath": "/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/mcs.api.csproj",
-        "packagesPath": "/home/nasareddaoui/.nuget/packages/",
-        "outputPath": "/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/obj/",
+        "projectPath": "C:\\Users\\Nasar\\Desktop\\VS Code\\MCS_CRM_NET_CORE\\mcs_api\\mcs.api\\mcs.api.csproj",
+        "packagesPath": "C:\\Users\\Nasar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Nasar\\Desktop\\VS Code\\MCS_CRM_NET_CORE\\mcs_api\\mcs.api\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "/home/nasareddaoui/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Nasar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.components/mcs.components.csproj": {
-                "projectPath": "/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.components/mcs.components.csproj"
+              "C:\\Users\\Nasar\\Desktop\\VS Code\\MCS_CRM_NET_CORE\\mcs_api\\mcs.components\\mcs.components.csproj": {
+                "projectPath": "C:\\Users\\Nasar\\Desktop\\VS Code\\MCS_CRM_NET_CORE\\mcs_api\\mcs.components\\mcs.components.csproj"
+              },
+              "C:\\Users\\Nasar\\Desktop\\VS Code\\MCS_CRM_NET_CORE\\mcs_api\\mcs.domain\\mcs.domain.csproj": {
+                "projectPath": "C:\\Users\\Nasar\\Desktop\\VS Code\\MCS_CRM_NET_CORE\\mcs_api\\mcs.domain\\mcs.domain.csproj"
               }
             }
           }
@@ -63,26 +71,31 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.components/mcs.components.csproj": {
+    "C:\\Users\\Nasar\\Desktop\\VS Code\\MCS_CRM_NET_CORE\\mcs_api\\mcs.components\\mcs.components.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.components/mcs.components.csproj",
+        "projectUniqueName": "C:\\Users\\Nasar\\Desktop\\VS Code\\MCS_CRM_NET_CORE\\mcs_api\\mcs.components\\mcs.components.csproj",
         "projectName": "mcs.components",
-        "projectPath": "/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.components/mcs.components.csproj",
-        "packagesPath": "/home/nasareddaoui/.nuget/packages/",
-        "outputPath": "/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.components/obj/",
+        "projectPath": "C:\\Users\\Nasar\\Desktop\\VS Code\\MCS_CRM_NET_CORE\\mcs_api\\mcs.components\\mcs.components.csproj",
+        "packagesPath": "C:\\Users\\Nasar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Nasar\\Desktop\\VS Code\\MCS_CRM_NET_CORE\\mcs_api\\mcs.components\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "/home/nasareddaoui/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Nasar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -120,7 +133,69 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Nasar\\Desktop\\VS Code\\MCS_CRM_NET_CORE\\mcs_api\\mcs.domain\\mcs.domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Nasar\\Desktop\\VS Code\\MCS_CRM_NET_CORE\\mcs_api\\mcs.domain\\mcs.domain.csproj",
+        "projectName": "mcs.domain",
+        "projectPath": "C:\\Users\\Nasar\\Desktop\\VS Code\\MCS_CRM_NET_CORE\\mcs_api\\mcs.domain\\mcs.domain.csproj",
+        "packagesPath": "C:\\Users\\Nasar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Nasar\\Desktop\\VS Code\\MCS_CRM_NET_CORE\\mcs_api\\mcs.domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Nasar\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.DataAnnotations": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

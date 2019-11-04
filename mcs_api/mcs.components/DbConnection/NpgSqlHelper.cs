@@ -1,5 +1,6 @@
 using System;
 using System.Data;
+using System.Reflection;
 using mcs.components.Interface;
 using Npgsql;
 
@@ -20,14 +21,54 @@ namespace mcs.components.DbConnection
         private void CreateConnectionString(string sqlConnectionString)
            => connection = new NpgsqlConnection(sqlConnectionString);
 
-        public DataTable SelectQuery(string query)
+        private bool DontSkipPropertie(string[] skipPrpertie, PropertyInfo propertie)
+        {
+            foreach (var key in skipPrpertie)
+            {
+                if (key.ToLower() == propertie.Name.ToLower())
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private NpgsqlCommand AddParametersToSqlCommand<T>(SqlCommandHelper<T> data)
+        {
+            var model = data.Data;
+            if (!Validation.ObjectIsNull(model))
+                foreach (var propertie in ReflectionHelper.GetPropertiesOfObject(model))
+                {
+                    if (DontSkipPropertie(data.SkipProperties, propertie))
+                    {
+                        var objectValue = propertie.GetValue(model);
+                        if (!Validation.ObjectIsNull(objectValue))
+                            data.SqlCommand.Parameters.AddWithValue($"@{propertie.Name.ToLower()}", objectValue);
+                    }
+                }
+            return data.SqlCommand;
+        }
+
+        public DataTable ReadDataFromDatabase(NpgsqlCommand sqlCommand)
+        {
+            NpgsqlDataReader reader = sqlCommand.ExecuteReader();
+            var dataTable = new DataTable();
+            dataTable.Load(reader);
+            return dataTable;
+        }
+
+        public DataTable SelectQuery<T>(string query, SqlCommandHelper<T> data)
         {
             try
             {
-                var sqlDataReader = new NpgsqlDataAdapter(query, connection);
-                var table = new DataTable();
-                sqlDataReader.Fill(table);
-                return table;
+                connection.Open();
+                var sqlCommand = new NpgsqlCommand(query, connection);
+                if (!Validation.ObjectIsNull(data))
+                {
+                    data.SqlCommand = sqlCommand;
+                    sqlCommand = AddParametersToSqlCommand(data);
+                }
+                return ReadDataFromDatabase(sqlCommand); ;
             }
             catch (Exception error)
             {
@@ -39,7 +80,7 @@ namespace mcs.components.DbConnection
             }
         }
 
-        public void InsertQuery<T>(string query, T data)
+        public void InsertQuery<T>(string query, SqlCommandHelper<T> data)
         {
             try
             {
@@ -56,7 +97,7 @@ namespace mcs.components.DbConnection
             }
         }
 
-        public object InsertQueryScalar<T>(string query, T data)
+        public object InsertQueryScalar<T>(string query, SqlCommandHelper<T> data)
         {
             try
             {
@@ -74,7 +115,7 @@ namespace mcs.components.DbConnection
             }
         }
 
-        public void DeleteData<T>(string query, T data)
+        public void DeleteData<T>(string query, SqlCommandHelper<T> data)
         {
             try
             {

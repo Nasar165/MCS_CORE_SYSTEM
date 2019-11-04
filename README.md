@@ -1,4 +1,4 @@
-# MCS-CRM-NET-CORE
+# MCS CRM (NET CORE)
 MCS unity CRM is a customer relationship manangemnt system developed by MCS Unity Co.,LTD in .Net
 Core with Postgresql. The system functions as a all in one system providing hosting provdiders
 & their clients with neccessary tools to keep track of their businesses.
@@ -15,13 +15,29 @@ are installed and if not, install them utilizing the proivders main pages.
 
 
 ### Installing
+
+#### Postgresql
+```
+Give examples
+```
 #### SQL Scirpt
 This Project requires two SQL databases to function property. The main Database purpose is to 
 act as a inhouse database storing clients information such as username, password tokenkeys 
 and much more. While the client DB contains all the clients private information. 
 
+##### Runnning scripts
 * [MainDB](https://github.com) - Main Script
 * [ClientDB](https://github.com) - Client DB Script
+
+##### Dotnet core 3
+```
+Give examples
+```
+
+##### Test application
+```
+Give examples
+```
 
 ### Deployment
 #### Deploying to Linux (IIS)
