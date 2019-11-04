@@ -1,30 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Nasar\\Desktop\\VS Code\\MCS_CRM_NET_CORE\\mcs_api\\mcs.domain\\mcs.domain.csproj": {}
+    "/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.domain/mcs.domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Nasar\\Desktop\\VS Code\\MCS_CRM_NET_CORE\\mcs_api\\mcs.domain\\mcs.domain.csproj": {
+    "/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.domain/mcs.domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nasar\\Desktop\\VS Code\\MCS_CRM_NET_CORE\\mcs_api\\mcs.domain\\mcs.domain.csproj",
+        "projectUniqueName": "/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.domain/mcs.domain.csproj",
         "projectName": "mcs.domain",
-        "projectPath": "C:\\Users\\Nasar\\Desktop\\VS Code\\MCS_CRM_NET_CORE\\mcs_api\\mcs.domain\\mcs.domain.csproj",
-        "packagesPath": "C:\\Users\\Nasar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nasar\\Desktop\\VS Code\\MCS_CRM_NET_CORE\\mcs_api\\mcs.domain\\obj\\",
+        "projectPath": "/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.domain/mcs.domain.csproj",
+        "packagesPath": "/home/nasareddaoui/.nuget/packages/",
+        "outputPath": "/home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.domain/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Nasar\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/nasareddaoui/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -62,7 +57,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.0.100/RuntimeIdentifierGraph.json"
         }
       }
     }
