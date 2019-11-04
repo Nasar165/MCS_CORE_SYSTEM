@@ -1,6 +1,6 @@
-namespace mcs.domain
+namespace mcs.api.Database
 {
-    public class Database
+    public class ClientDatabase
     {
         public int Database_Id { get; set; }
         public string Database_Name { get; set; }

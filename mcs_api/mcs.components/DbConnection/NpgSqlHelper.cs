@@ -21,9 +21,9 @@ namespace mcs.components.DbConnection
         private void CreateConnectionString(string sqlConnectionString)
            => connection = new NpgsqlConnection(sqlConnectionString);
 
-        private bool DontSkipPropertie(string[] skipPrpertie, PropertyInfo propertie)
+        private bool DontSkipPropertie(string[] skipPropertie, PropertyInfo propertie)
         {
-            foreach (var key in skipPrpertie)
+            foreach (var key in skipPropertie)
             {
                 if (key.ToLower() == propertie.Name.ToLower())
                 {
@@ -85,7 +85,13 @@ namespace mcs.components.DbConnection
             try
             {
                 connection.Open();
-                throw new System.NotImplementedException();
+                var sqlCommand = new NpgsqlCommand(query, connection);
+                if (!Validation.ObjectIsNull(data))
+                {
+                    data.SqlCommand = sqlCommand;
+                    sqlCommand = AddParametersToSqlCommand(data);
+                    sqlCommand.ExecuteNonQuery();
+                }
             }
             catch (Exception error)
             {

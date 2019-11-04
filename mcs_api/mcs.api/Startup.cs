@@ -25,7 +25,6 @@ namespace mcs.api
         {
             JwtStarter.InitJwtTokenAuth(services);
             services.AddControllers();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,7 +34,6 @@ namespace mcs.api
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseHttpsRedirection();
 
             app.UseRouting();

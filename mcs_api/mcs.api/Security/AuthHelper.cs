@@ -35,6 +35,13 @@ namespace mcs.api.Security
         {
             var mcsdbcon = AppConfigHelper.Instance.GetDbConnection();
             var sql = new NpgSqlHelper(mcsdbcon);
+            var authLogg = new AuthLogg()
+            {
+                Username = name
+            };
+            var sqlCommand = new SqlCommandHelper<AuthLogg>(authLogg, "name");
+            var query = "Insert into authactivity (username, date) Values(@username, Now());";
+            sql.InsertQuery<AuthLogg>(query, sqlCommand);
         }
 
         private object GenerateToken<T>(T data, string audiance)
@@ -64,7 +71,7 @@ namespace mcs.api.Security
                     $"token where tokenkey = @tokenkey", sqlcommand, apiKey.TokenKey);
                 if (apiKey.TokenKey == dbApiKey.TokenKey && apiKey.GroupKey == dbApiKey.GroupKey)
                 {
-                    LogAuthentication(apiKey.TokenKey);
+                    LogAuthentication(dbApiKey.TokenKey);
                     var tokenClaim = ProvideMinimalDataToToken(dbApiKey.Database_Id, dbApiKey.Active);
                     var Token = GenerateToken(tokenClaim, "API");
                     return Token;
