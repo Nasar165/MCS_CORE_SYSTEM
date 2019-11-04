@@ -37,10 +37,10 @@ namespace mcs.api.Security
             var sql = new NpgSqlHelper(mcsdbcon);
             var authLogg = new AuthLogg()
             {
-                name = name
+                Username = name
             };
             var sqlCommand = new SqlCommandHelper<AuthLogg>(authLogg, "name");
-            var query = "Insert into authactivity (name, date) Values(@name, @date);";
+            var query = "Insert into authactivity (username, date) Values(@username, Now());";
             sql.InsertQuery<AuthLogg>(query, sqlCommand);
         }
 

@@ -85,7 +85,13 @@ namespace mcs.components.DbConnection
             try
             {
                 connection.Open();
-                throw new System.NotImplementedException();
+                var sqlCommand = new NpgsqlCommand(query, connection);
+                if (!Validation.ObjectIsNull(data))
+                {
+                    data.SqlCommand = sqlCommand;
+                    sqlCommand = AddParametersToSqlCommand(data);
+                    sqlCommand.ExecuteNonQuery();
+                }
             }
             catch (Exception error)
             {

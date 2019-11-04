@@ -7,6 +7,11 @@ namespace mcs.components
 {
     public class ObjectConverter
     {
+        public static int ConvertStringToInt(string number)
+        {
+            return int.Parse(number);
+        }
+
         private static T assignValueToObject<T>(PropertyInfo pro, DataColumn column, DataRow dr, T obj)
         {
             if (pro.PropertyType.Name == "Boolean")

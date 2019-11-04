@@ -1,3 +1,5 @@
+using mcs.api.Database;
+using mcs.api.Security;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,17 +10,27 @@ namespace mcs.api.Controllers
     [Route("[Controller]")]
     public class CondoController : ControllerBase
     {
-        [Authorize(Roles = "Admin")]
+        ClientDatabaseHelper db { get; set; }
+        public CondoController()
+        {
+
+        }
+        private void CreateClientDbCon()
+            => db = new ClientDatabaseHelper(new ClaimsHelper(User.Claims));
+
+        //[Authorize(Roles = "Admin")]
         public IActionResult Get()
         {   // Get all Property no mather the website state
+            CreateClientDbCon();
+            db.GetDatabase();
             return Ok("Hello World");
         }
 
-        [Authorize(Roles = "Admin")]
+        /*[Authorize(Roles = "Admin")]
         public IActionResult Get(int id)
         {   // Get Singel property
             throw new System.Exception("Not Ready Yet");
-        }
+        }*/
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
