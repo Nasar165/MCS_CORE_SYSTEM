@@ -1,6 +1,7 @@
 .vscode
 appsettings.json
 Content/Images
+logs
 *.jpg
 *.txt
 
