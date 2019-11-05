@@ -1,5 +1,6 @@
 using System;
 using System.Security.Authentication;
+using mcs.api.Database;
 using mcs.api.Models;
 using mcs.api.Security.AuthTemplate;
 using mcs.api.Security.AuthTemplate.Interface;
@@ -22,8 +23,7 @@ namespace mcs.api.Security
 
         private T GetCredentialsFromSql<T>(string tableQuery, SqlCommandHelper<T> account, string name)
         {
-            var mcsdbcon = AppConfigHelper.Instance.GetDbConnection();
-            var sql = new NpgSqlHelper(mcsdbcon);
+            var sql = DatabaseHelper.Instance.GetMcsConnection();
             var dataTable = sql.SelectQuery($"Select * from {tableQuery};", account);
             if (dataTable.Rows.Count > 0)
                 return ObjectConverter.ConvertDataTableToList<T>(dataTable)[0];
@@ -33,8 +33,7 @@ namespace mcs.api.Security
 
         private void LogAuthentication(string name)
         {
-            var mcsdbcon = AppConfigHelper.Instance.GetDbConnection();
-            var sql = new NpgSqlHelper(mcsdbcon);
+            var sql = DatabaseHelper.Instance.GetMcsConnection();
             var authLogg = new AuthLogg()
             {
                 Username = name
@@ -66,7 +65,8 @@ namespace mcs.api.Security
         {
             try
             {
-                var sqlcommand = new SqlCommandHelper<AccessKey>((AccessKey)apiKey, "groupkey");
+                var sqlcommand = new SqlCommandHelper<AccessKey>(
+                    (AccessKey)apiKey, "groupkey");
                 var dbApiKey = GetCredentialsFromSql<AccessKey>(
                     $"token where tokenkey = @tokenkey", sqlcommand, apiKey.TokenKey);
                 if (apiKey.TokenKey == dbApiKey.TokenKey && apiKey.GroupKey == dbApiKey.GroupKey)
@@ -90,7 +90,8 @@ namespace mcs.api.Security
         {
             try
             {
-                var sqlcommand = new SqlCommandHelper<UserAccount>((UserAccount)user, "password");
+                var sqlcommand = new SqlCommandHelper<UserAccount>(
+                    (UserAccount)user, "password");
                 var dbuser = GetCredentialsFromSql<UserAccount>(
                     $"useraccount where username = @username", sqlcommand, user.Username);
                 if (user.Username == dbuser.Username && user.Password == dbuser.Password)
