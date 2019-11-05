@@ -3,7 +3,7 @@ using mcs.api.Security;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace mcs.api.Controllers
+namespace mcs.api.Controllers.Properties
 {
     [Authorize]
     [ApiController]
@@ -11,10 +11,6 @@ namespace mcs.api.Controllers
     public class CondoController : ControllerBase
     {
         ClientDatabaseHelper db { get; set; }
-        public CondoController()
-        {
-
-        }
         private void CreateClientDbCon()
             => db = new ClientDatabaseHelper(new ClaimsHelper(User.Claims));
 

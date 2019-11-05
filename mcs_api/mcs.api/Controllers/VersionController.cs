@@ -7,7 +7,7 @@ namespace mcs.api.Controllers
     {
         public ActionResult Get()
         {
-            return Ok("Version: 2.0.0");
+            return Ok("API Version: 2.0.0");
         }
     }
 }

@@ -13,7 +13,6 @@ namespace mcs.api.Database
         private object createDb(int databaseId)
             => new { Database_id = databaseId };
 
-
         public void GetDatabase()
         {
             var id = ClaimHelper.GetValueFromClaim("Database_Id");

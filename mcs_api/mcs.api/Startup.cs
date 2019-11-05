@@ -13,12 +13,9 @@ namespace mcs.api
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
             AppConfigHelper.Instance.SetIConfiguration(configuration);
             ErrorLogger.Instance.SetWorkingDirectory(Directory.GetCurrentDirectory());
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
