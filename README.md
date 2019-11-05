@@ -38,14 +38,18 @@ Give examples
 ```
 1. Alter application.json.sample file name to application.json
   1. Alter secreatkey in Appsettings minlenght is 8chars
+  
   2. Alter mcscon to your sql database changing database, username and password. 
-  (server is set to localhost)
+  NOTICE! Server is set to localhost (127.0.0.1)
+  
   3. Alter Smtp to your email adding server,username,password if your are using 
   another port than 465 change port and make sure that ssl is set to false if 
   theres not ssl certifecate.
+  
 2. Run WebAPI
   *. If in Visual studio code press F5 for debug
   *. If command line enter dotnet watch run within mcs_api/mcs.api folder
+  
 3. Test API in your browser or postman with the following 
    url: https://localhost:5001/version. Expected result is version: x.x.x.x
 ```
