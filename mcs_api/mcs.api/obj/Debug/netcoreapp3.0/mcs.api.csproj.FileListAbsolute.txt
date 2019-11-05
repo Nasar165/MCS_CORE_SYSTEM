@@ -46,41 +46,40 @@
 /home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/mcs.components.dll
 /home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/mcs.components.pdb
 /home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/Npgsql.dll
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/appsettings.Development.json
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/appsettings.json
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/Properties/launchSettings.json
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/mcs.api.exe
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/mcs.api.deps.json
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/mcs.api.runtimeconfig.json
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/mcs.api.runtimeconfig.dev.json
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/mcs.api.dll
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/mcs.api.pdb
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.JsonWebTokens.dll
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Logging.dll
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Protocols.dll
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/Microsoft.IdentityModel.Tokens.dll
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/Newtonsoft.Json.dll
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/Npgsql.dll
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/System.IdentityModel.Tokens.Jwt.dll
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/mcs.components.dll
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/mcs.components.pdb
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/obj/Debug/netcoreapp3.0/mcs.api.csprojAssemblyReference.cache
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/obj/Debug/netcoreapp3.0/staticwebassets/mcs.api.StaticWebAssets.Manifest.cache
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/obj/Debug/netcoreapp3.0/staticwebassets/mcs.api.StaticWebAssets.xml
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/obj/Debug/netcoreapp3.0/mcs.api.MvcApplicationPartsAssemblyInfo.cache
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/obj/Debug/netcoreapp3.0/mcs.api.AssemblyInfoInputs.cache
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/obj/Debug/netcoreapp3.0/mcs.api.AssemblyInfo.cs
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/obj/Debug/netcoreapp3.0/mcs.api.RazorTargetAssemblyInfo.cache
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/obj/Debug/netcoreapp3.0/mcs.api.csproj.CopyComplete
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/obj/Debug/netcoreapp3.0/mcs.api.dll
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/obj/Debug/netcoreapp3.0/mcs.api.pdb
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/Microsoft.DotNet.PlatformAbstractions.dll
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/Microsoft.Extensions.DependencyModel.dll
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/mcs.domain.dll
-C:/Users/Nasar/Desktop/VS Code/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/mcs.domain.pdb
 /home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/Microsoft.DotNet.PlatformAbstractions.dll
 /home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/Microsoft.Extensions.DependencyModel.dll
 /home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/mcs.domain.dll
 /home/nasareddaoui/mcs/git/dotnet/MCS_CRM_NET_CORE/mcs_api/mcs.api/bin/Debug/netcoreapp3.0/mcs.domain.pdb
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\appsettings.Development.json
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\appsettings.json
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\Properties\launchSettings.json
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\mcs.api.exe
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\mcs.api.deps.json
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\mcs.api.runtimeconfig.json
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\mcs.api.runtimeconfig.dev.json
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\mcs.api.dll
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\mcs.api.pdb
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\Newtonsoft.Json.dll
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\Npgsql.dll
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\mcs.components.dll
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\mcs.domain.dll
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\mcs.components.pdb
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\bin\Debug\netcoreapp3.0\mcs.domain.pdb
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\obj\Debug\netcoreapp3.0\staticwebassets\mcs.api.StaticWebAssets.Manifest.cache
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\obj\Debug\netcoreapp3.0\staticwebassets\mcs.api.StaticWebAssets.xml
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\obj\Debug\netcoreapp3.0\mcs.api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\obj\Debug\netcoreapp3.0\mcs.api.AssemblyInfoInputs.cache
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\obj\Debug\netcoreapp3.0\mcs.api.AssemblyInfo.cs
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\obj\Debug\netcoreapp3.0\mcs.api.RazorTargetAssemblyInfo.cache
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\obj\Debug\netcoreapp3.0\mcs.api.csproj.CopyComplete
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\obj\Debug\netcoreapp3.0\mcs.api.dll
+C:\Users\Nasar\Desktop\VS Code\MCS_CRM_NET_CORE\mcs_api\mcs.api\obj\Debug\netcoreapp3.0\mcs.api.pdb
