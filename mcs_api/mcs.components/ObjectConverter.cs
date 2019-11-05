@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
+using mcs.components.Errorhandler;
 
 namespace mcs.components
 {
@@ -51,13 +52,37 @@ namespace mcs.components
 
         public static List<T> ConvertDataTableToList<T>(DataTable dt)
         {
-            var data = new List<T>();
-            foreach (DataRow row in dt.Rows)
+            try
             {
-                T item = GetItem<T>(row);
-                data.Add(item);
+                var data = new List<T>();
+                foreach (DataRow row in dt.Rows)
+                {
+                    T item = GetItem<T>(row);
+                    data.Add(item);
+                }
+                return data;
             }
-            return data;
+            catch (Exception error)
+            {
+                ErrorLogger.Instance.LogError(error);
+                throw error;
+            }
+
+        }
+
+        public static T ConvertDataTableRowToObject<T>(DataRow dr)
+        {
+            try
+            {
+                T data = GetItem<T>(dr);
+                return data;
+            }
+            catch (Exception error)
+            {
+                ErrorLogger.Instance.LogError(error);
+                throw error;
+            }
+
         }
     }
 }

@@ -21,11 +21,11 @@ namespace mcs.components.DbConnection
         private void CreateConnectionString(string sqlConnectionString)
            => connection = new NpgsqlConnection(sqlConnectionString);
 
-        private bool DontSkipPropertie(string[] skipPropertie, PropertyInfo propertie)
+        private bool DontSkipPropertie(string[] skipPropertie, string propertie)
         {
             foreach (var key in skipPropertie)
             {
-                if (key.ToLower() == propertie.Name.ToLower())
+                if (key.ToLower() == propertie.ToLower())
                 {
                     return false;
                 }
@@ -39,7 +39,7 @@ namespace mcs.components.DbConnection
             if (!Validation.ObjectIsNull(model))
                 foreach (var propertie in ReflectionHelper.GetPropertiesOfObject(model))
                 {
-                    if (DontSkipPropertie(data.SkipProperties, propertie))
+                    if (DontSkipPropertie(data.SkipProperties, propertie.Name))
                     {
                         var objectValue = propertie.GetValue(model);
                         if (!Validation.ObjectIsNull(objectValue))

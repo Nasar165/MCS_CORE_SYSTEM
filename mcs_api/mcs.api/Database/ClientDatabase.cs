@@ -9,5 +9,7 @@ namespace mcs.api.Database
         // Database Management type
         public string Dbm { get; set; }
 
+        public string GetConnectionString()
+            => $"Server=127.0.0.1;Database={Database_Name};Uid={Username};Pwd={Password};";
     }
 }
