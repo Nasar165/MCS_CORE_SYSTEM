@@ -15,7 +15,8 @@ are installed and if not, install them utilizing the proivders main pages.
 
 ### Installing
 This section will help you to setup you development enviroment. For production deployment please 
-check the [Deployment section](#deployment).
+check the [Deployment section](#deployment). Since the app was developed in CentOs 7, most of the
+commands might be centos related.
 
 #### Postgresql
 The following installation is made for centos 7 OS. If you are using a different distribution or OS then
