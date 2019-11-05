@@ -31,16 +31,17 @@ namespace mcs.api.Database
             return new SqlCommandHelper<T>(data, ignore);
         }
 
-        public string GetClientDatabase(IClaimHelper claimHelper)
+        public ISqlHelper GetClientDatabase(IClaimHelper claimHelper)
         {
             try
             {
-                var sql = GetMcsConnection();
+                var mcsCon = GetMcsConnection();
                 var dbId = claimHelper.GetValueFromClaim("Database_Id");
                 var sqlCommand = CreateSqlCommand(CreateClientId(dbId), "");
-                var dataTable = sql.SelectQuery($"Select * from database_list where database_id = @id", sqlCommand);
+                var dataTable = mcsCon.SelectQuery($"Select * from database_list where database_id = @id", sqlCommand);
                 var clientDatabase = ObjectConverter.ConvertDataTableRowToObject<ClientDatabase>(dataTable.Rows[0]);
-                return clientDatabase.GetConnectionString();
+                var sql = new NpgSqlHelper(clientDatabase.GetConnectionString());
+                return sql;
             }
             catch (Exception error)
             {

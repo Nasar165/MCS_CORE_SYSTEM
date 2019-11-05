@@ -11,14 +11,13 @@ namespace mcs.api.Controllers.Properties
     [Route("[Controller]")]
     public class CondoController : ControllerBase
     {
-
         private IClaimHelper CreateClaimsHelper()
             => new ClaimsHelper(User.Claims);
 
         //[Authorize(Roles = "Admin")]
         public IActionResult Get()
         {   // Get all Property no mather the website state
-            var dbstring = DatabaseHelper.Instance.GetClientDatabase(CreateClaimsHelper());
+            var SqlConnection = DatabaseHelper.Instance.GetClientDatabase(CreateClaimsHelper());
             return Ok("Hello World");
         }
 
