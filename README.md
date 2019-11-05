@@ -36,7 +36,18 @@ Give examples
 
 ##### Test application
 ```
-Give examples
+1. Alter application.json.sample file name to application.json
+  1. Alter secreatkey in Appsettings minlenght is 8chars
+  2. Alter mcscon to your sql database changing database, username and password. 
+  (server is set to localhost)
+  3. Alter Smtp to your email adding server,username,password if your are using 
+  another port than 465 change port and make sure that ssl is set to false if 
+  theres not ssl certifecate.
+2. Run WebAPI
+  *. If in Visual studio code press F5 for debug
+  *. If command line enter dotnet watch run within mcs_api/mcs.api folder
+3. Test API in your browser or postman with the following 
+   url: https://localhost:5001/version. Expected result is version: x.x.x.x
 ```
 
 ### Deployment
@@ -46,9 +57,10 @@ Give examples
 
 ### Built With
 This web api was built with the following tools in a Linux Enviroment(CentOs 7).
-* [Visual Studio Code](https://code.visualstudio.com/) - Visual Studio Code
+* [Visual Studio Code](https://code.visualstudio.com/) - Code Editor
 * [PostgreSql](https://www.postgresql.org/) - Sql Database 
-* [.Net Core](https://dotnet.microsoft.com/) - Dotnet Core
+* [.Net Core](https://dotnet.microsoft.com/) - Dotnet Core Runtime
+* [Postmam] (https://getpostman.com/) - API Development Tool (Testing API)
 
 ### Contributing
 
