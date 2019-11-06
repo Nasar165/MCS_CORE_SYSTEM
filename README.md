@@ -59,11 +59,20 @@ and much more. While the client DB contains all the clients private information.
 * [ClientDB](https://github.com) - Client DB Script
 
 ##### Dotnet core 3
+This installation process was made for centos 7 and might not work on your system. if you are
+utilizing an alternative os or distrubtioon then please check the [.Net Core](https://dotnet.microsoft.com/download/linux-package-manager/rhel/sdk-current) websit for more info. Ps you might need to enable 
+third party repositories.
+
 ```
-Give examples
+begin by opening a new shell window and follow the steps bellow
+1. sudo yum install dotnet-runtime-3.0.x86_64 -y
+2. enter the folowing command efter the installation is completet to verify the installation
+  dotnet --version
 ```
 
 ##### Test application
+This section describes how to test the webapi and make sure that it is working correctly.
+this is a simple test and will only verify that the installation was successful.
 ```
 1. Alter application.json.sample file name to application.json
   1. Alter secreatkey in Appsettings minlenght is 8chars
