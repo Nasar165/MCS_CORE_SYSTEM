@@ -1,5 +1,6 @@
 using mcs.api.Database;
 using mcs.api.Security;
+using mcs.api.Security.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,15 +11,13 @@ namespace mcs.api.Controllers.Properties
     [Route("[Controller]")]
     public class CondoController : ControllerBase
     {
-        ClientDatabaseHelper db { get; set; }
-        private void CreateClientDbCon()
-            => db = new ClientDatabaseHelper(new ClaimsHelper(User.Claims));
+        private IClaimHelper CreateClaimsHelper()
+            => new ClaimsHelper(User.Claims);
 
         //[Authorize(Roles = "Admin")]
         public IActionResult Get()
         {   // Get all Property no mather the website state
-            CreateClientDbCon();
-            db.GetDatabase();
+            var SqlConnection = DatabaseHelper.Instance.GetClientDatabase(CreateClaimsHelper());
             return Ok("Hello World");
         }
 

@@ -1,6 +1,8 @@
+using mcs.api.Database.Interface;
+
 namespace mcs.api.Database
 {
-    public class ClientDatabase
+    public class ClientDatabase : IClientDatabase
     {
         public int Database_Id { get; set; }
         public string Database_Name { get; set; }
