@@ -102,7 +102,7 @@ This web api was built with the following tools in a Linux Enviroment(CentOs 7).
 * [Visual Studio Code](https://code.visualstudio.com/) - Code Editor
 * [PostgreSql](https://www.postgresql.org/) - Sql Database 
 * [.Net Core](https://dotnet.microsoft.com/) - Dotnet Core Runtime
-* [Postmam] (https://getpostman.com/) - API Development Tool (Testing API)
+* [Postmam](https://getpostman.com/) - API Development Tool (Testing API)
 
 ### Contributing
 
