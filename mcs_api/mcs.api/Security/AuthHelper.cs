@@ -5,9 +5,9 @@ using mcs.api.Models;
 using mcs.api.Security.AuthTemplate;
 using mcs.api.Security.AuthTemplate.Interface;
 using mcs.api.Security.Interface;
-using mcs.components;
-using mcs.components.DbConnection;
-using mcs.components.Errorhandler;
+using mcs.Components;
+using mcs.Components.DbConnection;
+using mcs.Components.Errorhandler;
 
 namespace mcs.api.Security
 {

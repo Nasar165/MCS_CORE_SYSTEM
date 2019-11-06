@@ -1,4 +1,4 @@
-namespace mcs.components.Interface
+namespace mcs.Components.Interface
 {
     interface IFileWriter
     {

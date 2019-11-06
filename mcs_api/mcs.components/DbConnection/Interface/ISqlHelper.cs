@@ -1,7 +1,6 @@
 using System.Data;
-using mcs.components.DbConnection;
 
-namespace mcs.components.Interface
+namespace mcs.Components.DbConnection.Interface
 {
     public interface ISqlHelper
     {

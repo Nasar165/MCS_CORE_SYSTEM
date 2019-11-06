@@ -4,7 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using mcs.api.Security.Interface;
-using mcs.components;
+using mcs.Components;
 
 namespace mcs.api.Security
 {

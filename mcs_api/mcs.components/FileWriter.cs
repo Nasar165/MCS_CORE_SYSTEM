@@ -1,9 +1,9 @@
 using System;
 using System.IO;
 using System.Text;
-using mcs.components.Interface;
+using mcs.Components.Interface;
 
-namespace mcs.components
+namespace mcs.Components
 {
     public class FileWriter : IFileWriter
     {

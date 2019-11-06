@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
-using mcs.components.Errorhandler;
+using mcs.Components.Errorhandler;
 
-namespace mcs.components
+namespace mcs.Components
 {
     public class ObjectConverter
     {

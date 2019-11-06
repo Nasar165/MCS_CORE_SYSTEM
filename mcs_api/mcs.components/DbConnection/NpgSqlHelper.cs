@@ -1,10 +1,9 @@
 using System;
 using System.Data;
-using System.Reflection;
-using mcs.components.Interface;
+using mcs.Components.DbConnection.Interface;
 using Npgsql;
 
-namespace mcs.components.DbConnection
+namespace mcs.Components.DbConnection
 {
     public class NpgSqlHelper : ISqlHelper
     {

@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace mcs.components
+namespace mcs.Components
 {
     public class ReflectionHelper
     {

@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace mcs.components
+namespace mcs.Components
 {
     public static class Validation
     {

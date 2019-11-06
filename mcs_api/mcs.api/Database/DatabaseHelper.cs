@@ -1,14 +1,15 @@
 using System;
 using mcs.api.Models;
 using mcs.api.Security.Interface;
-using mcs.components;
-using mcs.components.DbConnection;
-using mcs.components.Errorhandler;
-using mcs.components.Interface;
+using mcs.Components;
+using mcs.Components.DbConnection;
+using mcs.Components.Errorhandler;
+using mcs.Components.DbConnection.Interface;
+using mcs.api.Database.Interface;
 
 namespace mcs.api.Database
 {
-    public class DatabaseHelper
+    public class DatabaseHelper : IDatabaseHelper
     {
         private string McsCon { get; }
         public static DatabaseHelper Instance = new DatabaseHelper();

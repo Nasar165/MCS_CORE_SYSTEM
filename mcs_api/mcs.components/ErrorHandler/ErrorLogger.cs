@@ -1,8 +1,8 @@
 ﻿using System;
-using mcs.components.Errorhandler.Interface;
-using mcs.components.Interface;
+using mcs.Components.Errorhandler.Interface;
+using mcs.Components.Interface;
 
-namespace mcs.components.Errorhandler
+namespace mcs.Components.Errorhandler
 {
     public class ErrorLogger : IErrorLogger
     {
