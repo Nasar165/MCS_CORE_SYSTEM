@@ -36,10 +36,10 @@ namespace mcs.api.Database
         {
             try
             {
-                var mcsCon = GetMcsConnection();
+                var mcsSql = GetMcsConnection();
                 var dbId = claimHelper.GetValueFromClaim("Database_Id");
                 var sqlCommand = CreateSqlCommand(CreateClientId(dbId), "");
-                var dataTable = mcsCon.SelectQuery($"Select * from database_list where database_id = @id", sqlCommand);
+                var dataTable = mcsSql.SelectQuery($"Select * from database_list where database_id = @id", sqlCommand);
                 var clientDatabase = ObjectConverter.ConvertDataTableRowToObject<ClientDatabase>(dataTable.Rows[0]);
                 var sql = new NpgSqlHelper(clientDatabase.GetConnectionString());
                 return sql;
