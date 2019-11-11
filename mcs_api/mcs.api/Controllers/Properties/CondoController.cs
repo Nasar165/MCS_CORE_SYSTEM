@@ -28,18 +28,12 @@ namespace mcs.api.Controllers.Properties
             return Ok(propertyHelper.GetApartments());
         }
 
-        /*[Authorize(Roles = "Admin")]
+        [HttpGet("{id:int}")]
+        //[Authorize(Roles = "Admin")]
         public IActionResult Get(int id)
-        {   // Get Singel property
-            throw new System.Exception("Not Ready Yet");
-        }*/
-
-        [HttpPost]
-        [Authorize(Roles = "Admin")]
-        public IActionResult Post()
         {
             var propertyHelper = CreatePropertyHelper();
-            return Ok("Hello Admin");
+            return Ok(propertyHelper.GetApartment(id));
         }
 
         /// 
@@ -58,7 +52,7 @@ namespace mcs.api.Controllers.Properties
         public IActionResult GetApartment(int id)
         {   // Get single Property where website statet is set to true
             var propertyHelper = CreatePropertyHelper();
-            throw new System.Exception("Not Ready Yet");
+            return Ok(id);
         }
 
 
