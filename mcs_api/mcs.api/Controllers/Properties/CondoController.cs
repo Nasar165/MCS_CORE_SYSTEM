@@ -1,6 +1,7 @@
 using mcs.api.Database;
 using mcs.api.Security;
 using mcs.api.Security.Interface;
+using mcs.domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,11 +15,17 @@ namespace mcs.api.Controllers.Properties
         private IClaimHelper CreateClaimsHelper()
             => new ClaimsHelper(User.Claims);
 
+        private PropertyHelper CreatePropertyHelper()
+        {
+            var SqlConnection = DatabaseHelper.Instance.GetClientDatabase(CreateClaimsHelper());
+            return new PropertyHelper(SqlConnection);
+        }
+
         //[Authorize(Roles = "Admin")]
         public IActionResult Get()
         {   // Get all Property no mather the website state
-            var SqlConnection = DatabaseHelper.Instance.GetClientDatabase(CreateClaimsHelper());
-            return Ok("Hello World");
+            var propertyHelper = CreatePropertyHelper();
+            return Ok(propertyHelper.GetCondos());
         }
 
         /*[Authorize(Roles = "Admin")]
@@ -31,6 +38,7 @@ namespace mcs.api.Controllers.Properties
         [Authorize(Roles = "Admin")]
         public IActionResult Post()
         {
+            var propertyHelper = CreatePropertyHelper();
             return Ok("Hello Admin");
         }
 
@@ -38,16 +46,18 @@ namespace mcs.api.Controllers.Properties
         //Low Level API front end Data
         ///
         [Route("[action]")]
-        [Authorize(Roles = "API")]
+        //[Authorize(Roles = "API")]
         public IActionResult GetCondos()
-        {   // Get Property where website statet is set to true
-            throw new System.Exception("Not Ready Yet");
+        {
+            var propertyHelper = CreatePropertyHelper();
+            return Ok(propertyHelper.GetCondos(false));
         }
 
         [Route("[action]")]
         [Authorize(Roles = "API")]
         public IActionResult GetCondo(int id)
         {   // Get single Property where website statet is set to true
+            var propertyHelper = CreatePropertyHelper();
             throw new System.Exception("Not Ready Yet");
         }
 

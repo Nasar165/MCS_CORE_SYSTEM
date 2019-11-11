@@ -32,7 +32,7 @@ namespace mcs.api.Database
             return new SqlCommandHelper<T>(data, ignore);
         }
 
-        public ISqlHelper GetClientDatabase(IClaimHelper claimHelper)
+        public string GetClientDatabase(IClaimHelper claimHelper)
         {
             try
             {
@@ -41,8 +41,7 @@ namespace mcs.api.Database
                 var sqlCommand = CreateSqlCommand(CreateClientId(dbId), "");
                 var dataTable = mcsSql.SelectQuery($"Select * from database_list where database_id = @id", sqlCommand);
                 var clientDatabase = ObjectConverter.ConvertDataTableRowToObject<ClientDatabase>(dataTable.Rows[0]);
-                var sql = new NpgSqlHelper(clientDatabase.GetConnectionString());
-                return sql;
+                return clientDatabase.GetConnectionString();
             }
             catch (Exception error)
             {

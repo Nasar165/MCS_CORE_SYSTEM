@@ -8,6 +8,6 @@ namespace mcs.api.Database.Interface
     {
         ISqlHelper GetMcsConnection();
         SqlCommandHelper<T> CreateSqlCommand<T>(T data, params string[] ignore);
-        ISqlHelper GetClientDatabase(IClaimHelper claimHelper);
+        string GetClientDatabase(IClaimHelper claimHelper);
     }
 }
