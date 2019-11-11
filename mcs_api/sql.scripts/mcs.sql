@@ -235,7 +235,6 @@ Create Table property_contact(
     foreign key (contact_id) references contact(contact_id)
 );
 
-
 Create Table benefits(
     benefits_id SERIAL not null primary key,
     name VARCHAR(250) not null default 'benefit not defined',
@@ -250,14 +249,12 @@ Create Table benefits_property(
     foreign key (benefits_id) references benefits(benefits_id)
 );
 
-
 create table core_system(
     core_system_id SERIAL not null primary key,
     username VARCHAR(250) not null,
     password VARCHAR(250) not null
  );
  
-
 create table exceptions (
     exception_id SERIAL not null primary key,
     core_system_id int not null,
@@ -268,7 +265,6 @@ create table exceptions (
     constraint core_e_key unique (exception_id,core_system_id),
     foreign key (core_system_id) references core_system(core_system_id)
 );
-
 
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO nasar;
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO nasar;
