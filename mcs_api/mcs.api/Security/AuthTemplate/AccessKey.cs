@@ -10,5 +10,6 @@ namespace mcs.api.Security.AuthTemplate
         public string TokenKey { get; set; }
         [Required]
         public string GroupKey { get; set; }
+        public string Roles { get; set; }
     }
 }

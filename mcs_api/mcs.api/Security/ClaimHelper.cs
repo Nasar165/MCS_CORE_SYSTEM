@@ -31,6 +31,21 @@ namespace mcs.api.Security
             return claims;
         }
 
+        private List<Claim> AddRoleToClaim(List<Claim> claims, string role)
+        {
+            claims.Add(new Claim(ClaimTypes.Role, role));
+            return claims;
+        }
+
+        public List<Claim> AddRolesToClaim(List<Claim> claims, params string[] Roles)
+        {
+            foreach (var role in Roles)
+            {
+                claims = AddRoleToClaim(claims, role);
+            };
+            return claims;
+        }
+
         public List<Claim> AddDataToClaim<T>(T data)
         {
             var claims = new List<Claim>();

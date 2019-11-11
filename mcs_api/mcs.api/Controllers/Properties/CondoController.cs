@@ -21,7 +21,7 @@ namespace mcs.api.Controllers.Properties
             return new PropertyHelper(SqlConnection);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Get()
         {   // Get all Property no mather the website state
             var propertyHelper = CreatePropertyHelper();
@@ -46,7 +46,7 @@ namespace mcs.api.Controllers.Properties
         //Low Level API front end Data
         ///
         [Route("[action]")]
-        //[Authorize(Roles = "API")]
+        [Authorize(Roles = "API")]
         public IActionResult GetCondos()
         {
             var propertyHelper = CreatePropertyHelper();

@@ -43,11 +43,12 @@ namespace mcs.api.Security
             sql.InsertQuery<AuthLogg>(query, sqlCommand);
         }
 
-        private object GenerateToken<T>(T data, string audiance)
+        private object GenerateToken<T>(T data, string audiance, params string[] roles)
         {
             try
             {
                 var claimList = _ClaimHelper.AddDataToClaim<T>(data);
+                claimList = _ClaimHelper.AddRolesToClaim(claimList, roles);
                 var Token = _JwtAuthenticator.CreateJwtToken(claimList
                     , audiance, "mcsunity.net");
                 return Token;
@@ -73,7 +74,7 @@ namespace mcs.api.Security
                 {
                     LogAuthentication(dbApiKey.TokenKey);
                     var tokenClaim = ProvideMinimalDataToToken(dbApiKey.Database_Id, dbApiKey.Active);
-                    var Token = GenerateToken(tokenClaim, "API");
+                    var Token = GenerateToken(tokenClaim, "API", dbApiKey.Roles);
                     return Token;
                 }
                 return false;
@@ -98,7 +99,7 @@ namespace mcs.api.Security
                 {
                     LogAuthentication(user.Username);
                     var tokenClaim = ProvideMinimalDataToToken(dbuser.Database_Id, dbuser.Active);
-                    var Token = GenerateToken(tokenClaim, "User");
+                    var Token = GenerateToken(tokenClaim, "User", dbuser.Roles);
                     return Token;
                 }
                 return false;
