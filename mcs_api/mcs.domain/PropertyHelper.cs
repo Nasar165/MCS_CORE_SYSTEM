@@ -12,12 +12,13 @@ namespace mcs.domain
         public PropertyHelper(string sqlConnection)
             => Sql = new NpgSqlHelper(sqlConnection);
 
-        public IReadOnlyCollection<Unit> GetCondos(bool website = true)
+        public IReadOnlyCollection<Unit> GetApartments(bool website = true)
         {
-            var data = Sql.SelectQuery<Unit>("Select * from unit", null);
+            var data = Sql.SelectQuery<Unit>(
+                "Select * from property, unit where property.ref_id = unit.ref_id and unit_type_id = 3", null);
             var list = ObjectConverter.ConvertDataTableToList<Unit>(data);
             if (!website)
-                list.RemoveAll(x => x.Website = false);
+                list.RemoveAll(x => x.Website == false);
             return list;
         }
 

@@ -10,7 +10,7 @@ namespace mcs.api.Controllers.Properties
     [Authorize]
     [ApiController]
     [Route("[Controller]")]
-    public class CondoController : ControllerBase
+    public class ApartmentController : ControllerBase
     {
         private IClaimHelper CreateClaimsHelper()
             => new ClaimsHelper(User.Claims);
@@ -25,7 +25,7 @@ namespace mcs.api.Controllers.Properties
         public IActionResult Get()
         {   // Get all Property no mather the website state
             var propertyHelper = CreatePropertyHelper();
-            return Ok(propertyHelper.GetCondos());
+            return Ok(propertyHelper.GetApartments());
         }
 
         /*[Authorize(Roles = "Admin")]
@@ -47,15 +47,15 @@ namespace mcs.api.Controllers.Properties
         ///
         [Route("[action]")]
         [Authorize(Roles = "API")]
-        public IActionResult GetCondos()
+        public IActionResult GetApartments()
         {
             var propertyHelper = CreatePropertyHelper();
-            return Ok(propertyHelper.GetCondos(false));
+            return Ok(propertyHelper.GetApartments(false));
         }
 
         [Route("[action]")]
         [Authorize(Roles = "API")]
-        public IActionResult GetCondo(int id)
+        public IActionResult GetApartment(int id)
         {   // Get single Property where website statet is set to true
             var propertyHelper = CreatePropertyHelper();
             throw new System.Exception("Not Ready Yet");
