@@ -55,8 +55,8 @@ act as a inhouse database storing clients information such as username, password
 and much more. While the client DB contains all the client’s private information. 
 
 ##### Running scripts
-* [MainDB](https://github.com) - Main Script
-* [ClientDB](https://github.com) - Client DB Script
+* [MainDB](https://github.com/Nasar165/MCS_CRM_NET_CORE/blob/master/mcs_api/sql.scripts/mcs.sql) - Main Script
+* [ClientDB](https://github.com/Nasar165/MCS_CRM_NET_CORE/blob/master/mcs_api/sql.scripts/client.sql) - Client DB Script
 
 ##### Dotnet core 3
 This installation process was made for centos 7 and might not work on your system. if you are
