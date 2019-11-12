@@ -55,7 +55,7 @@ token keys have limited access and is mostly  used to fetch data.
 ```
 Add Sample Here
 ```
-### Useraccount
+### Useraccount (AdminKey)
 A useraccount token key poses more rights then a token key it is used for
 adminiistrative purposes and thus has rights to access all controllers.
 Admink keys also have rights to put,create,delete rights if they are of the
