@@ -5,16 +5,18 @@ The following knowledge is necessary to be able to utilize the web api.
 lacking knowledge in one section might lead to difficulties when trying
 to fetch/post data to the API.
 
-* JSON Data
-* HTTP Clients
-* Bearer Authenticaton
+* JSON Data [JSON Data](https://www.json.org/)
+* HTTP Clients 
+  * [C# Http CLient](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=netframework-4.8)
+  * [Angular](https://angular.io/guide/http)
+* [Bearer Authentication](https://tools.ietf.org/html/rfc6750#section-2.1)
 
 <!--ts-->
 ## Table of Contents
 * [Common Server Responses](#common-server-responses)
 * [Authentication](#Authentication)
   * [Tokenkey](#Tokenkey)
-  * [AdminKey](#AdminKey)
+  * [AdminKey](#useraccount-adminkey)
 * [Core Resourses](#core-resourses)
   * [Apartment](#apartments)
 <!--te-->
