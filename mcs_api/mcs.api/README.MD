@@ -5,7 +5,7 @@ The following knowledge is necessary to be able to utilize the web api.
 lacking knowledge in one section might lead to difficulties when trying
 to fetch/post data to the API.
 
-* JSON Data [JSON Data](https://www.json.org/)
+* [JSON Data](https://www.json.org/)
 * HTTP Clients 
   * [C# Http CLient](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=netframework-4.8)
   * [Angular](https://angular.io/guide/http)
