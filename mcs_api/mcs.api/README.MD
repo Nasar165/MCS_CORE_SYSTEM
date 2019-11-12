@@ -11,12 +11,12 @@ to fetch/post data to the API.
 
 <!--ts-->
 ## Table of Contents
-* [Common Server Responses]()
-* [Authentication]()
-  * [Tokenkey]()
-  * [AdminKey]()
-* [Core Resourses]()
-  * [Apartment]()
+* [Common Server Responses](#common-server-responses)
+* [Authentication](#Authentication)
+  * [Tokenkey](#Tokenkey)
+  * [AdminKey](#AdminKey)
+* [Core Resourses](#core-resourses)
+  * [Apartment](#apartments)
 <!--te-->
 
 ## Common Server Responses
