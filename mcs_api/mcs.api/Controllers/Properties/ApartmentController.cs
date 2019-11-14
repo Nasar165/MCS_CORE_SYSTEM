@@ -29,7 +29,7 @@ namespace mcs.api.Controllers.Properties
         }
 
         [HttpGet("{id:int}")]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Get(int id)
         {
             var propertyHelper = CreatePropertyHelper();
