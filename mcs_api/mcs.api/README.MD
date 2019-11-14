@@ -53,10 +53,15 @@ token keys have limited access and is mostly  used to fetch data.
 | `Success Response` | Status Code: 200 <br/> Response: {TokenKey:"Key", authType:"Bearer", expiration: datetime}|
 | `Error Response` | Status Code: 401 |
 
-#### Sample API Request
+#### Sample API Response
 ```
-Add Sample Here
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmYWIyYWQ3NC0yMTZjLTQ4N2MtYjBjOC01ZmFkNDI2M2M0MDEiLCJEYXRhYmFzZV9JZCI6IjEiLCJBY3RpdmUiOiJUcnVlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE1NzM3NDQyMTksImlzcyI6Im1jc3VuaXR5Lm5ldCIsImF1ZCI6IlVzZXIifQ._W8jt7HuzifzEartVSCbDkVKAeFKx4FAy6hNuEtDYSQ",
+    "authType": "Bearer",
+    "expiration": "UTC:2019-11-14 3:10:19 PM"
+}
 ```
+
 ### Useraccount (AdminKey)
 A useraccount token key poses more rights then a token key it is used for
 adminiistrative purposes and thus has rights to access all controllers.
@@ -71,8 +76,14 @@ correct role.
 | `Url Parameters` | username:string {Required} <br/> password:string {Required} |
 | `Success Response` | Status Code: 200 <br/> Response: {TokenKey:"Key", authType:"Bearer", expiration: datetime}|
 | `Error Response` | Status Code: 401 |
+
+#### Sample API Response
 ```
-Add Sample Here
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmYWIyYWQ3NC0yMTZjLTQ4N2MtYjBjOC01ZmFkNDI2M2M0MDEiLCJEYXRhYmFzZV9JZCI6IjEiLCJBY3RpdmUiOiJUcnVlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE1NzM3NDQyMTksImlzcyI6Im1jc3VuaXR5Lm5ldCIsImF1ZCI6IlVzZXIifQ._W8jt7HuzifzEartVSCbDkVKAeFKx4FAy6hNuEtDYSQ",
+    "authType": "Bearer",
+    "expiration": "UTC:2019-11-14 3:10:19 PM"
+}
 ```
 ## Core Resourses
 ### Apartments
