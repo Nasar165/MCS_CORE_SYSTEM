@@ -30,6 +30,7 @@ to fetch/post data to the API.
 | `401` | Unauthorized : user not authenticated |
 | `403` | Forbidden : user dont have the right privilages |
 | `404` | Not found : The url does not exist or has been moved |
+| `405` | Method not allowed : Use the correct method POST, PUT, DELETE |
 | `415` | Unsupported Media Type : Data is in format that is not supported |
 | `429` | Too many requests : To many requests within a x amount of time |
 | `500` | Internal Server Error  : An error has occured server side |
@@ -290,28 +291,82 @@ correct role.
 }
 ```
 
-#### Tools
-| Command | Description |
-| --- | --- |
-| git status | List all new or modified files |
-| git diff | Show file differences that haven't been staged |
-
-| First Header  | Second Header |
+### Unit
+| Info | Description |
 | ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+| `Title` | Add Unit |
+| `Url` | /unit/ |
+| `KeyType` | Admin |
+| `Method` | POST |
+| `Success Response` | Status Code: 200 <br/> |
+| `Error Response` | Status Code: 401 : Authenticate again <br/> Status Code 403 : Wrong Key type <br/> Status Code 500 : internal server error|
 
-| Command | Description |
-| --- | --- |
-| `git status` | List all *new or modified* files |
-| `git diff` | Show file differences that **haven't been** staged |
+#### Sample output
+```
+```
 
-| Left-aligned | Center-aligned | Right-aligned |
-| :---         |     :---:      |          ---: |
-| git status   | git status     | git status    |
-| git diff     | git diff       | git diff      |
+| Info | Description |
+| ------------- | ------------- |
+| `Title` | Add Unit |
+| `Url` | /unit/ |
+| `KeyType` | Admin |
+| `Method` | PUT |
+| `Success Response` | Status Code: 200 <br/> |
+| `Error Response` | Status Code: 401 : Authenticate again <br/> Status Code 403 : Wrong Key type <br/> Status Code 500 : internal server error <br/> Status Code 405 : Method not allowed |
 
-| Name     | Character |
-| ---      | ---       |
-| Backtick | `         |
-| Pipe     | \|        |
+#### Sample output
+```
+```
+
+| Info | Description |
+| ------------- | ------------- |
+| `Title` | Add Unit |
+| `Url` | /unit/ |
+| `KeyType` | Admin |
+| `Method` | DELETE |
+| `Success Response` | Status Code: 200 <br/> |
+| `Error Response` | Status Code: 401 : Authenticate again <br/> Status Code 403 : Wrong Key type <br/> Status Code 500 : internal server error <br/> Status Code 405 : Method not allowed |
+
+#### Sample output
+```
+```
+
+### Project
+| Info | Description |
+| ------------- | ------------- |
+| `Title` | Add Project |
+| `Url` | /Project/ |
+| `KeyType` | Admin |
+| `Method` | POST |
+| `Success Response` | Status Code: 200 <br/> |
+| `Error Response` | Status Code: 401 : Authenticate again <br/> Status Code 403 : Wrong Key type <br/> Status Code 500 : internal server error <br/> Status Code 405 : Method not allowed |
+
+#### Sample output
+```
+```
+
+| Info | Description |
+| ------------- | ------------- |
+| `Title` | Add Unit |
+| `Url` | /unit/ |
+| `KeyType` | Admin |
+| `Method` | PUT |
+| `Success Response` | Status Code: 200 <br/> |
+| `Error Response` | Status Code: 401 : Authenticate again <br/> Status Code 403 : Wrong Key type <br/> Status Code 500 : internal server error <br/> Status Code 405 : Method not allowed |
+
+#### Sample output
+```
+```
+
+| Info | Description |
+| ------------- | ------------- |
+| `Title` | Add Unit |
+| `Url` | /unit/ |
+| `KeyType` | Admin |
+| `Method` | DELETE |
+| `Success Response` | Status Code: 200 <br/> |
+| `Error Response` | Status Code: 401 : Authenticate again <br/> Status Code 403 : Wrong Key type <br/> Status Code 500 : internal server error <br/> Status Code 405 : Method not allowed |
+
+#### Sample output
+```
+```
