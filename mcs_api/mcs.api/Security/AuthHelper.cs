@@ -34,13 +34,8 @@ namespace mcs.api.Security
         private void LogAuthentication(string name)
         {
             var sql = DatabaseHelper.Instance.GetMcsConnection();
-            var authLogg = new AuthLogg()
-            {
-                Username = name
-            };
-            var sqlCommand = new SqlCommandHelper<AuthLogg>(authLogg, "name");
-            var query = "Insert into authactivity (username, date) Values(@username, Now());";
-            sql.InsertQuery<AuthLogg>(query, sqlCommand);
+            var authLogg = new AuthLogg() { Username = name };
+            ErrorLogger.Instance.LogAuthentication(sql, authLogg);
         }
 
         private object GenerateToken<T>(T data, string audiance, params string[] roles)

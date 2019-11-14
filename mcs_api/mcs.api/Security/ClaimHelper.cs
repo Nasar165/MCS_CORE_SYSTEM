@@ -53,8 +53,9 @@ namespace mcs.api.Security
             var properties = ReflectionHelper.GetPropertiesOfObject(data);
             foreach (var property in properties)
             {
-                claims.Add(new Claim(property.Name,
-                    property.GetValue(data, null).ToString()));
+                if (!Validation.ObjectIsNull(property.GetValue(data)))
+                    claims.Add(new Claim(property.Name,
+                        property.GetValue(data, null).ToString()));
             };
             return claims;
         }

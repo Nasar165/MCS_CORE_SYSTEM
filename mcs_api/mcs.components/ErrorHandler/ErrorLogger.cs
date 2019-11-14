@@ -1,4 +1,6 @@
 ﻿using System;
+using mcs.Components.DbConnection;
+using mcs.Components.DbConnection.Interface;
 using mcs.Components.Errorhandler.Interface;
 using mcs.Components.Interface;
 
@@ -40,6 +42,14 @@ namespace mcs.Components.Errorhandler
             var exceptionHelper = new ExceptionHelper(error);
             IsErrorLogFilePathValid();
             _FileWriter.AppendTextToFile(exceptionHelper.GetFormatedErrorMessage(), $"{DirectoryPath}error.txt");
+        }
+
+
+        public void LogAuthentication<T>(ISqlHelper sql, T data)
+        {
+            var sqlCommand = new SqlCommandHelper<T>(data, "name");
+            var query = "Insert into authactivity (username, date) Values(@username, Now());";
+            sql.InsertQuery<T>(query, sqlCommand);
         }
 
     }
