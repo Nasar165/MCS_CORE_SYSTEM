@@ -25,12 +25,13 @@ to fetch/post data to the API.
 | Error Code | Description |
 | :---: | --- |
 | `200` | OK : Request was successful |
+| `201` | Created : A resourse has been created |
 | `204` | No Content : The request response is empty |
-| `400` | Bad request :  |
-| `401` | Unauthorized : user not authenticated |
-| `403` | Forbidden : user dont have the right privilages |
+| `400` | Bad request : The server cant understand your syntax |
+| `401` | Unauthorized : User not authenticated |
+| `403` | Forbidden : User dont have the right privilages |
 | `404` | Not found : The url does not exist or has been moved |
-| `405` | Method not allowed : Use the correct method POST, PUT, DELETE |
+| `405` | Method not allowed : Use the correct method GET, POST, PUT, DELETE |
 | `415` | Unsupported Media Type : Data is in format that is not supported |
 | `429` | Too many requests : To many requests within a x amount of time |
 | `500` | Internal Server Error  : An error has occured server side |
@@ -298,7 +299,7 @@ correct role.
 | `Url` | /unit/ |
 | `KeyType` | Admin |
 | `Method` | POST |
-| `Success Response` | Status Code: 200 <br/> |
+| `Success Response` | Status Code: 201 : created <br/> |
 | `Error Response` | Status Code: 401 : Authenticate again <br/> Status Code 403 : Wrong Key type <br/> Status Code 500 : internal server error|
 
 #### Sample output
@@ -338,7 +339,7 @@ correct role.
 | `Url` | /Project/ |
 | `KeyType` | Admin |
 | `Method` | POST |
-| `Success Response` | Status Code: 200 <br/> |
+| `Success Response` | Status Code: 201 : created <br/> |
 | `Error Response` | Status Code: 401 : Authenticate again <br/> Status Code 403 : Wrong Key type <br/> Status Code 500 : internal server error <br/> Status Code 405 : Method not allowed |
 
 #### Sample output
