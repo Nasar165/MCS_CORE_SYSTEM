@@ -24,7 +24,7 @@ namespace mcs.api.Controllers
         [HttpPost]
         public ActionResult Create()
         {
-            return Ok();
+            return Created("", "A unit was successfuly created");
         }
 
         [HttpPut]

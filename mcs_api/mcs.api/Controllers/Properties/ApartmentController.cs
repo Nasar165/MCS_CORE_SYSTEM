@@ -15,16 +15,16 @@ namespace mcs.api.Controllers.Properties
         private IClaimHelper CreateClaimsHelper()
             => new ClaimsHelper(User.Claims);
 
-        private PropertyHelper CreatePropertyHelper()
+        private ApartmentsHelper ApartmentHelper()
         {
             var SqlConnection = DatabaseHelper.Instance.GetClientDatabase(CreateClaimsHelper());
-            return new PropertyHelper(SqlConnection);
+            return new ApartmentsHelper(SqlConnection);
         }
 
         [Authorize(Roles = "Admin")]
         public IActionResult Get()
         {   // Get all Property no mather the website state
-            var propertyHelper = CreatePropertyHelper();
+            var propertyHelper = ApartmentHelper();
             return Ok(propertyHelper.GetApartments());
         }
 
@@ -32,7 +32,7 @@ namespace mcs.api.Controllers.Properties
         [Authorize(Roles = "Admin")]
         public IActionResult Get(int id)
         {
-            var propertyHelper = CreatePropertyHelper();
+            var propertyHelper = ApartmentHelper();
             return Ok(propertyHelper.GetApartment(id));
         }
 
@@ -43,7 +43,7 @@ namespace mcs.api.Controllers.Properties
         [Authorize(Roles = "API")]
         public IActionResult GetApartments()
         {
-            var propertyHelper = CreatePropertyHelper();
+            var propertyHelper = ApartmentHelper();
             return Ok(propertyHelper.GetApartments(false));
         }
 
@@ -51,7 +51,7 @@ namespace mcs.api.Controllers.Properties
         [Authorize(Roles = "API")]
         public IActionResult GetApartment(int id)
         {   // Get single Property where website statet is set to true
-            var propertyHelper = CreatePropertyHelper();
+            var propertyHelper = ApartmentHelper();
             return Ok(propertyHelper.GetApartment(id, false));
         }
 
