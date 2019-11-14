@@ -52,7 +52,7 @@ namespace mcs.api.Controllers.Properties
         public IActionResult GetApartment(int id)
         {   // Get single Property where website statet is set to true
             var propertyHelper = CreatePropertyHelper();
-            return Ok(id);
+            return Ok(propertyHelper.GetApartment(id, false));
         }
 
 

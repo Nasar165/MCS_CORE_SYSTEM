@@ -8,5 +8,7 @@ namespace mcs.api.Security.AuthTemplate
         public int Database_Id { get; set; }
         [JsonIgnore]
         public bool Active { get; set; }
+        [JsonIgnore]
+        public string Roles { get; set; }
     }
 }

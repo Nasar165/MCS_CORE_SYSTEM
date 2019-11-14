@@ -11,7 +11,5 @@ namespace mcs.api.Security.AuthTemplate
         public string Username { get; set; }
         [Required]
         public string Password { get; set; }
-
-        public string Roles { get; set; }
     }
 }

@@ -18,10 +18,15 @@ namespace mcs.domain
             => Sql.SelectQuery<Unit>(
                 "Select * from property, unit where property.ref_id = unit.ref_id and unit_type_id = 3", null);
 
-        public Unit GetApartment(int refId)
+        private void RemoveUnits(List<Unit> list)
+            => list.RemoveAll(x => x.Website == false);
+
+        public Unit GetApartment(int refId, bool website = true)
         {
             var data = GetApartmentsFromSql();
             var list = ObjectConverter.ConvertDataTableToList<Unit>(data);
+            if (!website)
+                RemoveUnits(list);
             var apartment = list.FirstOrDefault(x => x.Ref_Id == refId);
             return apartment;
         }
@@ -31,7 +36,7 @@ namespace mcs.domain
             var data = GetApartmentsFromSql();
             var list = ObjectConverter.ConvertDataTableToList<Unit>(data);
             if (!website)
-                list.RemoveAll(x => x.Website == false);
+                RemoveUnits(list);
             return list;
         }
 

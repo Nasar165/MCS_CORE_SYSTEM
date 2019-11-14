@@ -1,7 +1,0 @@
-var claim = new[]
-{
-    new Claim(JwtRegisteredClaimNames.Sub, "Nasar"),
-    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-    new Claim(ClaimTypes.Role, "Admin"),
-    new Claim(ClaimTypes.Role, "AdminAPI")
-};
