@@ -95,7 +95,6 @@ this is a simple test and will only verify that the installation was successful.
 
 ### Deployment
 #### Deploying to Linux (IIS)
-#### Deploying with Docker (IIS)
 #### Deploying to Windows (IIS)
 
 ### Built With
