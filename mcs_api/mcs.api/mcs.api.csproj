@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\mcs.components\mcs.components.csproj" />
-    <ProjectReference Include="..\mcs.domain\mcs.domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
