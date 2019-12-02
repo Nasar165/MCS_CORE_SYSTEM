@@ -2,7 +2,7 @@
 MCS unity CRM is a customer relationship management system developed by MCS Unity Co.,LTD in .Net
 Core with PostgreSQL. The system functions as a all in one system providing hosting providers
 & their clients with necessary tools to keep track of their businesses.
-asd
+
 ### Getting started
 These instructions are aimed at helping you setting up the project for development or testing purposes.
 If you wish to put the project in production, please check our Deployment section.
