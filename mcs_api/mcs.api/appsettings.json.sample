@@ -1,0 +1,27 @@
+{
+  "AppSettings": {
+    "SecretKey": "MyNewSuperMegeKeyForJwt11"
+  },
+  "ConnectionStrings": {
+    "mcscon": "Server=127.0.0.1;Database=mcsunity;Uid=mcsuser;Pwd=Nasar165;",
+    "dbcon": "Server=127.0.0.1;Database=@db;Uid=@dbuser;Pwd=@dbpw;"
+  },
+  "Smtp": {
+    "server": "url",
+    "username": "mail",
+    "password": "pw",
+    "Port": 465,
+    "SSl": true
+  },
+  "SecurityKey": {
+    "key": ""
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*"
+}
