@@ -56,7 +56,6 @@ and much more. While the client DB contains all the client’s private informati
 
 ##### Running scripts
 * [MainDB](https://github.com/Nasar165/MCS_CRM_NET_CORE/blob/master/sql.scripts/mcs.sql) - Main Script
-* [ClientDB](https://github.com/Nasar165/MCS_CRM_NET_CORE/blob/master/sql.scripts/client.sql) - Client DB Script
 
 ##### Dotnet core 3
 This installation process was made for centos 7 and might not work on your system. if you are
@@ -94,7 +93,9 @@ this is a simple test and will only verify that the installation was successful.
 ```
 
 ### Deployment
-#### Deploying to Linux (IIS)
+#### Deploying to Linux (Centos)
+##### Ngix
+##### Apache
 #### Deploying to Windows (IIS)
 
 ### Built With
