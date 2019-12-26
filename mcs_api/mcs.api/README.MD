@@ -8,7 +8,6 @@ to fetch/post data to the API.
 * [JSON Data](https://www.json.org/)
 * HTTP Clients 
   * [C#](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=netframework-4.8)
-  * [Angular](https://angular.io/guide/http)
 * [Bearer Authentication](https://tools.ietf.org/html/rfc6750#section-2.1)
 
 <!--ts-->
