@@ -1,5 +1,5 @@
 public interface IEncrypter{
     string EncryptData(string valueToEncrypt);
 
-    string DecryptyData<T>(string valueToDecrypt);
+    string DecryptyData(string valueToDecrypt);
 }

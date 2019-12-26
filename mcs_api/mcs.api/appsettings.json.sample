@@ -1,6 +1,7 @@
 {
   "AppSettings": {
-    "SecretKey": "MyNewSuperMegeKeyForJwt11"
+    "SecretKey": "MyNewSuperMegeKeyForJwt11",
+    "SymmetricKey": "b14ca5898a4e4133bbce2ea2315a1916"
   },
   "ConnectionStrings": {
     "mcscon": "Server=127.0.0.1;Database=mcsunity;Uid=mcsuser;Pwd=Nasar165;",
