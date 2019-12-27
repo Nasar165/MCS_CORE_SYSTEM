@@ -14,6 +14,8 @@ public class AesEncrypter : IEncrypter
         var aes =  Aes.Create();
         aes.Key = Encoding.UTF8.GetBytes(SymmetricKey);
         aes.IV = IV;
+        aes.Padding = PaddingMode.PKCS7;
+        aes.Mode = CipherMode.CBC;
         return aes;
     }    
     private ICryptoTransform createAesEncryptor(){
@@ -27,7 +29,7 @@ public class AesEncrypter : IEncrypter
     }
 
     private string EncryptData(string valueToEncrypt,MemoryStream memoryStream, CryptoStream cryptoStream){
-        using (StreamWriter streamWriter = new StreamWriter((Stream)cryptoStream))  
+        using (var streamWriter = new StreamWriter(cryptoStream))  
         {  
             streamWriter.Write(valueToEncrypt);  
         }  
@@ -36,14 +38,14 @@ public class AesEncrypter : IEncrypter
     }
 
     private string DecryptData(CryptoStream cryptoStream){
-        using (StreamReader streamReader = new StreamReader(cryptoStream))  
+        using (var streamReader = new StreamReader(cryptoStream))  
         {  
             return streamReader.ReadToEnd();  
         } 
     }
 
     private string GenerateCryptoStream(string stringValue, MemoryStream memoryStream, ICryptoTransform encryptor, CryptoStreamMode streamMode){
-        using (CryptoStream cryptoStream = new CryptoStream(memoryStream, encryptor, streamMode))  
+        using (var cryptoStream = new CryptoStream(memoryStream, encryptor, streamMode))  
         {  
             if(streamMode == CryptoStreamMode.Write)
                 return EncryptData(stringValue, memoryStream, cryptoStream);
@@ -65,7 +67,6 @@ public class AesEncrypter : IEncrypter
         {
             throw;
         }
-     
     }
 
     public string DecryptyData(string valueToDecrypt)
@@ -79,9 +80,6 @@ public class AesEncrypter : IEncrypter
         } 
         catch(Exception){
             throw;    
-        }
-      
+        } 
     }
-
-
 }
