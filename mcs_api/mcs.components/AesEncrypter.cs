@@ -5,60 +5,82 @@ using System.Text;
 
 public class AesEncrypter : IEncrypter
 {
+    private byte[] IV = new byte[16];  
     protected string SymmetricKey {get;set;}
     public AesEncrypter(string symmetricKey)
         => SymmetricKey = symmetricKey;
 
-    public string EncryptData(string valueToEncrypt)
-    {
-        byte[] iv = new byte[16];  
-        byte[] array;  
+    private Aes CreateAesInstance(){
+        var aes =  Aes.Create();
+        aes.Key = Encoding.UTF8.GetBytes(SymmetricKey);
+        aes.IV = IV;
+        return aes;
+    }    
+    private ICryptoTransform createAesEncryptor(){
+        var aes = CreateAesInstance();
+        return aes.CreateEncryptor(aes.Key,aes.IV);    
+    }
 
-        using (Aes aes = Aes.Create())  
+    private ICryptoTransform createAesDecryptor(){
+        var aes =  CreateAesInstance();
+        return aes.CreateDecryptor(aes.Key,aes.IV);    
+    }
+
+    private string EncryptData(string valueToEncrypt,MemoryStream memoryStream, CryptoStream cryptoStream){
+        using (StreamWriter streamWriter = new StreamWriter((Stream)cryptoStream))  
         {  
-            aes.Key = Encoding.UTF8.GetBytes(SymmetricKey);  
-            aes.IV = iv;  
-
-            ICryptoTransform encryptor = aes.CreateEncryptor(aes.Key, aes.IV);  
-
-            using (MemoryStream memoryStream = new MemoryStream())  
-            {  
-                using (CryptoStream cryptoStream = new CryptoStream((Stream)memoryStream, encryptor, CryptoStreamMode.Write))  
-                {  
-                    using (StreamWriter streamWriter = new StreamWriter((Stream)cryptoStream))  
-                    {  
-                        streamWriter.Write(valueToEncrypt);  
-                    }  
-
-                    array = memoryStream.ToArray();  
-                }  
-            }  
+            streamWriter.Write(valueToEncrypt);  
         }  
-        return Convert.ToBase64String(array);  
+        var array = memoryStream.ToArray();
+        return Convert.ToBase64String(array);    
+    }
+
+    private string DecryptData(CryptoStream cryptoStream){
+        using (StreamReader streamReader = new StreamReader(cryptoStream))  
+        {  
+            return streamReader.ReadToEnd();  
+        } 
+    }
+
+    private string GenerateCryptoStream(string stringValue, MemoryStream memoryStream, ICryptoTransform encryptor, CryptoStreamMode streamMode){
+        using (CryptoStream cryptoStream = new CryptoStream(memoryStream, encryptor, streamMode))  
+        {  
+            if(streamMode == CryptoStreamMode.Write)
+                return EncryptData(stringValue, memoryStream, cryptoStream);
+            else
+                return DecryptData(cryptoStream);
+        }  
+    }
+
+    public string EncryptData(string valueToEncrypt)
+    {   
+        try {
+            var encryptor = createAesEncryptor();  
+            var memoryStream = new MemoryStream();
+            var result = GenerateCryptoStream(valueToEncrypt, memoryStream, 
+                                                encryptor, CryptoStreamMode.Write);
+            return result;  
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+     
     }
 
     public string DecryptyData(string valueToDecrypt)
     {
-        byte[] iv = new byte[16];  
-        byte[] buffer = Convert.FromBase64String(valueToDecrypt);  
-
-        using (Aes aes = Aes.Create())  
-        {  
-            aes.Key = Encoding.UTF8.GetBytes(SymmetricKey);  
-            aes.IV = iv;  
-            ICryptoTransform decryptor = aes.CreateDecryptor(aes.Key, aes.IV);  
-
-            using (MemoryStream memoryStream = new MemoryStream(buffer))  
-            {  
-                using (CryptoStream cryptoStream = new CryptoStream((Stream)memoryStream, decryptor, CryptoStreamMode.Read))  
-                {  
-                    using (StreamReader streamReader = new StreamReader((Stream)cryptoStream))  
-                    {  
-                        return streamReader.ReadToEnd();  
-                    }  
-                }  
-            }  
+        try {
+            byte[] buffer = Convert.FromBase64String(valueToDecrypt);  
+            var decryptor = createAesDecryptor();
+            var memoryStream = new MemoryStream(buffer);
+            var result = GenerateCryptoStream(null, memoryStream, decryptor, CryptoStreamMode.Read);
+            return result; 
+        } 
+        catch(Exception){
+            throw;    
         }
+      
     }
 
 
