@@ -9,6 +9,6 @@ namespace mcs.api.Security.AuthTemplate
         [JsonIgnore]
         public bool Active { get; set; }
         [JsonIgnore]
-        public string Roles { get; set; }
+        public string Roles { get; set; } = "None";
     }
 }

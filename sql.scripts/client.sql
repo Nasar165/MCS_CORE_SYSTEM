@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS mcsunity;
 CREATE DATABASE mcsunity CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-CREATE USER IF NOT EXISTS mcsuser WITH
+CREATE USER mcsuser WITH
     LOGIN
     NOSUPERUSER
     NOCREATEDB
@@ -67,7 +67,7 @@ CREATE TABLE useraccount (
     FOREIGN KEY (database_id) REFERENCES database_list(database_id)
 );
 
-insert into useraccount (username,password,database_id,active) values('nasar','nasar165',1,'1');
+insert into useraccount (username,password,database_id,active) values('nasar','0zrYwyRKtp35kFlnsQPfgw==',1,'1');
 
 CREATE TABLE authactivity(
     authactivity_id SERIAL PRIMARY KEY NOT NULL,

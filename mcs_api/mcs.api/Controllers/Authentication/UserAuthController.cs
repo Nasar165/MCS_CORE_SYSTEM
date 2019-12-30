@@ -14,6 +14,7 @@ namespace mcs.api.Authentication.Controllers
             if (ModelState.IsValid)
             {
                 var auth = new AuthHelper();
+                userAccount.EncryptPassword();
                 var result = auth.AuthenticateUser(userAccount);
                 if (result is bool)
                     return Unauthorized();

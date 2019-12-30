@@ -14,17 +14,9 @@ namespace mcs.api.Security.AuthTemplate
         [Required]
         [StringLength(11, ErrorMessage = "The {0} value cannot exceed {1} characters.")]
         public string Username { get; set; }
-        private string password {get;set;}
         [Required]
-        public string Password { 
-            get
-            {
-                return password;
-            } 
-            set 
-            {   if(value != null)
-                    password = encrypter.EncryptData(value);
-            }
-        }
+        public string Password { get; set; }      
+        public void EncryptPassword()
+            => Password = encrypter.EncryptData(Password);
     }
 }
