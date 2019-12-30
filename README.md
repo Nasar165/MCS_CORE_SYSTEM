@@ -45,7 +45,7 @@ please check PostgreSQL website or distribution website for
 6. Connect to SQL using external app
   1. login to psql then enter show hba_file ; 
   2. edit the pg_hba.conf file.
-  3. change ipv4 connection from indent to trusted to
+  3. change ipv4 connection from ident to trust this will
   allow other forms of authentication like username and password;
 
 ```
