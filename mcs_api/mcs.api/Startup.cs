@@ -15,7 +15,7 @@ namespace mcs.api
         {
             AppConfigHelper.Instance.SetIConfiguration(configuration);
             ErrorLogger.Instance.SetWorkingDirectory(Directory.GetCurrentDirectory());
-              EncrypterStarter.SetupEncryption();
+            EncrypterStarter.SetupEncryption();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
