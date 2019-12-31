@@ -7,6 +7,8 @@ public class AesEncrypter : IEncrypter
 {
     private byte[] IV = new byte[16];  
     protected string SymmetricKey {get;set;}
+
+    public static IEncrypter _instance { get; set; }
     public AesEncrypter(string symmetricKey)
         => SymmetricKey = symmetricKey;
 
