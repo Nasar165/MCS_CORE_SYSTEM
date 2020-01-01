@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using mcs.api.Security.AuthTemplate.Interface;
+using mcs.Components;
 
 namespace mcs.api.Security.AuthTemplate
 {

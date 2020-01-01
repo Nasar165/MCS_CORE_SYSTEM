@@ -1,5 +1,7 @@
-public interface IEncrypter{
-    string EncryptData(string valueToEncrypt);
+namespace mcs.Components.Interface{
+    public interface IEncrypter{
+        string EncryptData(string valueToEncrypt);
 
-    string DecryptyData(string valueToDecrypt);
+        string DecryptyData(string valueToDecrypt);
+    }
 }
