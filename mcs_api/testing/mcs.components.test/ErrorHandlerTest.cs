@@ -32,11 +32,5 @@ namespace mcs.components.test
             var text = File.ReadAllText($"../{workingDirectory}/test_folder/logs/error/error.txt");
             Assert.IsTrue(text.Contains("The method or operation is not implemented."));
         }
-
-        [TestMethod]
-        public void RegisterAuthenticationToDatabase()
-        {
-            logger.LogAuthentication()
-        }
     }
 }
