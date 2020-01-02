@@ -34,7 +34,6 @@ namespace mcs.Components.Errorhandler
         {
             DirectoryPath = $"{directory}/logs/error/";
             IsErrorLogFilePathValid();
-
         }
 
         public void LogError(Exception error)
