@@ -1,7 +1,8 @@
-# MCS CRM Web API
-MCS unity CRM is a customer relationship management system developed by MCS Unity Co.,LTD in .Net
-Core with PostgreSQL. The system functions as a all in one system providing hosting providers
-& their clients with necessary tools to keep track of their businesses.
+# MCS CORE System
+MCS Core system intends to resolve a business requirement concerning a framework fitted to handling 
+multiple databases. The core system comes with pre-built-in tools & customer managment to speed up 
+your development.  The system is well suited for an organisation that needs a framework suited to 
+handling multiple databases and more than one client.
 
 ### Getting started
 These instructions are aimed at helping you setting up the project for development or testing purposes.
@@ -55,7 +56,7 @@ act as a inhouse database storing clients information such as username, password
 and much more. While the client DB contains all the client’s private information. 
 
 ##### Running scripts
-* [MainDB](https://github.com/Nasar165/MCS_CRM_NET_CORE/blob/master/sql.scripts/mcs.sql) - Main Script
+* [MainDB](https://github.com/Nasar165/MCS_CORE_SYSTEM/blob/master/sql.scripts/client.sql) - Main Script
 
 ##### Dotnet core 3
 This installation process was made for centos 7 and might not work on your system. if you are
@@ -93,6 +94,7 @@ this is a simple test and will only verify that the installation was successful.
 ```
 
 ### Deployment
+Deployment section is comming soon
 #### Deploying to Linux (Centos)
 ##### Ngix
 ##### Apache
@@ -115,7 +117,7 @@ information to understand how different versions might affect you and your proje
 
 * **Nasar Eddaoui** - *Initial work* - [Nasar Eddaoui](https://github.com/Nasar165)
 
-See also the list of [contributors](https://github.com/Nasar165/MCS_CRM_NET_CORE/graphs/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/Nasar165/MCS_CORE_SYSTEM//graphs/contributors) who participated in this project.
 
 ### License
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details
