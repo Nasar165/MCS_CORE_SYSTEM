@@ -79,7 +79,7 @@ namespace mcs.Components.DbConnection
             }
         }
 
-        public void InsertQuery<T>(string query, SqlCommandHelper<T> data)
+        public void AlterDataQuery<T>(string query, SqlCommandHelper<T> data)
         {
             try
             {
@@ -102,30 +102,20 @@ namespace mcs.Components.DbConnection
             }
         }
 
-        public object InsertQueryScalar<T>(string query, SqlCommandHelper<T> data)
+        public object AlterDataQueryScalar<T>(string query, SqlCommandHelper<T> data)
         {
             try
             {
                 connection.Open();
-                throw new System.NotImplementedException();
-            }
-            catch (Exception error)
-            {
-                throw error;
-            }
-            finally
-            {
-                connection.Close();
-                throw new System.NotImplementedException();
-            }
-        }
-
-        public void DeleteData<T>(string query, SqlCommandHelper<T> data)
-        {
-            try
-            {
-                connection.Open();
-                throw new System.NotImplementedException();
+                var sqlCommand = new NpgsqlCommand(query, connection);
+                object scalarData = null;
+                if (!Validation.ObjectIsNull(data))
+                {
+                    data.SqlCommand = sqlCommand;
+                    sqlCommand = AddParametersToSqlCommand(data);
+                    scalarData = sqlCommand.ExecuteScalar();
+                }
+                return scalarData;
             }
             catch (Exception error)
             {

@@ -48,7 +48,7 @@ namespace mcs.Components.Errorhandler
         {
             var sqlCommand = new SqlCommandHelper<T>(data, "name");
             var query = "Insert into authactivity (username, date) Values(@username, Now());";
-            sql.InsertQuery<T>(query, sqlCommand);
+            sql.AlterDataQuery<T>(query, sqlCommand);
         }
 
     }
