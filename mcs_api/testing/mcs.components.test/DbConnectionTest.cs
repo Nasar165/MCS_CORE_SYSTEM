@@ -29,7 +29,7 @@ namespace mcs.components.test
             var authActivity = CreateAauthUser();
             var SqlCommand = new SqlCommandHelper<authactivity>(authActivity, "Authactivity_Id");
             var query = "Insert into authactivity (username, date) Values(@username, @date) RETURNING authactivity_id";
-            Id = (int)Connecter.InsertQueryScalar(query, SqlCommand);
+            Id = (int)Connecter.AlterDataQueryScalar(query, SqlCommand);
             Assert.AreNotEqual(Id, 0);
         }
 
@@ -38,12 +38,12 @@ namespace mcs.components.test
         {
             var authActivity = CreateAauthUser();
             authActivity.Authactivity_Id = Id;
-            string [] skipProperties = { "Username", "Date" };
+            string [] skipProperties = { "Username", "Date", "" };
             var SqlCommand = new SqlCommandHelper<authactivity>(authActivity, skipProperties);
-            var query = "select * from authactivity where authactivity_id = @authactivity_id";
+            var query = "select * from authactivity order by authactivity_id desc";
             var data = Connecter.SelectQuery(query, SqlCommand);
-            var authUser = ObjectConverter.ConvertDataTableRowToObject<authactivity>(data.Rows[0]);
-            Assert.AreEqual("NasarTest",authUser.Username); 
+            var user = ObjectConverter.ConvertDataTableRowToObject<authactivity>(data.Rows[0]);
+            Assert.AreEqual("NasarTest", user.Username); 
         }
 
         [TestMethod]
@@ -51,10 +51,12 @@ namespace mcs.components.test
         {
             var authActivity = CreateAauthUser();
             authActivity.Authactivity_Id = Id;
-            string [] skipProperties = { "Username", "Date" };
-            var SqlCommand = new SqlCommandHelper<authactivity>(authActivity, skipProperties);
-            var query = "Deletet authactivity where authactivity_id = @authactivity_id";
-            Connecter.DeleteData(query, SqlCommand);
+            var SqlCommand = new SqlCommandHelper<authactivity>(authActivity, "");
+            var deleteQuery = "Delete from authactivity where username = 'NasarTest'";
+            Connecter.AlterDataQuery(deleteQuery, SqlCommand);
+            var selectQuery = "select * from authactivity where username = 'NasarTest'";
+            var data = Connecter.SelectQuery(selectQuery, SqlCommand);
+            Assert.AreEqual(0,data.Rows.Count);
         }
     }
 
