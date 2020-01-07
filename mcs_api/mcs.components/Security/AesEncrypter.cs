@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 using System.Text;
 using mcs.Components.Interface;
 
-namespace mcs.Components {
+namespace mcs.Components.Security {
     public class AesEncrypter : IEncrypter
     {
         private byte[] IV = new byte[16];  

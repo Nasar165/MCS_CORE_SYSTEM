@@ -1,5 +1,5 @@
 using mcs.api.Models;
-using mcs.Components;
+using mcs.Components.Security;
 
 public static class EncrypterStarter {
 

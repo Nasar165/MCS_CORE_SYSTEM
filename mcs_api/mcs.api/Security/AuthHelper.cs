@@ -11,6 +11,7 @@ using mcs.Components.Errorhandler;
 
 namespace mcs.api.Security
 {
+    public delegate void AuthAction();
     public class AuthHelper : IAuthHelper
     {
         IClaimHelper _ClaimHelper { get; set; }
@@ -82,7 +83,7 @@ namespace mcs.api.Security
             }
         }
 
-        public object AuthenticateUser(IUserAccount user)
+        public object AuthenticateUser(IUserAccount user, AuthAction method)
         {
             try
             {
@@ -90,6 +91,8 @@ namespace mcs.api.Security
                     (UserAccount)user, "password");
                 var dbuser = GetCredentialsFromSql<UserAccount>(
                     $"useraccount where username = @username", sqlcommand, user.Username);
+                if(method != null)
+                    method();
                 if (user.Username == dbuser.Username && user.Password == dbuser.Password)
                 {
                     LogAuthentication(user.Username);
