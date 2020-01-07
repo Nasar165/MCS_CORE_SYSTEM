@@ -10,6 +10,7 @@ namespace mcs.api.Security
 {
     public class ClaimsHelper : IClaimHelper
     {
+        public delegate string ClaimAction(string data);
         IEnumerable<Claim> Claims { get; }
         public ClaimsHelper(IEnumerable<Claim> claims = null)
             => Claims = claims;
@@ -46,16 +47,22 @@ namespace mcs.api.Security
             return claims;
         }
 
-        public List<Claim> AddDataToClaim<T>(T data)
+        public List<Claim> AddDataToClaim<T>(T data, ClaimAction action)
         {
             var claims = new List<Claim>();
             claims = AddJtiToClaim(claims);
             var properties = ReflectionHelper.GetPropertiesOfObject(data);
             foreach (var property in properties)
             {
-                if (!Validation.ObjectIsNull(property.GetValue(data)))
-                    claims.Add(new Claim(property.Name,
-                        property.GetValue(data, null).ToString()));
+                if (!Validation.ObjectIsNull(property.GetValue(data))){
+                    var value = "";
+                    if(action != null)
+                        value = action(property.GetValue(data, null).ToString());
+                    else
+                        value = property.GetValue(data, null).ToString();
+
+                    claims.Add(new Claim(property.Name, value));
+                }
             };
             return claims;
         }

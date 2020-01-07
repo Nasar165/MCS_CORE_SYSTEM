@@ -8,6 +8,7 @@ using mcs.api.Security.Interface;
 using mcs.Components;
 using mcs.Components.DbConnection;
 using mcs.Components.Errorhandler;
+using mcs.Components.Security;
 
 namespace mcs.api.Security
 {
@@ -43,7 +44,7 @@ namespace mcs.api.Security
         {
             try
             {
-                var claimList = _ClaimHelper.AddDataToClaim<T>(data);
+                var claimList = _ClaimHelper.AddDataToClaim<T>(data, AesEncrypter._instance.EncryptData);
                 claimList = _ClaimHelper.AddRolesToClaim(claimList, roles);
                 var Token = _JwtAuthenticator.CreateJwtToken(claimList
                     , audiance, "mcsunity.net");

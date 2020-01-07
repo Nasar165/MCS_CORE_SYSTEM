@@ -4,6 +4,7 @@ using mcs.api.Security.Interface;
 using mcs.Components;
 using mcs.Components.DbConnection;
 using mcs.Components.Errorhandler;
+using mcs.Components.Security;
 using mcs.Components.DbConnection.Interface;
 using mcs.api.Database.Interface;
 
@@ -37,7 +38,7 @@ namespace mcs.api.Database
             try
             {
                 var mcsSql = GetMcsConnection();
-                var dbId = claimHelper.GetValueFromClaim("Database_Id");
+                var dbId = AesEncrypter._instance.DecryptyData(claimHelper.GetValueFromClaim("Database_Id"));
                 var sqlCommand = CreateSqlCommand(CreateClientId(dbId), "");
                 var dataTable = mcsSql.SelectQuery($"Select * from database_list where database_id = @id", sqlCommand);
                 var clientDatabase = ObjectConverter.ConvertDataTableRowToObject<ClientDatabase>(dataTable.Rows[0]);
