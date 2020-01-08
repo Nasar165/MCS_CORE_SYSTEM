@@ -12,7 +12,7 @@ namespace mcs.Components.Security
         { 
             this.userAssignedRole = roles; 
         } 
-
+        // Add Data
         public void OnAuthorization(AuthorizationFilterContext context)
         {
             var claim = context.HttpContext.User.Claims;
