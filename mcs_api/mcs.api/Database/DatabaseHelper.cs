@@ -33,12 +33,14 @@ namespace mcs.api.Database
             return new SqlCommandHelper<T>(data, ignore);
         }
 
+        // change the behaviour of the method.
         public string GetClientDatabase(IClaimHelper claimHelper)
         {
+            throw new NotImplementedException();
             try
             {
                 var mcsSql = GetMcsConnection();
-                var dbId = AesEncrypter._instance.DecryptyData(claimHelper.GetValueFromClaim("Database_Id"));
+                var dbId = AesEncrypter._instance.DecryptyData(claimHelper.GetValueFromClaim("Key"));
                 var sqlCommand = CreateSqlCommand(CreateClientId(dbId), "");
                 var dataTable = mcsSql.SelectQuery($"Select * from database_list where database_id = @id", sqlCommand);
                 var clientDatabase = ObjectConverter.ConvertDataTableRowToObject<ClientDatabase>(dataTable.Rows[0]);

@@ -5,10 +5,12 @@ namespace mcs.api.Security.AuthTemplate
     public class DataExtension
     {
         [JsonIgnore]
-        public int Database_Id { get; set; }
+        public int TokenKey_Id { get; set; }
+        [JsonIgnore]
+        public int UserAccount_Id { get; set; }
+        [JsonIgnore]
+        public int Key { get; set; }
         [JsonIgnore]
         public bool Active { get; set; }
-        [JsonIgnore]
-        public string Roles { get; set; } = "None";
     }
 }

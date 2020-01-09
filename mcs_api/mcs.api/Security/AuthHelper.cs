@@ -45,7 +45,8 @@ namespace mcs.api.Security
             try
             {
                 var claimList = _ClaimHelper.AddDataToClaim<T>(data, AesEncrypter._instance.EncryptData);
-                claimList = _ClaimHelper.AddRolesToClaim(claimList, roles);
+                if(!Validation.ObjectIsNull(roles))
+                    claimList = _ClaimHelper.AddRolesToClaim(claimList, roles);
                 var Token = _JwtAuthenticator.CreateJwtToken(claimList
                     , audiance, "mcsunity.net");
                 return Token;
@@ -56,8 +57,8 @@ namespace mcs.api.Security
             }
         }
 
-        private DataExtension ProvideMinimalDataToToken(int dbId, bool active)
-            => new DataExtension() { Database_Id = dbId, Active = active };
+        private TokenKey ProvideMinimalDataToToken(int key)
+            => new TokenKey() { Key = key };
 
         public object AuthentiacteAPI(IAccessKey apiKey)
         {
@@ -67,11 +68,11 @@ namespace mcs.api.Security
                     (AccessKey)apiKey, "groupkey");
                 var dbApiKey = GetCredentialsFromSql<AccessKey>(
                     $"token where tokenkey = @tokenkey", sqlcommand, apiKey.TokenKey);
-                if (apiKey.TokenKey == dbApiKey.TokenKey && apiKey.GroupKey == dbApiKey.GroupKey)
+                if (apiKey.TokenKey == dbApiKey.TokenKey && apiKey.GroupKey == dbApiKey.GroupKey && dbApiKey.Active == true)
                 {
                     LogAuthentication(dbApiKey.TokenKey);
-                    var tokenClaim = ProvideMinimalDataToToken(dbApiKey.Database_Id, dbApiKey.Active);
-                    var Token = GenerateToken(tokenClaim, "API", dbApiKey.Roles);
+                    var tokenClaim = ProvideMinimalDataToToken(dbApiKey.TokenKey_Id);
+                    var Token = GenerateToken(tokenClaim, "API", null);
                     return Token;
                 }
                 return false;
@@ -97,8 +98,8 @@ namespace mcs.api.Security
                 if (user.Username == dbuser.Username && user.Password == dbuser.Password)
                 {
                     LogAuthentication(user.Username);
-                    var tokenClaim = ProvideMinimalDataToToken(dbuser.Database_Id, dbuser.Active);
-                    var Token = GenerateToken(tokenClaim, "User", dbuser.Roles);
+                    var tokenClaim = ProvideMinimalDataToToken(dbuser.UserAccount_Id);
+                    var Token = GenerateToken(tokenClaim, "User", null);
                     return Token;
                 }
                 return false;
