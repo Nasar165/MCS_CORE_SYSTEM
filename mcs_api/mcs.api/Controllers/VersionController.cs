@@ -8,7 +8,7 @@ namespace mcs.api.Controllers
     {
         public ActionResult Get()
         {
-            return Ok("API Version: 2.2.4");
+            return Ok("API Version: 3.2.5");
         }
 
         [AuthorizeRoles("Admin")]

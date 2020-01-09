@@ -9,8 +9,6 @@ namespace mcs.api.Security.AuthTemplate
         [JsonIgnore]
         public int UserAccount_Id { get; set; }
         [JsonIgnore]
-        public int Key { get; set; }
-        [JsonIgnore]
         public bool Active { get; set; }
     }
 }

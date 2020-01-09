@@ -14,9 +14,6 @@
     "Port": 465,
     "SSl": true
   },
-  "SecurityKey": {
-    "key": ""
-  },
   "Logging": {
     "LogLevel": {
       "Default": "Information",
