@@ -8,7 +8,7 @@ handling multiple databases and more than one client.
 ### Getting started
 
 These instructions are aimed at helping you setting up the project for development or testing purposes.
-If you wish to put the project in production, please check our Deployment section.
+If you wish to put the project in production, please check our [Deployment section](#deployment).
 
 ### Prerequisites
 
