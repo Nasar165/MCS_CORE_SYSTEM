@@ -1,6 +1,6 @@
-# MCS CORE System
+# Xeroscore
 
-MCS Core system intends to resolve a business requirement concerning a framework fitted to handling
+Xeroscore system intends to resolve a business requirement concerning a framework fitted to handling
 multiple databases. The core system comes with pre-built-in tools & customer managment to speed up
 your development. The system is well suited for an organisation that needs a framework suited to
 handling multiple databases and more than one client.
@@ -66,7 +66,7 @@ and much more. While the client DB contains all the client’s private informati
 
 ##### Running scripts
 
-- [MainDB](https://github.com/Nasar165/MCS_CORE_SYSTEM/blob/master/scripts/client.sql) - Main Script
+- [MainDB](https://github.com/Nasar165/Xeroscore/blob/master/scripts/client.sql) - Main Script
 
 ##### Dotnet core 3
 
@@ -138,7 +138,7 @@ information to understand how different versions might affect you and your proje
 
 - **Nasar Eddaoui** - _Initial work_ - [Nasar Eddaoui](https://github.com/Nasar165)
 
-See also the list of [contributors](https://github.com/Nasar165/MCS_CORE_SYSTEM//graphs/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/Nasar165/Xeroscore//graphs/contributors) who participated in this project.
 
 ### License
 
