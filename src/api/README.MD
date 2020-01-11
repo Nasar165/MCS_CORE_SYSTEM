@@ -91,7 +91,7 @@ correct role.
     jBjOC01ZmFkNDI2M2M0MDEiLCJEYXRhYmFzZV9JZCI6IjEiLCJBY3RpdmUiOiJUcnVlIiwiaHR0cDovL3NjaGVt
     YXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE1
     NzM3NDQyMTksImlzcyI6Im1jc3VuaXR5Lm5ldCIsImF1ZCI6IlVzZXIifQ._W8jt7HuzifzEartVSCbDkVKAeFKx
-    4FAy6hNuEtDYSQ",",
+    4FAy6hNuEtDYSQ",
     "authType": "Bearer",
     "expiration": "UTC:2019-11-14 3:10:19 PM"
 }
