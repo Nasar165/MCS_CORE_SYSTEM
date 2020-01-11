@@ -1,4 +1,4 @@
-using mcs.Components;
+using mcs.Components.Security;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace mcs.components.test
@@ -8,15 +8,15 @@ namespace mcs.components.test
     {
         public AesEncryptionTest()
         {
-            AesEncrypter._instance = new AesEncrypter("b14ca5898a4e4133bbce2ea2315a1916");       
+            AesEncrypter._instance = new AesEncrypter("b14ca5898a4e4133bbce2ea2315a1916");
         }
-        
+
         [TestMethod]
         public void EncryptData()
         {
-           var unEncryptedText = "Nasar is the greatest";
-           var encryptedText = AesEncrypter._instance.EncryptData(unEncryptedText);
-           Assert.AreNotEqual(unEncryptedText,encryptedText);
+            var unEncryptedText = "Nasar is the greatest";
+            var encryptedText = AesEncrypter._instance.EncryptData(unEncryptedText);
+            Assert.AreNotEqual(unEncryptedText, encryptedText);
         }
 
         [TestMethod]
@@ -25,7 +25,7 @@ namespace mcs.components.test
             var unEncryptedText = "Nasar is the greatest";
             var encryptedText = AesEncrypter._instance.EncryptData(unEncryptedText);
             var decryptedText = AesEncrypter._instance.DecryptyData(encryptedText);
-            Assert.AreEqual(unEncryptedText,decryptedText);
+            Assert.AreEqual(unEncryptedText, decryptedText);
         }
     }
 }
