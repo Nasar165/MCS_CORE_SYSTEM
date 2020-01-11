@@ -35,7 +35,7 @@ please check PostgreSQL website or distribution website for
   2.Enter password and confirm.
 
 4. Change Account to postgres
-  1. su - posgres. (login in shell as posgres)
+  1. su - postgres. (login in shell as postgres)
   2. enter your password.
   3. enter psql to enter postgresql command line tool.
 
