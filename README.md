@@ -67,7 +67,7 @@ and much more. While the client DB contains all the client’s private informati
 
 ##### Running scripts
 
-- [MainDB](https://github.com/Nasar165/Xeroxcore/blob/master/scripts/client.sql) - Main Script
+- [MainDB](https://github.com/Nasar165/Xeroxcore/blob/master/scripts/main.sql) - Main Script
 
 ##### Dotnet core 3
 
