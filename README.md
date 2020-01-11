@@ -1,4 +1,4 @@
-![Xeroxcore logo](https://github.com/Nasar165/Xeroxcore/blob/master/src/mcs.api/Xeroxcore_Logo.png)
+![Xeroxcore logo](https://github.com/Nasar165/Xeroxcore/blob/master/Xeroxcore_Logo.png)
 
 
 <br/><br/>Xeroxcore system intends to resolve a business requirement concerning a framework fitted to handling
