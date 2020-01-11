@@ -1,4 +1,4 @@
-# Xeroxcore
+![Xeroxcore logo](https://github.com/Nasar165/Xeroxcore/blob/master/src/mcs.api/Xeroxcore_Logo.png)
 
 Xeroxcore system intends to resolve a business requirement concerning a framework fitted to handling
 multiple databases. The core system comes with pre-built-in tools & customer managment to speed up
