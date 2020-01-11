@@ -1,4 +1,4 @@
-# Xeroxcore API
+![Xeroxcore logo](https://github.com/Nasar165/Xeroxcore/blob/master/Xeroxcore_Logo.png)
 
 ## Prerequisites
 The following knowledge is necessary to be able to utilize the web api.
@@ -8,6 +8,8 @@ to fetch/post data to the API.
 * [JSON Data](https://www.json.org/)
 * HTTP Clients 
   * [C#](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient?view=netframework-4.8)
+  * [Angular](https://angular.io/guide/http)
+  * [Ajax](https://www.w3schools.com/js/js_ajax_http_send.asp)
 * [Bearer Authentication](https://tools.ietf.org/html/rfc6750#section-2.1)
 
 <!--ts-->
@@ -57,7 +59,11 @@ token keys have limited access and is mostly  used to fetch data.
 #### Sample API Response
 ```
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmYWIyYWQ3NC0yMTZjLTQ4N2MtYjBjOC01ZmFkNDI2M2M0MDEiLCJEYXRhYmFzZV9JZCI6IjEiLCJBY3RpdmUiOiJUcnVlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE1NzM3NDQyMTksImlzcyI6Im1jc3VuaXR5Lm5ldCIsImF1ZCI6IlVzZXIifQ._W8jt7HuzifzEartVSCbDkVKAeFKx4FAy6hNuEtDYSQ",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmYWIyYWQ3NC0yMTZjLTQ4N2MtY
+    jBjOC01ZmFkNDI2M2M0MDEiLCJEYXRhYmFzZV9JZCI6IjEiLCJBY3RpdmUiOiJUcnVlIiwiaHR0cDovL3NjaGVt
+    YXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE1
+    NzM3NDQyMTksImlzcyI6Im1jc3VuaXR5Lm5ldCIsImF1ZCI6IlVzZXIifQ._W8jt7HuzifzEartVSCbDkVKAeFKx
+    4FAy6hNuEtDYSQ",
     "authType": "Bearer",
     "expiration": "UTC:2019-11-14 3:10:19 PM"
 }
@@ -81,7 +87,11 @@ correct role.
 #### Sample API Response
 ```
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmYWIyYWQ3NC0yMTZjLTQ4N2MtYjBjOC01ZmFkNDI2M2M0MDEiLCJEYXRhYmFzZV9JZCI6IjEiLCJBY3RpdmUiOiJUcnVlIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE1NzM3NDQyMTksImlzcyI6Im1jc3VuaXR5Lm5ldCIsImF1ZCI6IlVzZXIifQ._W8jt7HuzifzEartVSCbDkVKAeFKx4FAy6hNuEtDYSQ",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJmYWIyYWQ3NC0yMTZjLTQ4N2MtY
+    jBjOC01ZmFkNDI2M2M0MDEiLCJEYXRhYmFzZV9JZCI6IjEiLCJBY3RpdmUiOiJUcnVlIiwiaHR0cDovL3NjaGVt
+    YXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiQWRtaW4iLCJleHAiOjE1
+    NzM3NDQyMTksImlzcyI6Im1jc3VuaXR5Lm5ldCIsImF1ZCI6IlVzZXIifQ._W8jt7HuzifzEartVSCbDkVKAeFKx
+    4FAy6hNuEtDYSQ",
     "authType": "Bearer",
     "expiration": "UTC:2019-11-14 3:10:19 PM"
 }
