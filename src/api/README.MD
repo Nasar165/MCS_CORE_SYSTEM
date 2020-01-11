@@ -1,4 +1,4 @@
-# MCS API
+# Xeroxcore API
 
 ## Prerequisites
 The following knowledge is necessary to be able to utilize the web api.
