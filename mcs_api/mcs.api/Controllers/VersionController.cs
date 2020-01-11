@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using mcs.Components.Security;
+using mcs.api.Database;
 
 namespace mcs.api.Controllers
 {
@@ -7,14 +8,14 @@ namespace mcs.api.Controllers
     public class VersionController : ControllerBase
     {
         public ActionResult Get()
-        {
-            return Ok("API Version: 3.2.5");
-        }
+            => Ok("API Version: 3.2.5");
+        
 
         [AuthorizeRoles("Admin")]
         [HttpPost]
         public ActionResult Post()
         {
+            DatabaseHelper.Instance.GetClientDatabase(User);
             return Ok("Role Corerct");
         }
     }

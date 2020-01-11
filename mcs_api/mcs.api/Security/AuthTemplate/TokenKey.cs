@@ -1,4 +1,4 @@
-namespace mcs.Components.Security
+namespace mcs.api.Security.AuthTemplate
 {
     public class TokenKey
     {

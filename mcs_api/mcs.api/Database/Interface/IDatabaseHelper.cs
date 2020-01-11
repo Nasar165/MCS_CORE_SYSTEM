@@ -1,6 +1,6 @@
 using mcs.Components.DbConnection;
 using mcs.Components.DbConnection.Interface;
-using mcs.api.Security.Interface;
+using System.Security.Claims;
 
 namespace mcs.api.Database.Interface
 {
@@ -8,6 +8,6 @@ namespace mcs.api.Database.Interface
     {
         ISqlHelper GetMcsConnection();
         SqlCommandHelper<T> CreateSqlCommand<T>(T data, params string[] ignore);
-        string GetClientDatabase(IClaimHelper claimHelper);
+        string GetClientDatabase(ClaimsPrincipal User);
     }
 }

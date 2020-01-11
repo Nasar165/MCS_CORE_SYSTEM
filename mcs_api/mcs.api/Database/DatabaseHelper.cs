@@ -1,12 +1,14 @@
 using System;
 using mcs.api.Models;
-using mcs.api.Security.Interface;
 using mcs.Components;
 using mcs.Components.DbConnection;
 using mcs.Components.Errorhandler;
 using mcs.Components.Security;
 using mcs.Components.DbConnection.Interface;
 using mcs.api.Database.Interface;
+using System.Security.Claims;
+using mcs.api.Security;
+using mcs.api.Security.AuthTemplate;
 
 namespace mcs.api.Database
 {
@@ -33,25 +35,54 @@ namespace mcs.api.Database
             return new SqlCommandHelper<T>(data, ignore);
         }
 
-        // change the behaviour of the method.
-        public string GetClientDatabase(IClaimHelper claimHelper)
+        private int GetUserAccount(string userId)
         {
-            throw new NotImplementedException();
+            var sql = GetMcsConnection();
+            var id = CreateClientId(userId);
+            var sqlCommand = new SqlCommandHelper<object>(id,"");
+            var dataTable = sql.SelectQuery(
+                            "Select * from useraccount where useraccount_id = @id"
+                                , sqlCommand);
+            var user = ObjectConverter.ConvertDataTableRowToObject<DataExtension>(dataTable.Rows[0]);
+            return user.Database_Id;
+        }
+
+        private ClientDatabase GetClientDatabase(string databaseKey)
+        {
+            var sql = GetMcsConnection();
+            var id = CreateClientId(databaseKey);
+            var sqlCommand = new SqlCommandHelper<object>(id,"");
+            var dataTable = sql.SelectQuery(
+                            "Select * from database_list where database_id = @id"
+                                , sqlCommand);
+            var clientDataBase = ObjectConverter.ConvertDataTableRowToObject<ClientDatabase>(dataTable.Rows[0]);
+            return clientDataBase;
+        }
+
+        // change the behaviour of the method.
+        // Check if I can set the claimsprinciple during every request.
+        public string GetClientDatabase(ClaimsPrincipal User)
+        {           
             try
             {
-                var mcsSql = GetMcsConnection();
-                var dbId = AesEncrypter._instance.DecryptyData(claimHelper.GetValueFromClaim("Key"));
-                var sqlCommand = CreateSqlCommand(CreateClientId(dbId), "");
-                var dataTable = mcsSql.SelectQuery($"Select * from database_list where database_id = @id", sqlCommand);
-                var clientDatabase = ObjectConverter.ConvertDataTableRowToObject<ClientDatabase>(dataTable.Rows[0]);
-                return clientDatabase.GetConnectionString();
+                var claimHelper = new ClaimsHelper(User.Claims);
+                var audiance = claimHelper.GetValueFromClaim("aud");
+                var dbId = 0;
+                var key = AesEncrypter._instance.DecryptyData(
+                    claimHelper.GetValueFromClaim("Key"));
+                if(Validation.StringsAreEqual(audiance,"User"))
+                    dbId = GetUserAccount(key);
+                else
+                    dbId = 0;
+
+                var database = GetClientDatabase(dbId.ToString());
+                return database.GetConnectionString();
             }
             catch (Exception error)
             {
                 ErrorLogger.Instance.LogError(error);
                 throw;
             }
-
         }
     }
 }
