@@ -35,28 +35,36 @@ namespace api.Database
             return new SqlCommandHelper<T>(data, ignore);
         }
 
-        private int GetUserAccount(string userId)
+        private T FetchDataFromDB<T>(string key, string querry)
         {
             var sql = GetMcsConnection();
-            var id = CreateClientId(userId);
-            var sqlCommand = new SqlCommandHelper<object>(id,"");
+            var id = CreateClientId(key);
+            var sqlCommand = CreateSqlCommand<object>(id,"");
             var dataTable = sql.SelectQuery(
-                            "Select * from useraccount where useraccount_id = @id"
-                                , sqlCommand);
-            var user = ObjectConverter.ConvertDataTableRowToObject<DataExtension>(dataTable.Rows[0]);
-            return user.Database_Id;
+                            querry, sqlCommand);
+            var databaseInfo = ObjectConverter.ConvertDataTableRowToObject<T>(dataTable.Rows[0]);
+            return databaseInfo;
         }
 
-        private ClientDatabase GetClientDatabase(string databaseKey)
+        private ClientDatabase FetchClientDataBase(string dbKey)
+            => FetchDataFromDB<ClientDatabase>(dbKey.ToString()
+                                , "Select * from database_list where database_id = @id");
+        
+
+        private ClientDatabase FetchUserDb(string key)
         {
-            var sql = GetMcsConnection();
-            var id = CreateClientId(databaseKey);
-            var sqlCommand = new SqlCommandHelper<object>(id,"");
-            var dataTable = sql.SelectQuery(
-                            "Select * from database_list where database_id = @id"
-                                , sqlCommand);
-            var clientDataBase = ObjectConverter.ConvertDataTableRowToObject<ClientDatabase>(dataTable.Rows[0]);
-            return clientDataBase;
+            var user = FetchDataFromDB<DataExtension>(key
+                                , "Select * from database_list where database_id = @id");
+            var database = FetchClientDataBase(user.Database_Id.ToString());
+            return database;
+        }
+
+        private ClientDatabase FetchTokenDb(string key)
+        {
+            var user = FetchDataFromDB<DataExtension>(key
+                                , "Select * from token where database_id = @id");
+            var database = FetchClientDataBase(user.Database_Id.ToString());
+            return database;
         }
 
         // change the behaviour of the method.
@@ -67,16 +75,15 @@ namespace api.Database
             {
                 var claimHelper = new ClaimsHelper(User.Claims);
                 var audiance = claimHelper.GetValueFromClaim("aud");
-                var dbId = 0;
+                var connectionString  = "";
                 var key = AesEncrypter._instance.DecryptyData(
                     claimHelper.GetValueFromClaim("Key"));
                 if(Validation.StringsAreEqual(audiance,"User"))
-                    dbId = GetUserAccount(key);
+                    connectionString = FetchUserDb(key).GetConnectionString();
                 else
-                    dbId = 0;
+                    connectionString = FetchTokenDb(key).GetConnectionString();
 
-                var database = GetClientDatabase(dbId.ToString());
-                return database.GetConnectionString();
+                return connectionString;
             }
             catch (Exception error)
             {
