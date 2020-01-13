@@ -18,8 +18,6 @@ to fetch/post data to the API.
 * [Authentication](#Authentication)
   * [Tokenkey](#Tokenkey)
   * [AdminKey](#useraccount-adminkey)
-* [Core Resourses](#core-resourses)
-  * [Apartment](#apartments)
 <!--te-->
 
 ## Common Server Responses
