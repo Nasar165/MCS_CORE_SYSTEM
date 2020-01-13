@@ -7,16 +7,17 @@ namespace Components.Security
     public class AuthorizeRoles: Attribute, IAuthorizationFilter
     {
         private readonly string[] userAssignedRole; 
+        private AuthorizationFilterContext Context { get; set; }
 
         public AuthorizeRoles(params string[] roles) 
-        { 
-            this.userAssignedRole = roles; 
-        } 
+            =>this.userAssignedRole = roles; 
+
+        private void RejectRequest()
+            => Context.Result = new ForbidResult();
 
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            var claim = context.HttpContext.User.Claims;
-            //context.Result = new ForbidResult();
+            Context = context;
         }
     }
 }

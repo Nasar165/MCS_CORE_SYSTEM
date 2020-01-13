@@ -67,7 +67,6 @@ namespace api.Database
             return database;
         }
 
-        // change the behaviour of the method.
         // Check if I can set the claimsprinciple during every request.
         public string GetClientDatabase(ClaimsPrincipal User)
         {           
@@ -90,6 +89,17 @@ namespace api.Database
                 ErrorLogger.Instance.LogError(error);
                 throw;
             }
+        }
+
+        public DataExtension GerRoles(string key)
+        {
+            var user = FetchDataFromDB<DataExtension>(key, "Select * from useraccount where useraccount_id = @id");
+            var accountId = user.UserAccount_Id.ToString();
+            var sql = GetMcsConnection();
+            var id = CreateClientId(accountId);
+            var sqlCommand = CreateSqlCommand<object>(id,"");
+            var roles = sql.SelectQuery("select * from roles where id = @id",sqlCommand);
+            return null;
         }
     }
 }
