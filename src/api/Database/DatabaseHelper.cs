@@ -46,24 +46,29 @@ namespace api.Database
             return databaseInfo;
         }
 
+        public DataExtension GetUserFromDatabase(string key)
+            => FetchDataFromDB<DataExtension>(key
+                                , "Select * from useraccount where useraccount_id = @id");
+
+        public DataExtension GetTokenFromDatabase(string key)
+            => FetchDataFromDB<DataExtension>(key
+                                , "Select * from token where database_id = @id");
+
         private ClientDatabase FetchClientDataBase(string dbKey)
             => FetchDataFromDB<ClientDatabase>(dbKey.ToString()
                                 , "Select * from database_list where database_id = @id");
         
-
         private ClientDatabase FetchUserDb(string key)
         {
-            var user = FetchDataFromDB<DataExtension>(key
-                                , "Select * from database_list where database_id = @id");
+            var user = GetUserFromDatabase(key);
             var database = FetchClientDataBase(user.Database_Id.ToString());
             return database;
         }
 
         private ClientDatabase FetchTokenDb(string key)
         {
-            var user = FetchDataFromDB<DataExtension>(key
-                                , "Select * from token where database_id = @id");
-            var database = FetchClientDataBase(user.Database_Id.ToString());
+            var token = GetTokenFromDatabase(key);
+            var database = FetchClientDataBase(token.Database_Id.ToString());
             return database;
         }
 
@@ -89,17 +94,6 @@ namespace api.Database
                 ErrorLogger.Instance.LogError(error);
                 throw;
             }
-        }
-
-        public DataExtension GerRoles(string key)
-        {
-            var user = FetchDataFromDB<DataExtension>(key, "Select * from useraccount where useraccount_id = @id");
-            var accountId = user.UserAccount_Id.ToString();
-            var sql = GetMcsConnection();
-            var id = CreateClientId(accountId);
-            var sqlCommand = CreateSqlCommand<object>(id,"");
-            var roles = sql.SelectQuery("select * from roles where id = @id",sqlCommand);
-            return null;
         }
     }
 }
