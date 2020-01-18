@@ -20,7 +20,7 @@ namespace components.test
         public void RegisterError()
         {
             var workingDirectory = Directory.GetCurrentDirectory();
-            logger.SetWorkingDirectory($"../{workingDirectory}/test_folder/");
+            logger.SetWorkingDirectory($"{workingDirectory}/test_folder/");
             try
             {
                 throw new NotImplementedException();
@@ -29,7 +29,7 @@ namespace components.test
             {
                  logger.LogError(error);
             }
-            var text = File.ReadAllText($"../{workingDirectory}/test_folder/logs/error/error.txt");
+            var text = File.ReadAllText($"{workingDirectory}/test_folder/logs/error/error.txt");
             Assert.IsTrue(text.Contains("The method or operation is not implemented."));
         }
     }
