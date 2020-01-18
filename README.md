@@ -50,7 +50,7 @@ commands might be centos related.
 
 #### PostgreSQL
 The following installation is made for Linux (centos 7) & Windows10. If you are using a different distribution or OS then
-please check PostgreSQL website or distribution website for
+please check PostgreSQL website or distribution website for more information
 ##### Linux-CentOS 
 ```
 1. sudo yum install -y postgresql-server.x86_64
