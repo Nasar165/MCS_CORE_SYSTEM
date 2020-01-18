@@ -6,6 +6,29 @@ multiple databases. The core system comes with pre-built-in tools & customer man
 your development. The system is well suited for an organisation that needs a framework suited to
 handling multiple databases and more than one client.
 
+<!--ts-->
+## Table of Contents
+* [Getting started](#getting-started)
+* [Prerequisites](#prerequisites)
+* [Installing](#installing)
+  * [PostgreSQL](#postgresql)
+    * [Linux-CentOS](#linux-centos)
+    * [Windows 10](windows-10)
+  * [SQL Script](#sql-script)
+  * [Dotnet core 3](#dotnet-core-3)
+    * [Linux-CentOS](#linux-centos-1)
+    * [Windows 10](windows-10-1)
+* [Deployment](#deployment)
+* [Built With](#built-with)
+* [Contributing](#contributing)
+* [Versioning](#versioning)
+* [Authors](#authors)
+* [License](#license)
+* [Acknowledgments](#acknowledgments)
+
+  
+<!--te-->
+
 ### Getting started
 
 These instructions are aimed at helping you setting up the project for development or testing purposes.
@@ -129,14 +152,6 @@ this is a simple test and will only verify that the installation was successful.
 ### Deployment
 
 Deployment section is comming soon
-
-#### Deploying to Linux (Centos)
-
-##### Ngix
-
-##### Apache
-
-#### Deploying to Windows (IIS)
 
 ### Built With
 
