@@ -1,10 +1,33 @@
 ![Xeroxcore logo](https://github.com/Nasar165/Xeroxcore/blob/master/Xeroxcore_Logo.png)
-
-
-<br/><br/>Xeroxcore system intends to resolve a business requirement concerning a framework fitted to handling
+<br/><br/>
+## Introduction
+Xeroxcore system intends to resolve a business requirement concerning a framework fitted to handling
 multiple databases. The core system comes with pre-built-in tools & customer managment to speed up
 your development. The system is well suited for an organisation that needs a framework suited to
 handling multiple databases and more than one client.
+
+<!--ts-->
+## Table of Contents
+* [Getting started](#getting-started)
+* [Prerequisites](#prerequisites)
+* [Installing](#installing)
+  * [PostgreSQL](#postgresql)
+    * [Linux-CentOS](#linux-centos)
+    * [Windows 10](#windows-10)
+  * [SQL Script](#sql-script)
+  * [Dotnet core 3](#dotnet-core-3)
+    * [Linux-CentOS](#linux-centos-1)
+    * [Windows 10](#windows-10-1)
+* [Deployment](#deployment)
+* [Built With](#built-with)
+* [Contributing](#contributing)
+* [Versioning](#versioning)
+* [Authors](#authors)
+* [License](#license)
+* [Acknowledgments](#acknowledgments)
+
+  
+<!--te-->
 
 ### Getting started
 
@@ -26,10 +49,9 @@ check the [Deployment section](#deployment). Since the app was developed in Cent
 commands might be centos related.
 
 #### PostgreSQL
-
-The following installation is made for centos 7 OS. If you are using a different distribution or OS then
-please check PostgreSQL website or distribution website for
-
+The following installation is made for Linux (centos 7) & Windows10. If you are using a different distribution or OS then
+please check PostgreSQL website or distribution website for more information
+##### Linux-CentOS 
 ```
 1. sudo yum install -y postgresql-server.x86_64
 
@@ -58,29 +80,49 @@ please check PostgreSQL website or distribution website for
   allow other forms of authentication like username and password;
 
 ```
+#### Windows 10 
+```
+1. Go to Enterprise DB Website and download the latest Postgres Version 
+[Enterprise DB](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)
+2. Execute the downloaded file postgresql-x.x-x-windows-x64.exe and follow the 
+installation steps.
+2.1 Make sure to remember the password as you will need it later to sign in to PgAdmin.
+3. Go to start and search for PgAdmin and run it.
+4. Once the browser opens the PgAdmin page enter your password then select the database
+and enter the password again if promted to.
+5. You can now use PostgreSql.
+```
 
-#### SQL Script
+##### SQL Script
 
 This Project requires two SQL databases to function property. The main Database purpose is to
 act as a inhouse database storing clients information such as username, password tokenkeys
 and much more. While the client DB contains all the client’s private information.
 
-##### Running scripts
+###### Running scripts
 
 - [MainDB](https://github.com/Nasar165/Xeroxcore/blob/master/scripts/main.sql) - Main Script
 
-##### Dotnet core 3
+#### Dotnet core 3
 
-This installation process was made for centos 7 and might not work on your system. if you are
+This installation process was made for centos 7 & Windows 10 and might not work on your system. if you are
 utilizing an alternative OS or distribution then please check the [.Net Core](https://dotnet.microsoft.com/download/linux-package-manager/rhel/sdk-current) website for more info. Ps you might need to enable
 third party repositories.
 
+##### Linux-CentOS
 ```
 begin by opening a new shell window and follow the steps bellow:
 1. sudo rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
 2. sudo yum install dotnet-runtime-3.0.x86_64 -y
 3. enter the following command after the installation is complete to verify the installation
   dotnet --version
+```
+###### Windows 10 
+```
+1. Go tofollowing url and download the [.Net Core SDK](https://dotnet.microsoft.com/download).
+2. Open the install dotnet-sdk-3.x.x-win-x64.exe.
+3. follow the installation instructions.
+4. Open CMD(Command prompt) and paste dotnet --Version to verify installation.
 ```
 
 ##### Test application
@@ -110,14 +152,6 @@ this is a simple test and will only verify that the installation was successful.
 ### Deployment
 
 Deployment section is comming soon
-
-#### Deploying to Linux (Centos)
-
-##### Ngix
-
-##### Apache
-
-#### Deploying to Windows (IIS)
 
 ### Built With
 
