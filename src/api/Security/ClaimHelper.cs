@@ -61,7 +61,7 @@ namespace api.Security
                     else
                         value = property.GetValue(data, null).ToString();
 
-                    claims.Add(new Claim(property.Name, value));
+                    claims.Add(new Claim(property.Name.ToLower(), value));
                 }
             };
             return claims;

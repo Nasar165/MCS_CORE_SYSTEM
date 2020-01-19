@@ -70,11 +70,11 @@ namespace Components
 
         }
 
-        public static T ConvertDataTableRowToObject<T>(DataRow dr)
+        public static T ConvertDataTableRowToObject<T>(DataTable table, int index)
         {
             try
             {
-                T data = GetItem<T>(dr);
+                T data = GetItem<T>(table.Rows[index]);
                 return data;
             }
             catch (Exception error)

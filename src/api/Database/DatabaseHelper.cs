@@ -9,6 +9,8 @@ using api.Database.Interface;
 using System.Security.Claims;
 using api.Security;
 using api.Security.AuthTemplate;
+using System.Collections.Generic;
+using System.Data;
 
 namespace api.Database
 {
@@ -35,28 +37,27 @@ namespace api.Database
             return new SqlCommandHelper<T>(data, ignore);
         }
 
-        private T FetchDataFromDB<T>(string key, string querry)
+        private IList<T> FetchDataFromDB<T>(string key, string querry)
         {
             var sql = GetMcsConnection();
             var id = CreateClientId(key);
             var sqlCommand = CreateSqlCommand<object>(id,"");
             var dataTable = sql.SelectQuery(
                             querry, sqlCommand);
-            var databaseInfo = ObjectConverter.ConvertDataTableRowToObject<T>(dataTable.Rows[0]);
-            return databaseInfo;
+            return ObjectConverter.ConvertDataTableToList<T>(dataTable);
         }
 
         public DataExtension GetUserFromDatabase(string key)
             => FetchDataFromDB<DataExtension>(key
-                                , "Select * from useraccount where useraccount_id = @id");
+                                , "Select * from useraccount where useraccount_id = @id")[0];
 
         public DataExtension GetTokenFromDatabase(string key)
             => FetchDataFromDB<DataExtension>(key
-                                , "Select * from token where database_id = @id");
+                                , "Select * from token where database_id = @id")[0];
 
         private ClientDatabase FetchClientDataBase(string dbKey)
             => FetchDataFromDB<ClientDatabase>(dbKey.ToString()
-                                , "Select * from database_list where database_id = @id");
+                                , "Select * from database_list where database_id = @id")[0];
         
         private ClientDatabase FetchUserDb(string key)
         {
@@ -72,6 +73,18 @@ namespace api.Database
             return database;
         }
 
+         public IEnumerable<Roles> GetRolesFromUser(string key)
+        {
+            var roles = FetchDataFromDB<Roles>(key, $"select name from roles inner join roles_useraccount on roles_useraccount.role_id = roles.role_id Where roles_useraccount.useraccount_id = @id");
+            return roles;
+        }
+
+        public IEnumerable<Roles> GetRolesFromToken(string key)
+        {
+            var roles = FetchDataFromDB<Roles>(key, $"select name from roles inner join roles_token on roles_token.role_id = roles.role_id Where roles_token.tokenkey_id = @id");
+            return roles;
+        }
+
         // Check if I can set the claimsprinciple during every request.
         public string GetClientDatabase(ClaimsPrincipal User)
         {           
@@ -81,7 +94,7 @@ namespace api.Database
                 var audiance = claimHelper.GetValueFromClaim("aud");
                 var connectionString  = "";
                 var key = AesEncrypter._instance.DecryptyData(
-                    claimHelper.GetValueFromClaim("Key"));
+                    claimHelper.GetValueFromClaim("key"));
                 if(Validation.StringsAreEqual(audiance,"User"))
                     connectionString = FetchUserDb(key).GetConnectionString();
                 else

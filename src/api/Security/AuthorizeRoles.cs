@@ -1,6 +1,10 @@
 using System;
+using System.Collections.Generic;
 using api;
+using api.Database;
 using api.Security;
+using api.Security.AuthTemplate;
+using Components.Errorhandler;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Components.Security
@@ -18,16 +22,6 @@ namespace Components.Security
         private bool IsUser(string value)
             => Validation.StringsAreEqual(value, "User");
 
-        private string[] GetRolesFromUser()
-        {
-            return new string[] { "", "AddProperty", "DeleteProperty" };
-        }
-
-        private string[] GetRolesFromToken()
-        {
-            return new string[] { "Admin", "AddProperty", "DeleteProperty" };
-        }
-
         public bool HasPermission(string role)
         {
             foreach (var userAssignedRole in UserAssignedRole)
@@ -38,29 +32,40 @@ namespace Components.Security
             return false;
         }
 
-        public bool UserHasPermission(string[] roles)
+        public bool UserHasPermission(IEnumerable<Roles> roles)
         {
             foreach (var role in roles)
             {
-                if (HasPermission(role))
+                if (HasPermission(role.Name))
                     return true;
             }
             return false;
         }
 
         public void OnAuthorization(AuthorizationFilterContext context)
-        {
-            var claims = context.HttpContext.User.Claims;
-            var claimHelper = new ClaimsHelper(claims);
-            string[] roles;
+        {   
+            try
+            {
+                var claims = context.HttpContext.User.Claims;
+                var claimHelper = new ClaimsHelper(claims);
+                IEnumerable<Roles> roles = null;
+                var key = AesEncrypter._instance.DecryptyData(
+                    claimHelper.GetValueFromClaim("key"));
+                if (IsUser(claimHelper.GetValueFromClaim("aud")))
+                    roles = DatabaseHelper.Instance.GetRolesFromUser(key);
+                else
+                    roles = DatabaseHelper.Instance.GetRolesFromToken(key);
 
-            if (IsUser(claimHelper.GetValueFromClaim("aud")))
-                roles = GetRolesFromUser();
-            else
-                roles = GetRolesFromToken();
+                if (!UserHasPermission(roles))
+                    RejectRequest(context);
+            }
+            catch(Exception error)
+            {
+                // make error logging Asyncronous.
+                ErrorLogger.Instance.LogError(error);
+                context.Result = new ErrorRespons("An unhandled Exception has occured", 500);
+            }
 
-            if (!UserHasPermission(roles))
-                RejectRequest(context);
         }
     }
 }

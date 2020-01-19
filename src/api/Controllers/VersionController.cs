@@ -11,7 +11,7 @@ namespace api.Controllers
             => Ok("API Version: 3.2.5");
         
 
-        [AuthorizeRoles("Admin")]
+        [AuthorizeRoles("Root")]
         [HttpPost]
         public ActionResult Post()
         {
