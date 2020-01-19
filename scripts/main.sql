@@ -74,5 +74,30 @@ CREATE TABLE authactivity(
     date timestamp NOT NULL
 );
 
+CREATE TABLE roles (
+    role_id SERIAL PRIMARY KEY NOT NULL,
+    name varchar(75) NOT NULL
+);
+
+insert into roles (name) values('Admin');
+
+CREATE TABLE roles_token(
+    role_id int NOT NULL,
+    tokenkey_id int NOT NULL,
+    PRIMARY KEY (role_id, tokenkey_id),
+    FOREIGN KEY (role_id) REFERENCES roles(role_id)
+    FOREIGN KEY (tokenkey_id) REFERENCES token(tokenkey_id)
+);
+
+CREATE TABLE roles_useraccount(
+    role_id int NOT NULL,
+    useraccount_id int NOT NULL,
+    PRIMARY KEY (role_id, useraccount_id),
+    FOREIGN KEY (role_id) REFERENCES roles(role_id)
+    FOREIGN KEY (useraccount_id) REFERENCES useraccount(useraccount_id)
+);
+
+INSERT INTO roles_useraccount (role_id, useraccount_id) values(1,1);
+
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO $username;
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO $username;

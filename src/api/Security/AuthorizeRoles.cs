@@ -1,8 +1,6 @@
 using System;
 using api;
-using api.Database;
 using api.Security;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Components.Security
