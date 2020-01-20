@@ -27,7 +27,7 @@ namespace components.test
             table.Columns.Add("Username");
             table.Columns.Add("Password");
             table.Rows.Add("Nasar","Nasar123");
-            var user = ObjectConverter.ConvertDataTableRowToObject<UserAccount>(table.Rows[0]);
+            var user = ObjectConverter.ConvertDataTableRowToObject<UserAccount>(table,0);
             Assert.AreEqual(user.Username, "Nasar");
         }
 

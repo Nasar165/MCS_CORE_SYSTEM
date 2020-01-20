@@ -42,7 +42,7 @@ namespace components.test
             var SqlCommand = new SqlCommandHelper<authactivity>(authActivity, skipProperties);
             var query = "select * from authactivity order by authactivity_id desc";
             var data = Connecter.SelectQuery(query, SqlCommand);
-            var user = ObjectConverter.ConvertDataTableRowToObject<authactivity>(data.Rows[0]);
+            var user = ObjectConverter.ConvertDataTableRowToObject<authactivity>(data, 0);
             Assert.AreEqual("NasarTest", user.Username); 
         }
 
