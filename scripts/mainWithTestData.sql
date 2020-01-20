@@ -1,6 +1,6 @@
-CREATE DATABASE $databasename;
+CREATE DATABASE mcsunity;
 
-CREATE USER $username WITH
+CREATE USER mcsuser WITH
     LOGIN
     NOSUPERUSER
     NOCREATEDB
@@ -8,7 +8,7 @@ CREATE USER $username WITH
     INHERIT
     NOREPLICATION
     CONNECTION LIMIT -1
-    PASSWORD '$password';
+    PASSWORD 'Nasar165';
           
 DROP TABLE IF EXISTS customer CASCADE;
 DROP TABLE IF EXISTS contact CASCADE;
@@ -27,6 +27,8 @@ CREATE TABLE customer(
     domain_url VARCHAR(300) DEFAULT '' NOT NULL
 );
 
+insert into customer (company_name,tax_id, domain_url) values('Xeroxcore','0955-331-122','https://xeroxcore.org');
+
 CREATE TABLE contact(
     contact_id SERIAL PRIMARY KEY NOT NULL,
     name VARCHAR(100) DEFAULT '' NOT NULL,
@@ -38,6 +40,9 @@ CREATE TABLE contact(
     FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
 );
 
+insert into contact (name,telephone,email,position,address,customer_id) 
+values('Nasar', '{"telephone":"+660-955-886-699"}', 'test@xeroxcore.org', 'CEO', 'GG raod 85/55 Muang Phuket, Thailand 83000',1);
+
 CREATE TABLE database_list(
     database_id SERIAL PRIMARY KEY NOT NULL,
     database_name VARCHAR(250) NOT NULL,
@@ -48,6 +53,8 @@ CREATE TABLE database_list(
     FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
 );
 
+insert into database_list (database_name,username,password,dbm, customer_id) values('testdb','mcsuser','Nasar165','NpgSql', 1);
+
 CREATE TABLE token (
     tokenkey_id SERIAL PRIMARY KEY NOT NULL,
     tokenkey VARCHAR(50) NOT NULL,
@@ -57,6 +64,8 @@ CREATE TABLE token (
     FOREIGN KEY (database_id) REFERENCES database_list(database_id)
 );
 
+insert into token (tokenkey,groupkey,database_id,active) values('#we321$$awe',12,1,'1');
+
 CREATE TABLE useraccount (
     useraccount_id SERIAL PRIMARY KEY NOT NULL,
     username VARCHAR(50) NOT NULL,
@@ -65,6 +74,9 @@ CREATE TABLE useraccount (
     active BOOLEAN DEFAULT '0' NOT NULL,
     FOREIGN KEY (database_id) REFERENCES database_list(database_id)
 );
+
+insert into useraccount (username,password,database_id,active) values('nasar','0zrYwyRKtp35kFlnsQPfgw==',1,'1');
+insert into useraccount (username,password,database_id,active) values('nasar2','0zrYwyRKtp35kFlnsQPfgw==',1,'1');
 
 CREATE TABLE authactivity(
     authactivity_id SERIAL PRIMARY KEY NOT NULL,
@@ -76,6 +88,11 @@ CREATE TABLE roles (
     role_id SERIAL PRIMARY KEY NOT NULL,
     name varchar(75) NOT NULL
 );
+
+insert into roles (name) values('Root');
+insert into roles (name) values('Admin');
+insert into roles (name) values('Support');
+insert into roles (name) values('TokenAuth');
 
 CREATE TABLE roles_token(
     role_id int NOT NULL,
@@ -93,5 +110,9 @@ CREATE TABLE roles_useraccount(
     FOREIGN KEY (useraccount_id) REFERENCES useraccount(useraccount_id)
 );
 
-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO $username;
-GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO $username;
+INSERT INTO roles_useraccount (role_id, useraccount_id) values(1,1);
+INSERT INTO roles_useraccount (role_id, useraccount_id) values(2,1);
+INSERT INTO roles_useraccount (role_id, useraccount_id) values(2,2);
+
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO mcsuser;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO mcsuser;
