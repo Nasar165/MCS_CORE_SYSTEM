@@ -17,7 +17,7 @@ namespace Components.Security
             => this.UserAssignedRole = roles;
 
         private void RejectRequest(AuthorizationFilterContext context)
-            => context.Result = new ErrorRespons("Permission Dennied", 403);
+            => context.Result = new ErrorRespons("Permission denied", 403);
 
         private bool IsUser(string value)
             => Validation.StringsAreEqual(value, "User");
