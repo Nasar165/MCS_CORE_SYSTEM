@@ -61,7 +61,6 @@ namespace Components.Security
             }
             catch(Exception error)
             {
-                // make error logging Asyncronous.
                 ErrorLogger.Instance.LogError(error);
                 context.Result = new ErrorRespons("An unhandled Exception has occured", 500);
             }
