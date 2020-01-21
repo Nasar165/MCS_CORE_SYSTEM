@@ -5,7 +5,7 @@ namespace Components.Errorhandler.Interface
 {
     public interface IErrorLogger
     {
-        void LogError(Exception error);
+        void LogErrorAsync(Exception error);
         void SetWorkingDirectory(string directory);
         void LogAuthentication<T>(ISqlHelper sql, T data);
     }

@@ -10,7 +10,6 @@ using System.Security.Claims;
 using api.Security;
 using api.Security.AuthTemplate;
 using System.Collections.Generic;
-using System.Data;
 
 namespace api.Database
 {
@@ -75,13 +74,17 @@ namespace api.Database
 
          public IEnumerable<Roles> GetRolesFromUser(string key)
         {
-            var roles = FetchDataFromDB<Roles>(key, $"select name from roles inner join roles_useraccount on roles_useraccount.role_id = roles.role_id Where roles_useraccount.useraccount_id = @id");
+            var roles = FetchDataFromDB<Roles>(key, 
+            $"select name from roles inner join roles_useraccount on roles_useraccount.role_id "+
+            " = roles.role_id Where roles_useraccount.useraccount_id = @id");
             return roles;
         }
 
         public IEnumerable<Roles> GetRolesFromToken(string key)
         {
-            var roles = FetchDataFromDB<Roles>(key, $"select name from roles inner join roles_token on roles_token.role_id = roles.role_id Where roles_token.tokenkey_id = @id");
+            var roles = FetchDataFromDB<Roles>(key,
+             $"select name from roles inner join roles_token on roles_token.role_id"+
+             " = roles.role_id Where roles_token.tokenkey_id = @id");
             return roles;
         }
 
@@ -104,7 +107,7 @@ namespace api.Database
             }
             catch (Exception error)
             {
-                ErrorLogger.Instance.LogError(error);
+                ErrorLogger.Instance.LogErrorAsync(error);
                 throw;
             }
         }

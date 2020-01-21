@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Components.DbConnection;
 using Components.DbConnection.Interface;
 using Components.Errorhandler.Interface;
@@ -36,11 +37,14 @@ namespace Components.Errorhandler
             IsErrorLogFilePathValid();
         }
 
-        public void LogError(Exception error)
+        public async void LogErrorAsync(Exception error)
         {
-            var exceptionHelper = new ExceptionHelper(error);
-            IsErrorLogFilePathValid();
-            _FileWriter.AppendTextToFile(exceptionHelper.GetFormatedErrorMessage(), $"{DirectoryPath}error.txt");
+            var task = Task.Run(() => {
+                var exceptionHelper = new ExceptionHelper(error);
+                IsErrorLogFilePathValid();
+                _FileWriter.AppendTextToFile(exceptionHelper.GetFormatedErrorMessage(), $"{DirectoryPath}error.txt");
+            });
+            await task;
         }
 
 

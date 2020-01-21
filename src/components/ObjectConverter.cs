@@ -64,7 +64,7 @@ namespace Components
             }
             catch (Exception error)
             {
-                ErrorLogger.Instance.LogError(error);
+                ErrorLogger.Instance.LogErrorAsync(error);
                 throw error;
             }
 
@@ -79,7 +79,7 @@ namespace Components
             }
             catch (Exception error)
             {
-                ErrorLogger.Instance.LogError(error);
+                ErrorLogger.Instance.LogErrorAsync(error);
                 throw error;
             }
 

@@ -80,7 +80,7 @@ namespace api.Security
             }
             catch (Exception error)
             {
-                ErrorLogger.Instance.LogError(error);
+                ErrorLogger.Instance.LogErrorAsync(error);
                 return false;
             }
         }
@@ -106,7 +106,7 @@ namespace api.Security
             }
             catch (Exception error)
             {
-                ErrorLogger.Instance.LogError(error);
+                ErrorLogger.Instance.LogErrorAsync(error);
                 return false;
             }
         }
