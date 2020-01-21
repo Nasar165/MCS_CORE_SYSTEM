@@ -5,6 +5,7 @@ using System;
 
 namespace components.test
 {
+    [TestCategory("GithubAction")]
     [TestClass]
     public class FileWriterTest
     {

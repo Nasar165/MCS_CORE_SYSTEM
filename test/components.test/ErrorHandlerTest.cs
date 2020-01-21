@@ -6,8 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace components.test
 {
-    // Each file or folder that is created can be
-    // found in the bin/debug folder under home.
+    [TestCategory("GithubAction")]
     [TestClass]
     public class ErrorHandlerTest
     {

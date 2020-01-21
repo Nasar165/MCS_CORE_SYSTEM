@@ -6,8 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace components.test
 {
-    public delegate void DbAction();
-
+    [TestCategory("Local")]
     [TestClass]
     public class DbConnectiontest
     {

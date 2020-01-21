@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace components.test
 {
+    [TestCategory("GithubAction")]
     [TestClass]
     public class ObjectConverterTest 
     {
