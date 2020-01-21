@@ -15,14 +15,14 @@ namespace api.Database
 {
     public class DatabaseHelper : IDatabaseHelper
     {
-        private string McsCon { get; }
+        private string DefaultConnection { get; }
         public static DatabaseHelper Instance = new DatabaseHelper();
 
         public DatabaseHelper()
-            => McsCon = AppConfigHelper.Instance.GetDbConnection();
+            => DefaultConnection = AppConfigHelper.Instance.GetDbConnection();
 
-        public ISqlHelper GetMcsConnection()
-            => new NpgSqlHelper(McsCon);
+        public ISqlHelper GetDefaultConnection()
+            => new NpgSqlHelper(DefaultConnection);
 
         private object CreateClientId(string id)
         {
@@ -38,7 +38,7 @@ namespace api.Database
 
         private IList<T> FetchDataFromDB<T>(string key, string querry)
         {
-            var sql = GetMcsConnection();
+            var sql = GetDefaultConnection();
             var id = CreateClientId(key);
             var sqlCommand = CreateSqlCommand<object>(id,"");
             var dataTable = sql.SelectQuery(
