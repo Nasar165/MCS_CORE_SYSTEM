@@ -4,8 +4,7 @@
     "SymmetricKey": "b14ca5898a4e4133bbce2ea2315a1916"
   },
   "ConnectionStrings": {
-    "mcscon": "Server=127.0.0.1;Database=mcsunity;Uid=mcsuser;Pwd=Nasar165;",
-    "dbcon": "Server=127.0.0.1;Database=@db;Uid=@dbuser;Pwd=@dbpw;"
+    "DefaultConnection": "Server=127.0.0.1;Database=mcsunity;Uid=mcsuser;Pwd=Nasar165;",
   },
   "Smtp": {
     "server": "url",
