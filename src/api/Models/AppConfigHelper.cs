@@ -16,7 +16,7 @@ namespace api.Models
             => AppConfig.GetSection("AppSettings").GetSection("SecretKey").Value;
 
         public string GetDbConnection()
-            => AppConfig.GetSection("ConnectionStrings").GetSection("mcscon").Value;
+            => AppConfig.GetSection("ConnectionStrings").GetSection("DefaultConnection").Value;
 
         public void SetIConfiguration(IConfiguration config)
             => AppConfig = config;
