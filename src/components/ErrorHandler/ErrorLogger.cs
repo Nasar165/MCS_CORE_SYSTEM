@@ -37,6 +37,13 @@ namespace Components.Errorhandler
             IsErrorLogFilePathValid();
         }
 
+        public void LogError(Exception error)
+        {
+            var exceptionHelper = new ExceptionHelper(error);
+            IsErrorLogFilePathValid();
+            _FileWriter.AppendTextToFile(exceptionHelper.GetFormatedErrorMessage(), $"{DirectoryPath}error.txt");
+        }
+
         public async void LogErrorAsync(Exception error)
         {
             var task = Task.Run(() => {

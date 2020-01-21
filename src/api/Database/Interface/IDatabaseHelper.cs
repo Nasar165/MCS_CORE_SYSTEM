@@ -6,7 +6,7 @@ namespace api.Database.Interface
 {
     public interface IDatabaseHelper
     {
-        ISqlHelper GetMcsConnection();
+        ISqlHelper GetDefaultConnection();
         SqlCommandHelper<T> CreateSqlCommand<T>(T data, params string[] ignore);
         string GetClientDatabase(ClaimsPrincipal User);
     }
