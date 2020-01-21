@@ -180,8 +180,5 @@ See also the list of [contributors](https://github.com/Xeroxcore/Xeroxcore//grap
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details
 
 ### Acknowledgments
-
-- [Clearvision Properties Co., LTD](https://clearvision-properties.com/) - Providing funding & user feedback.
-- [Goldenmonkey Properties Co., LTD](https://goldenmonkey.asia) - Providing user feedback
 - [Hubspot](https://www.hubspot.com) - Inspiration source
 - [Chayapat Chuen A Rom ](https://github.com/freedombs) - Angular Developer helping us test the web api
