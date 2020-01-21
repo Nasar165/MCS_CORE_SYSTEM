@@ -25,7 +25,7 @@ namespace api.Security
 
         private T GetCredentialsFromSql<T>(string tableQuery, SqlCommandHelper<T> account, string name)
         {
-            var sql = DatabaseHelper.Instance.GetMcsConnection();
+            var sql = DatabaseHelper.Instance.GetDefaultConnection();
             var dataTable = sql.SelectQuery($"Select * from {tableQuery};", account);
             if (dataTable.Rows.Count > 0)
                 return ObjectConverter.ConvertDataTableToList<T>(dataTable)[0];
@@ -35,7 +35,7 @@ namespace api.Security
 
         private void LogAuthentication(string name)
         {
-            var sql = DatabaseHelper.Instance.GetMcsConnection();
+            var sql = DatabaseHelper.Instance.GetDefaultConnection();
             var authLogg = new AuthLogg() { Username = name };
             ErrorLogger.Instance.LogAuthentication(sql, authLogg);
         }
