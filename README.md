@@ -1,4 +1,4 @@
-![Xeroxcore logo](https://github.com/Nasar165/Xeroxcore/blob/master/Xeroxcore_Logo.png)
+![Xeroxcore logo](https://github.com/Xeroxcore/Xeroxcore/blob/master/Xeroxcore_Logo.png)
 <br/><br/>
 ## Introduction
 Xeroxcore system intends to resolve a business requirement concerning a framework fitted to handling
@@ -101,7 +101,7 @@ and much more. While the client DB contains all the client’s private informati
 
 ###### Running scripts
 
-- [MainDB](https://github.com/Nasar165/Xeroxcore/blob/master/scripts/main.sql) - Main Script
+- [MainDB](https://github.com/Xeroxcore/Xeroxcore/blob/master/scripts/main.sql) - Main Script
 
 #### Dotnet core 3
 
@@ -173,15 +173,12 @@ information to understand how different versions might affect you and your proje
 
 - **Nasar Eddaoui** - _Initial work_ - [Nasar Eddaoui](https://github.com/Nasar165)
 
-See also the list of [contributors](https://github.com/Nasar165/Xeroxcore//graphs/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/Xeroxcore/Xeroxcore//graphs/contributors) who participated in this project.
 
 ### License
 
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details
 
 ### Acknowledgments
-
-- [Clearvision Properties Co., LTD](https://clearvision-properties.com/) - Providing funding & user feedback.
-- [Goldenmonkey Properties Co., LTD](https://goldenmonkey.asia) - Providing user feedback
 - [Hubspot](https://www.hubspot.com) - Inspiration source
 - [Chayapat Chuen A Rom ](https://github.com/freedombs) - Angular Developer helping us test the web api

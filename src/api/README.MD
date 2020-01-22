@@ -1,4 +1,4 @@
-![Xeroxcore logo](https://github.com/Nasar165/Xeroxcore/blob/master/Xeroxcore_Logo.png)
+![Xeroxcore logo](https://github.com/Xeroxcore/Xeroxcore/blob/master/Xeroxcore_Logo.png)
 
 ## Prerequisites
 The following knowledge is necessary to be able to utilize the web api.
