@@ -45,7 +45,7 @@ namespace api.Security
             try
             {
                 var claimList = _ClaimHelper.AddDataToClaim<T>(data, AesEncrypter._instance.EncryptData);
-                if(!Validation.ObjectIsNull(roles))
+                if (!Validation.ObjectIsNull(roles))
                     claimList = _ClaimHelper.AddRolesToClaim(claimList, roles);
                 var Token = _JwtAuthenticator.CreateJwtToken(claimList
                     , audiance, "mcsunity.net");
@@ -76,7 +76,6 @@ namespace api.Security
                     return Token;
                 }
                 return false;
-
             }
             catch (Exception error)
             {
@@ -93,7 +92,7 @@ namespace api.Security
                     (UserAccount)user, "password");
                 var dbuser = GetCredentialsFromSql<UserAccount>(
                     $"useraccount where username = @username", sqlcommand, user.Username);
-                if(method != null)
+                if (method != null)
                     method();
                 if (user.Username == dbuser.Username && user.Password == dbuser.Password)
                 {

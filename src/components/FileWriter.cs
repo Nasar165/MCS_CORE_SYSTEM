@@ -7,7 +7,6 @@ namespace Components
 {
     public class FileWriter : IFileWriter
     {
-
         public bool DirecortyPathExists(string direcortyPath)
             => Directory.Exists(direcortyPath);
 

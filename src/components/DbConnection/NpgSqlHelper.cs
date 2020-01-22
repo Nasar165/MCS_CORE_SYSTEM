@@ -67,7 +67,7 @@ namespace Components.DbConnection
                     data.SqlCommand = sqlCommand;
                     sqlCommand = AddParametersToSqlCommand(data);
                 }
-                return ReadDataFromDatabase(sqlCommand); ;
+                return ReadDataFromDatabase(sqlCommand);
             }
             catch (Exception error)
             {

@@ -43,7 +43,7 @@ namespace api.Security
             foreach (var role in Roles)
             {
                 claims = AddRoleToClaim(claims, role);
-            };
+            }
             return claims;
         }
 
@@ -54,16 +54,17 @@ namespace api.Security
             var properties = ReflectionHelper.GetPropertiesOfObject(data);
             foreach (var property in properties)
             {
-                if (!Validation.ObjectIsNull(property.GetValue(data))){
+                if (!Validation.ObjectIsNull(property.GetValue(data)))
+                {
                     var value = "";
-                    if(action != null)
+                    if (action != null)
                         value = action(property.GetValue(data, null).ToString());
                     else
                         value = property.GetValue(data, null).ToString();
 
                     claims.Add(new Claim(property.Name.ToLower(), value));
                 }
-            };
+            }
             return claims;
         }
     }

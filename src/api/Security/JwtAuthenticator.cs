@@ -11,7 +11,6 @@ namespace api.Security
 {
     public class JwtAuthenticator : IJwtAuthenticator
     {
-
         private SymmetricSecurityKey GetSecurityKey()
         {
             var secretKey = AppConfigHelper.Instance.GetSecreatKey();
@@ -46,7 +45,6 @@ namespace api.Security
             );
             var data = ConvertToken(token);
             return data;
-
         }
     }
 }

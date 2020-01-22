@@ -8,6 +8,5 @@ namespace Components.Errorhandler.Interface
         string GetMessage();
         string GetFormatedErrorMessage();
         Error GetFormatedErrorObject();
-
     }
 }

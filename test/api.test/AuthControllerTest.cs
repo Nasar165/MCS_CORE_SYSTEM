@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using System;
 namespace api.test
 {
     [TestClass]
@@ -8,14 +8,13 @@ namespace api.test
         [TestMethod]
         public void AuthenticateUser()
         {
-            
+            throw new NotImplementedException();
         }
 
-         [TestMethod]
+        [TestMethod]
         public void AuthenticateAPI()
         {
-
+            throw new NotImplementedException();
         }
-
     }
 }

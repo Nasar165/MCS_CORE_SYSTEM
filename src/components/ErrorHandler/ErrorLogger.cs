@@ -46,7 +46,8 @@ namespace Components.Errorhandler
 
         public async void LogErrorAsync(Exception error)
         {
-            var task = Task.Run(() => {
+            var task = Task.Run(() =>
+            {
                 var exceptionHelper = new ExceptionHelper(error);
                 IsErrorLogFilePathValid();
                 _FileWriter.AppendTextToFile(exceptionHelper.GetFormatedErrorMessage(), $"{DirectoryPath}error.txt");
@@ -54,13 +55,11 @@ namespace Components.Errorhandler
             await task;
         }
 
-
         public void LogAuthentication<T>(ISqlHelper sql, T data)
         {
             var sqlCommand = new SqlCommandHelper<T>(data, "name");
             var query = "Insert into authactivity (username, date) Values(@username, Now());";
             sql.AlterDataQuery<T>(query, sqlCommand);
         }
-
     }
 }
