@@ -34,7 +34,6 @@ namespace Components.Mail
             => Parallel.ForEach(recipiants, recipiant
                 => AddRecipiantToMailMessage(message, recipiant));
 
-
         private MailMessage GenerateMailMessage(string subject, string from, string message, bool IsHtml)
         {
             return new MailMessage()
@@ -61,7 +60,6 @@ namespace Components.Mail
             }
         }
 
-
         public async void SendMailAsync(string subject, string from, string message, bool IsHtml, params string[] to)
         {
             try
@@ -72,8 +70,6 @@ namespace Components.Mail
             {
                 throw;
             }
-
-
         }
     }
 }
