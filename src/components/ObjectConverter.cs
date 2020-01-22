@@ -67,7 +67,6 @@ namespace Components
                 ErrorLogger.Instance.LogErrorAsync(error);
                 throw error;
             }
-
         }
 
         public static T ConvertDataTableRowToObject<T>(DataTable table, int index)
@@ -82,7 +81,6 @@ namespace Components
                 ErrorLogger.Instance.LogErrorAsync(error);
                 throw error;
             }
-
         }
     }
 }

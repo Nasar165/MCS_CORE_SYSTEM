@@ -43,7 +43,7 @@ namespace Components.Security
         }
 
         public void OnAuthorization(AuthorizationFilterContext context)
-        {   
+        {
             try
             {
                 var claims = context.HttpContext.User.Claims;
@@ -59,12 +59,11 @@ namespace Components.Security
                 if (!UserHasPermission(roles))
                     RejectRequest(context);
             }
-            catch(Exception error)
+            catch (Exception error)
             {
                 ErrorLogger.Instance.LogErrorAsync(error);
                 context.Result = new ErrorRespons("An unhandled Exception has occured", 500);
             }
-
         }
     }
 }

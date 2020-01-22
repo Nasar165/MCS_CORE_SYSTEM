@@ -20,7 +20,5 @@ namespace api.Models
 
         public void SetIConfiguration(IConfiguration config)
             => AppConfig = config;
-
-
     }
 }

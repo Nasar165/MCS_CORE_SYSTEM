@@ -9,7 +9,6 @@ namespace api.Controllers
     {
         public ActionResult Get()
             => Ok("API Version: 3.2.5");
-        
 
         [AuthorizeRoles("Root")]
         [HttpPost]

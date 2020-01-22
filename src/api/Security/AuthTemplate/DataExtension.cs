@@ -11,6 +11,6 @@ namespace api.Security.AuthTemplate
         [JsonIgnore]
         public bool Active { get; set; }
         [JsonIgnore]
-        public int Database_Id {get;set;}
+        public int Database_Id { get; set; }
     }
 }

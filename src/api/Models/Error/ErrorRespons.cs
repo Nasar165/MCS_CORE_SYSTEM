@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api
 {
-    
     public class CustomError
     {
         public string Error { get; }
