@@ -46,13 +46,7 @@ namespace Components.Errorhandler
 
         public async void LogErrorAsync(Exception error)
         {
-            var task = Task.Run(() =>
-            {
-                var exceptionHelper = new ExceptionHelper(error);
-                IsErrorLogFilePathValid();
-                _FileWriter.AppendTextToFile(exceptionHelper.GetFormatedErrorMessage(), $"{DirectoryPath}error.txt");
-            });
-            await task;
+            await Task.Run(() => { LogError(error); });
         }
 
         public void LogAuthentication<T>(ISqlHelper sql, T data)
