@@ -33,5 +33,47 @@ namespace api.test
                 CreateJsonContent("{\"Username\":\"nasar2\", \"Password\":\"nasar165\"}"));
             Assert.Equal(System.Net.HttpStatusCode.OK, response.StatusCode);
         }
+
+        #region Negative Tests
+        [Theory]
+        [InlineData("/apiauth")]
+        public async void APIAuthControllerNegativeTestBadRequest(string url)
+        {
+            var client = WebApp.CreateClient();
+            var response = await client.PostAsync(url,
+            CreateJsonContent("{\"TokenKeys\":\"#we321$$awe\", \"GroupKeys\":\"12\"}"));
+            Assert.Equal(System.Net.HttpStatusCode.BadRequest, response.StatusCode);
+        }
+
+        [Theory]
+        [InlineData("/userauth")]
+        public async void UserAuthControllerNegativeTestBadRequest(string url)
+        {
+            var client = WebApp.CreateClient();
+            var response = await client.PostAsync(url,
+                CreateJsonContent("{\"Usernames\":\"nasar2\", \"Passwords\":\"nasar165\"}"));
+            Assert.Equal(System.Net.HttpStatusCode.BadRequest, response.StatusCode);
+        }
+
+        [Theory]
+        [InlineData("/apiauth")]
+        public async void APIAuthControllerNegativeTestUnaauthorized(string url)
+        {
+            var client = WebApp.CreateClient();
+            var response = await client.PostAsync(url,
+            CreateJsonContent("{\"TokenKey\":\"#we321$$aw\", \"GroupKey\":\"2\"}"));
+            Assert.Equal(System.Net.HttpStatusCode.Unauthorized, response.StatusCode);
+        }
+
+        [Theory]
+        [InlineData("/userauth")]
+        public async void UserAuthControllerNegativeTestUnaauthorized(string url)
+        {
+            var client = WebApp.CreateClient();
+            var response = await client.PostAsync(url,
+                CreateJsonContent("{\"Username\":\"nasar\", \"Password\":\"nasar16\"}"));
+            Assert.Equal(System.Net.HttpStatusCode.Unauthorized, response.StatusCode);
+        }
+        #endregion
     }
 }
