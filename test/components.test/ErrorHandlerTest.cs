@@ -4,7 +4,7 @@ using Components.Errorhandler;
 using Components.Errorhandler.Interface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace components.test
+namespace Components.Test
 {
     [TestCategory("GithubAction")]
     [TestClass]
@@ -24,9 +24,9 @@ namespace components.test
             {
                 throw new NotImplementedException();
             }
-            catch(Exception error)
+            catch (Exception error)
             {
-                 logger.LogError(error);
+                logger.LogError(error);
             }
             var text = File.ReadAllText($"{workingDirectory}/test_folder/logs/error/error.txt");
             Assert.IsTrue(text.Contains("The method or operation is not implemented."));

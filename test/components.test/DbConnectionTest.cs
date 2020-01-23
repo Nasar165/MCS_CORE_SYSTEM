@@ -1,10 +1,10 @@
 using System;
-using Components;
+using components.test.Models;
 using Components.DbConnection;
 using Components.DbConnection.Interface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace components.test
+namespace Components.Test
 {
     [TestCategory("Local")]
     [TestClass]
@@ -15,7 +15,8 @@ namespace components.test
 
         private authactivity CreateAauthUser()
         {
-            var authActivity = new authactivity(){
+            var authActivity = new authactivity()
+            {
                 Username = "NasarTest",
                 Date = DateTime.Now
             };
@@ -37,12 +38,12 @@ namespace components.test
         {
             var authActivity = CreateAauthUser();
             authActivity.Authactivity_Id = Id;
-            string [] skipProperties = { "Username", "Date", "" };
+            string[] skipProperties = { "Username", "Date", "" };
             var SqlCommand = new SqlCommandHelper<authactivity>(authActivity, skipProperties);
             var query = "select * from authactivity order by authactivity_id desc";
             var data = Connecter.SelectQuery(query, SqlCommand);
             var user = ObjectConverter.ConvertDataTableRowToObject<authactivity>(data, 0);
-            Assert.AreEqual("NasarTest", user.Username); 
+            Assert.AreEqual("NasarTest", user.Username);
         }
 
         [TestMethod]
@@ -55,14 +56,7 @@ namespace components.test
             Connecter.AlterDataQuery(deleteQuery, SqlCommand);
             var selectQuery = "select * from authactivity where username = 'NasarTest'";
             var data = Connecter.SelectQuery(selectQuery, SqlCommand);
-            Assert.AreEqual(0,data.Rows.Count);
+            Assert.AreEqual(0, data.Rows.Count);
         }
-    }
-
-    public class authactivity 
-    {
-        public int Authactivity_Id { get; set; }
-        public string Username { get; set; }
-        public DateTime Date { get; set; }
     }
 }

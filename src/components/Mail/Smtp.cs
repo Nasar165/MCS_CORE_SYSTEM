@@ -8,7 +8,6 @@ namespace Components.Mail
 {
     public class Smtp : ISmtpClient
     {
-
         private SmtpClient SmtpSender { get; }
         public Smtp(IServerConfig mailServer)
         {

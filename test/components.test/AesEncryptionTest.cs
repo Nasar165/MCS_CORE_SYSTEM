@@ -1,7 +1,7 @@
 using Components.Security;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace components.test
+namespace Components.Test
 {
     [TestCategory("GithubAction")]
     [TestClass]

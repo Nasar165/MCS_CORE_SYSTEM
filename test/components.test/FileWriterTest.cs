@@ -3,7 +3,7 @@ using Components;
 using System.IO;
 using System;
 
-namespace components.test
+namespace Components.Test
 {
     [TestCategory("GithubAction")]
     [TestClass]
@@ -28,7 +28,7 @@ namespace components.test
             writer.CreateDirectoryPath(direcrotyPath);
             Assert.IsTrue(writer.DirecortyPathExists(direcrotyPath));
         }
-        
+
         [TestMethod]
         public void WriteFile()
         {
@@ -42,7 +42,7 @@ namespace components.test
         {
             var filePath = $"{WorkingDirectory}/test_folder/test_file.txt";
             var text = "This is a test " + DateTime.Now;
-            writer.AppendTextToFile(text,filePath);
+            writer.AppendTextToFile(text, filePath);
             var textfile = File.ReadAllText(filePath);
             Assert.IsTrue(textfile.Contains(text));
         }
