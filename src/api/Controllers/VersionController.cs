@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Components.Security;
-using api.Database;
 
 namespace api.Controllers
 {
@@ -9,13 +7,5 @@ namespace api.Controllers
     {
         public ActionResult Get()
             => Ok("API Version: 3.2.5");
-
-        [AuthorizeRoles("Root")]
-        [HttpPost]
-        public ActionResult Post()
-        {
-            DatabaseHelper.Instance.GetClientDatabase(User);
-            return Ok("Role Corerct");
-        }
     }
 }
