@@ -6,9 +6,6 @@ using Microsoft.Extensions.Hosting;
 using api.Models;
 using System.IO;
 using Components.Errorhandler;
-using api.Security;
-using api.Security.Interface;
-using Microsoft.AspNetCore.Http;
 
 namespace api
 {
@@ -37,22 +34,7 @@ namespace api
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseHttpsRedirection();
-
-            app.UseRouting();
-
-            app.UseAuthentication();
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-
-            app.UseCors(x => x
-               .AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader());
+            ApplicationStarter.SetApplicationSettings(app);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace api.Controllers
     public class VersionController : ControllerBase
     {
         public ActionResult Get()
-            => Ok("API Version: 3.2.5");
+            => Ok("API Version: 3.42.7");
 
     }
 }
