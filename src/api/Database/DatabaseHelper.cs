@@ -6,10 +6,10 @@ using Components.Errorhandler;
 using Components.Security;
 using Components.DbConnection.Interface;
 using api.Database.Interface;
-using System.Security.Claims;
 using api.Security;
 using api.Security.AuthTemplate;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 
 namespace api.Database
 {
@@ -17,9 +17,12 @@ namespace api.Database
     {
         private string DefaultConnection { get; }
         public static DatabaseHelper Instance = new DatabaseHelper();
-
+        private IHttpContextAccessor ContextAccessor { get; set; }
         public DatabaseHelper()
             => DefaultConnection = AppConfigHelper.Instance.GetDbConnection();
+
+        public void SetHttpContextAccessor(IHttpContextAccessor contextAccessor)
+            => ContextAccessor = contextAccessor;
 
         public ISqlHelper GetDefaultConnection()
             => new NpgSqlHelper(DefaultConnection);
@@ -40,7 +43,7 @@ namespace api.Database
         {
             var sql = GetDefaultConnection();
             var id = CreateClientId(key);
-            var sqlCommand = CreateSqlCommand<object>(id,"");
+            var sqlCommand = CreateSqlCommand<object>(id, "");
             var dataTable = sql.SelectQuery(
                             querry, sqlCommand);
             return ObjectConverter.ConvertDataTableToList<T>(dataTable);
@@ -57,7 +60,7 @@ namespace api.Database
         private ClientDatabase FetchClientDataBase(string dbKey)
             => FetchDataFromDB<ClientDatabase>(dbKey.ToString()
                                 , "Select * from database_list where database_id = @id")[0];
-        
+
         private ClientDatabase FetchUserDb(string key)
         {
             var user = GetUserFromDatabase(key);
@@ -72,10 +75,10 @@ namespace api.Database
             return database;
         }
 
-         public IEnumerable<Roles> GetRolesFromUser(string key)
+        public IEnumerable<Roles> GetRolesFromUser(string key)
         {
-            var roles = FetchDataFromDB<Roles>(key, 
-            $"select name from roles inner join roles_useraccount on roles_useraccount.role_id "+
+            var roles = FetchDataFromDB<Roles>(key,
+            $"select name from roles inner join roles_useraccount on roles_useraccount.role_id " +
             " = roles.role_id Where roles_useraccount.useraccount_id = @id");
             return roles;
         }
@@ -83,22 +86,23 @@ namespace api.Database
         public IEnumerable<Roles> GetRolesFromToken(string key)
         {
             var roles = FetchDataFromDB<Roles>(key,
-             $"select name from roles inner join roles_token on roles_token.role_id"+
+             $"select name from roles inner join roles_token on roles_token.role_id" +
              " = roles.role_id Where roles_token.tokenkey_id = @id");
             return roles;
         }
 
         // Check if I can set the claimsprinciple during every request.
-        public string GetClientDatabase(ClaimsPrincipal User)
-        {           
+        public string GetClientDatabase()
+        {
             try
             {
-                var claimHelper = new ClaimsHelper(User.Claims);
+                var claimHelper = new ClaimsHelper(
+                    ContextAccessor.HttpContext.User.Claims);
                 var audiance = claimHelper.GetValueFromClaim("aud");
-                var connectionString  = "";
+                var connectionString = "";
                 var key = AesEncrypter._instance.DecryptyData(
                     claimHelper.GetValueFromClaim("key"));
-                if(Validation.StringsAreEqual(audiance,"User"))
+                if (Validation.StringsAreEqual(audiance, "User"))
                     connectionString = FetchUserDb(key).GetConnectionString();
                 else
                     connectionString = FetchTokenDb(key).GetConnectionString();

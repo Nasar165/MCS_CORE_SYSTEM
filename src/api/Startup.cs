@@ -6,6 +6,9 @@ using Microsoft.Extensions.Hosting;
 using api.Models;
 using System.IO;
 using Components.Errorhandler;
+using api.Security;
+using api.Security.Interface;
+using Microsoft.AspNetCore.Http;
 
 namespace api
 {
@@ -23,6 +26,8 @@ namespace api
         {
             JwtStarter.InitJwtTokenAuth(services);
             services.AddControllers();
+            services.AddHttpContextAccessor();
+            DatabaseStarter.SetHttpContext(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
