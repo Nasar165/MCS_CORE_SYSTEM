@@ -1,6 +1,8 @@
 using System.Linq;
 using api.HealthChecks;
 using api.HealthChecks.Models;
+using Components.Security;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
@@ -16,6 +18,12 @@ namespace api
             service.AddHealthChecks()
                 .AddCheck<CheckDatabase>("Database Checkup")
                 .AddCheck<FileWriterCheck>("FileWriter Check");
+        }
+
+        private static void AddSecurityToHealtCheck(IApplicationBuilder app)
+        {
+            app.UseEndpoints(endpoints => endpoints.MapHealthChecks(
+                "/healthcheck").RequireAuthorization());
         }
 
         public static void InitializeHealthChecks(IApplicationBuilder app)
@@ -40,6 +48,7 @@ namespace api
                     await context.Response.WriteAsync(JsonConvert.SerializeObject(Response));
                 }
             });
+            AddSecurityToHealtCheck(app);
         }
     }
 }
