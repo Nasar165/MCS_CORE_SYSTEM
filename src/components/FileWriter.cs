@@ -13,6 +13,12 @@ namespace Components
         public bool FilePathExists(string filePath)
             => File.Exists(filePath);
 
+        public void DeleteFile(string filePath)
+        {
+            if (FilePathExists(filePath))
+                File.Delete(filePath);
+        }
+
         public void CreateDirectoryPath(string directoryPath)
         {
             if (!DirecortyPathExists(directoryPath))

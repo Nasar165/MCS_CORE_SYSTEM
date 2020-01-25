@@ -7,6 +7,5 @@ namespace api.Controllers
     {
         public ActionResult Get()
             => Ok("API Version: 3.42.7");
-
     }
 }

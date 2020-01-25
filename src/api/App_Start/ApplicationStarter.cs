@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 
 namespace api
 {
@@ -13,7 +12,7 @@ namespace api
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            HealthCheckStarter.InitializeHealthChecks(app);
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
