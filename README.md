@@ -1,6 +1,6 @@
 ![Xeroxcore logo](https://github.com/Xeroxcore/Xeroxcore/blob/master/Xeroxcore_Logo.png)
 <br/><br/>
-![Codefactor](https://www.codefactor.io/repository/github/nasar165/xeroxcore/badge)
+[![CodeFactor](https://www.codefactor.io/repository/github/nasar165/xeroxcore/badge/master)](https://www.codefactor.io/repository/github/nasar165/xeroxcore/overview/master)
 ## Introduction
 Xeroxcore system intends to resolve a business requirement concerning a framework fitted to handling
 multiple databases. The core system comes with pre-built-in tools & customer managment to speed up
