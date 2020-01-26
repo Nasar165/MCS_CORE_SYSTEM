@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="https://github.com/Xeroxcore/Xeroxcore/blob/master/Xeroxcore_Logo.png">
-</p>
+![Xeroxcore logo](https://github.com/Xeroxcore/Xeroxcore/blob/master/Xeroxcore_Logo.png)
 <br/><br/>
 ![Codefactor](https://www.codefactor.io/repository/github/nasar165/xeroxcore/badge)
 ## Introduction
