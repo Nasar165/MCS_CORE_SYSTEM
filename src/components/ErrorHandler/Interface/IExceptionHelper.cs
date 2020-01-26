@@ -7,6 +7,6 @@ namespace Components.Errorhandler.Interface
         string GetClassThatTrewException();
         string GetMessage();
         string GetFormatedErrorMessage();
-        Error GetFormatedErrorObject();
+        IError GetFormatedErrorObject();
     }
 }

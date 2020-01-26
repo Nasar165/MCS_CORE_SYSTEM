@@ -12,5 +12,4 @@ namespace api
             Database.DatabaseHelper.Instance.SetHttpContextAccessor(httpContextAccessor);
         }
     }
-
 }

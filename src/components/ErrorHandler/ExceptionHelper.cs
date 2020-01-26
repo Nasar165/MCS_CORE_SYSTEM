@@ -48,7 +48,7 @@ namespace Components.Errorhandler
             return newError;
         }
 
-        public Error GetFormatedErrorObject()
+        public IError GetFormatedErrorObject()
         {
             return new Error
             {
@@ -58,14 +58,5 @@ namespace Components.Errorhandler
                 E_Message = GetMessage()
             };
         }
-    }
-
-    public class Error
-    {
-        public int Core_System_Id { get; set; }
-        public string E_Date { get; set; }
-        public string E_Class { get; set; }
-        public string E_Method { get; set; }
-        public string E_Message { get; set; }
     }
 }

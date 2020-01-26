@@ -72,7 +72,6 @@ namespace Components.Security
                 }
             else
                 RejectRequest("Not Authorized", 401);
-
         }
     }
 }
