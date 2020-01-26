@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using api;
 using api.Database;
+using api.Models.Error;
 using api.Security;
 using api.Security.AuthTemplate;
 using Components.Errorhandler;

@@ -1,18 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace api
+namespace api.Models.Error
 {
-    public class CustomError
-    {
-        public string Error { get; }
-
-        public CustomError(string message)
-        {
-            Error = message;
-        }
-    }
-
-    public partial class ErrorRespons : JsonResult
+    public class ErrorRespons : JsonResult
     {
         public ErrorRespons(string message, int statusCode) : base(new CustomError(message))
         {
