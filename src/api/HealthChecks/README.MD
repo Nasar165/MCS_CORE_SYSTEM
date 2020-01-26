@@ -1,3 +1,4 @@
+![Xeroxcore logo](https://github.com/Xeroxcore/Xeroxcore/blob/master/Xeroxcore_Logo.png)
 
 # Health Checks
 ## Intro
