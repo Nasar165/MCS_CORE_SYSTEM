@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="460" height="300" src="https://github.com/Xeroxcore/Xeroxcore/blob/master/Xeroxcore_Logo.png">
+  <img src="https://github.com/Xeroxcore/Xeroxcore/blob/master/Xeroxcore_Logo.png">
 </p>
 <br/><br/>
 ![Codefactor](https://www.codefactor.io/repository/github/nasar165/xeroxcore/badge)
