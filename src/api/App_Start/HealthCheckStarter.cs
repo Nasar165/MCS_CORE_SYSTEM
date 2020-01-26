@@ -1,8 +1,6 @@
 using System.Linq;
 using api.HealthChecks;
 using api.HealthChecks.Models;
-using Components.Security;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Http;
@@ -45,7 +43,8 @@ namespace api
                         }),
                         Duration = report.TotalDuration
                     };
-                    await context.Response.WriteAsync(JsonConvert.SerializeObject(Response));
+                    await context.Response.WriteAsync(
+                        JsonConvert.SerializeObject(Response));
                 }
             });
             AddSecurityToHealtCheck(app);
