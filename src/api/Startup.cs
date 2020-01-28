@@ -6,8 +6,6 @@ using Microsoft.Extensions.Hosting;
 using api.Models;
 using System.IO;
 using Components.Errorhandler;
-using api.Security.Interface;
-using api.Security;
 
 namespace api
 {

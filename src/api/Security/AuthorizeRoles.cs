@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
 using api.Database;
-using api.Database.Interface;
 using api.Models.Error;
 using api.Security;
 using api.Security.AuthTemplate;
-using api.Security.Interface;
 using Components.Errorhandler;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
