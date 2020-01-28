@@ -6,7 +6,6 @@ namespace api.Controllers
     [Route("[Controller]")]
     public class VersionController : ControllerBase
     {
-        [AuthorizeRoles("Root")]
         public ActionResult Get()
             => Ok("API Version: 3.48.9");
     }
