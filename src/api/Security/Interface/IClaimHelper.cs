@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Security.Claims;
-using static api.Security.ClaimsHelper;
+using static api.Security.ClaimHelper;
 
 namespace api.Security.Interface
 {

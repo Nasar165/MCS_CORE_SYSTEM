@@ -9,11 +9,11 @@ using Microsoft.AspNetCore.Http;
 
 namespace api.Security
 {
-    public class ClaimsHelper : IClaimHelper
+    public class ClaimHelper : IClaimHelper
     {
         public delegate string ClaimAction(string data);
         IEnumerable<Claim> Claims { get; }
-        public ClaimsHelper(IHttpContextAccessor claims)
+        public ClaimHelper(IHttpContextAccessor claims)
             => Claims = claims.HttpContext.User.Claims;
 
         public string GetValueFromClaim(string type)

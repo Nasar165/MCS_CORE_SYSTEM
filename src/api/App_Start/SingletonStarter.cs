@@ -12,7 +12,7 @@ namespace api
         {
             services.AddHttpContextAccessor();
             services.AddScoped<IJwtAuthenticator, JwtAuthenticator>();
-            services.AddScoped<IClaimHelper, ClaimsHelper>();
+            services.AddScoped<IClaimHelper, ClaimHelper>();
             services.AddScoped<IDatabaseHelper, DatabaseHelper>();
             services.AddScoped<IAuthHelper, AuthHelper>();
         }
