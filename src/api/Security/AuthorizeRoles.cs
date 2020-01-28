@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using api.Database;
+using api.Database.Interface;
 using api.Models.Error;
-using api.Security;
 using api.Security.AuthTemplate;
+using api.Security.Interface;
 using Components.Errorhandler;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -13,9 +13,16 @@ namespace Components.Security
     {
         private readonly string[] UserAssignedRole;
         private AuthorizationFilterContext Context { get; set; }
-
-        public AuthorizeRoles(params string[] roles)
-            => this.UserAssignedRole = roles;
+        private IDatabaseHelper DatabaseHelper { get; }
+        private IClaimHelper ClaimHelper { get; }
+        /// Clean up the constructor to better fit the what its supposed to do 
+        // The first parameter should be roles only and the rest should be injected after
+        public AuthorizeRoles(IClaimHelper claimHelper, IDatabaseHelper databaseHelper, params string[] roles)
+        {
+            this.DatabaseHelper = databaseHelper;
+            this.ClaimHelper = claimHelper;
+            this.UserAssignedRole = roles;
+        }
 
         private void RejectRequest(string message, int statusCode)
             => Context.Result = new ErrorRespons(message, statusCode);
@@ -52,15 +59,13 @@ namespace Components.Security
             if (UserIsAuthentiacted())
                 try
                 {
-                    var claims = Context.HttpContext.User.Claims;
-                    var claimHelper = new ClaimsHelper(claims);
                     IEnumerable<Roles> roles = null;
                     var key = AesEncrypter._instance.DecryptyData(
-                        claimHelper.GetValueFromClaim("key"));
-                    if (IsUser(claimHelper.GetValueFromClaim("aud")))
-                        roles = DatabaseHelper.Instance.GetRolesFromUser(key);
+                        ClaimHelper.GetValueFromClaim("key"));
+                    if (IsUser(ClaimHelper.GetValueFromClaim("aud")))
+                        roles = DatabaseHelper.GetRolesFromUser(key);
                     else
-                        roles = DatabaseHelper.Instance.GetRolesFromToken(key);
+                        roles = DatabaseHelper.GetRolesFromToken(key);
 
                     if (!UserHasPermission(roles))
                         RejectRequest("Permission denied", 403);

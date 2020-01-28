@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using api.Security.Interface;
 using Components;
+using Microsoft.AspNetCore.Http;
 
 namespace api.Security
 {
@@ -12,8 +13,8 @@ namespace api.Security
     {
         public delegate string ClaimAction(string data);
         IEnumerable<Claim> Claims { get; }
-        public ClaimsHelper(IEnumerable<Claim> claims = null)
-            => Claims = claims;
+        public ClaimsHelper(IHttpContextAccessor claims)
+            => Claims = claims.HttpContext.User.Claims;
 
         public string GetValueFromClaim(string type)
         {

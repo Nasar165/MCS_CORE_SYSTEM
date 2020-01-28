@@ -6,23 +6,22 @@ using Components.Errorhandler;
 using Components.Security;
 using Components.DbConnection.Interface;
 using api.Database.Interface;
-using api.Security;
 using api.Security.AuthTemplate;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
+using api.Security.Interface;
 
 namespace api.Database
 {
     public class DatabaseHelper : IDatabaseHelper
     {
         private string DefaultConnection { get; }
-        public static DatabaseHelper Instance = new DatabaseHelper();
-        private IHttpContextAccessor ContextAccessor { get; set; }
-        public DatabaseHelper()
-            => DefaultConnection = AppConfigHelper.Instance.GetDbConnection();
+        private IClaimHelper ClaimHelper { get; set; }
 
-        public void SetHttpContextAccessor(IHttpContextAccessor contextAccessor)
-            => ContextAccessor = contextAccessor;
+        public DatabaseHelper(IClaimHelper claimHelper)
+        {
+            ClaimHelper = claimHelper;
+            DefaultConnection = AppConfigHelper.Instance.GetDbConnection();
+        }
 
         public ISqlHelper GetDefaultConnection()
             => new NpgSqlHelper(DefaultConnection);
@@ -91,17 +90,14 @@ namespace api.Database
             return roles;
         }
 
-        // Check if I can set the claimsprinciple during every request.
         public string GetClientDatabase()
         {
             try
             {
-                var claimHelper = new ClaimsHelper(
-                    ContextAccessor.HttpContext.User.Claims);
-                var audiance = claimHelper.GetValueFromClaim("aud");
+                var audiance = ClaimHelper.GetValueFromClaim("aud");
                 var connectionString = "";
                 var key = AesEncrypter._instance.DecryptyData(
-                    claimHelper.GetValueFromClaim("key"));
+                    ClaimHelper.GetValueFromClaim("key"));
                 if (Validation.StringsAreEqual(audiance, "User"))
                     connectionString = FetchUserDb(key).GetConnectionString();
                 else

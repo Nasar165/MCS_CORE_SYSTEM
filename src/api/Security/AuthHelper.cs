@@ -1,6 +1,6 @@
 using System;
 using System.Security.Authentication;
-using api.Database;
+using api.Database.Interface;
 using api.Models;
 using api.Security.AuthTemplate;
 using api.Security.AuthTemplate.Interface;
@@ -17,15 +17,18 @@ namespace api.Security
     {
         IClaimHelper _ClaimHelper { get; set; }
         IJwtAuthenticator _JwtAuthenticator { get; set; }
-        public AuthHelper()
+        IDatabaseHelper DatabaseHelper { get; }
+        public AuthHelper(IJwtAuthenticator jwtAuthenticator
+                , IDatabaseHelper database, IClaimHelper claimHelper)
         {
-            _ClaimHelper = new ClaimsHelper();
-            _JwtAuthenticator = new JwtAuthenticator();
+            _ClaimHelper = claimHelper;
+            _JwtAuthenticator = jwtAuthenticator;
+            DatabaseHelper = database;
         }
 
         private T GetCredentialsFromSql<T>(string tableQuery, SqlCommandHelper<T> account, string name)
         {
-            var sql = DatabaseHelper.Instance.GetDefaultConnection();
+            var sql = DatabaseHelper.GetDefaultConnection();
             var dataTable = sql.SelectQuery($"Select * from {tableQuery};", account);
             if (dataTable.Rows.Count > 0)
                 return ObjectConverter.ConvertDataTableToList<T>(dataTable)[0];
@@ -35,7 +38,7 @@ namespace api.Security
 
         private void LogAuthentication(string name)
         {
-            var sql = DatabaseHelper.Instance.GetDefaultConnection();
+            var sql = DatabaseHelper.GetDefaultConnection();
             var authLogg = new AuthLogg() { Username = name };
             ErrorLogger.Instance.LogAuthentication(sql, authLogg);
         }

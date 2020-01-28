@@ -6,6 +6,8 @@ using Microsoft.Extensions.Hosting;
 using api.Models;
 using System.IO;
 using Components.Errorhandler;
+using api.Security.Interface;
+using api.Security;
 
 namespace api
 {
@@ -24,7 +26,7 @@ namespace api
             JwtStarter.InitJwtTokenAuth(services);
             services.AddControllers();
             services.AddHttpContextAccessor();
-            DatabaseStarter.SetHttpContext(services);
+            SingletonStarter.RegisterSingleton(services);
             HealthCheckStarter.InstallHealthChecks(services);
         }
 

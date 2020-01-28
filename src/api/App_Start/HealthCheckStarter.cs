@@ -11,9 +11,9 @@ namespace api
 {
     public class HealthCheckStarter
     {
-        public static void InstallHealthChecks(IServiceCollection service)
+        public static void InstallHealthChecks(IServiceCollection services)
         {
-            service.AddHealthChecks()
+            services.AddHealthChecks()
                 .AddCheck<CheckDatabase>("Database Checkup")
                 .AddCheck<FileWriterCheck>("FileWriter Check");
         }
