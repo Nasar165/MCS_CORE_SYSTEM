@@ -1,22 +1,25 @@
-# Unit Testing Codeing Guidline 
+# Unit Testing Codeing Guidline
 
 ### Intro
-Unit testing is a critical component to the success of the project.  Unit testing keeps
+
+Unit testing is a critical component to the success of the project. Unit testing keeps
 the framework maintainable and less prone to bugs and unforeseen exceptions. To simplify
 the process of writing a unit test we at MCS has introduced a set of rules. Making it easy
-for us all involved to read and examine the test and if needed adjust a test to make it 
+for us all involved to read and examine the test and if needed adjust a test to make it
 more reliable.
 
 ### .Net Core Command Line
+
 This section explains how to generate a unit test utilizing .Net Core with commandline.
 wich test to use dependend entirly to you. We reccomend that you use Xunit for testing
 Controllers while using MS Unit test for testing components.
 
 MS Unit Test
+
 ```
 Make sure that you are in the main directory before running any of the following.
 1. dotnet new mstest -o <foldername>
-2. dotnet add reference <path to project to test> 
+2. dotnet add reference <path to project to test>
 
 Sample
 Make sure that you are in the main directory before running any of the following.
@@ -27,10 +30,11 @@ You will now have access to the api's functionality
 ```
 
 Xunit
+
 ```
 Make sure that you are in the main directory before running any of the following.
 1. dotnet new xunit - o <foldername>
-2. dotnet add reference <path to project to test> 
+2. dotnet add reference <path to project to test>
 
 Sample
 Make sure that you are in the main directory before running any of the following.
@@ -41,15 +45,17 @@ You will now have access to the api's functionality
 ```
 
 ### Comments
-A developer committing code must only apply comments if necessary.  Mainly because comments
-might become outdated, confusing other developers trying to improve an already exisitng test. 
-To combat comments please choose good variable, method and class names instead of adding 
+
+A developer committing code must only apply comments if necessary. Mainly because comments
+might become outdated, confusing other developers trying to improve an already exisitng test.
+To combat comments please choose good variable, method and class names instead of adding
 comments.
 
 ## Unit test Class and method structure
 
 ### Sample
-```` csharp
+
+```csharp
 namespace mcs.components.test
 {
     [TestClass]
@@ -57,9 +63,9 @@ namespace mcs.components.test
     {
         public AesEncryptionTest()
         {
-            AesEncrypter._instance = new AesEncrypter("b14ca5898a4e4133bbce2ea2315a1916");       
+            AesEncrypter._instance = new AesEncrypter("b14ca5898a4e4133bbce2ea2315a1916");
         }
-        
+
         [TestMethod]
         public void EncryptData()
         {
@@ -79,10 +85,11 @@ namespace mcs.components.test
     }
 }
 
-````
+```
 
 ## Type of tests
-There are many ways to test a method, in this case, we might test that a method is working 
+
+There are many ways to test a method, in this case, we might test that a method is working
 as intended called a positive test where we predict a positive outcome. Or we might perform
 a negative test where we intentionally attempt to break a method by inserting incorrect values.
 Negative Test helps us to find bugs within our code making the framework more stable.
@@ -90,11 +97,14 @@ Negative Test helps us to find bugs within our code making the framework more st
 ### MS Unit Test
 
 #### Positive tests
-A positive test aims at testing a method or class that it functions as intended. The test's 
-the main focus is to provide a positive result showing that all is working as it should given 
+
+A positive test aims at testing a method or class that it functions as intended. The test's
+the main focus is to provide a positive result showing that all is working as it should given
 that all the inputs are correct.
+
 ##### Sample
-```` csharp
+
+```csharp
 [TestMethod]
 public void EncryptData()
 {
@@ -102,15 +112,18 @@ public void EncryptData()
    var encryptedText = AesEncrypter._instance.EncryptData(unEncryptedText);
    Assert.AreNotEqual(unEncryptedText,encryptedText);
 }
-````
+```
 
 #### Negative Tests
+
 Negative tests your class or method for faults, it's designed to break your code. This is
 helpful when trying to identify bugs within your code and what better way then to break it
 yourself. So a succesfull negative test is where your code breaks and wont give the expected
 result.
+
 ##### Sample
-```` csharp
+
+```csharp
 [TestMethod]
 public void EncryptNullvalue()
 {
@@ -121,17 +134,19 @@ public void EncryptNullvalue()
    Catch(Exception error)
    {
       Assert.AreEqual("The parsed value can not be null",error.message);
-   }  
+   }
 }
-````
+```
 
 ## Xunit Test Controllers
+
 Xunit is great for testing your controllers to make sure that they work as intended. API
 controllers test are important to make sure that the API is working as intended improving
 the overall quality and integrity of the API.
 
 ### Sample Positive test
-``` csharp
+
+```csharp
 public class AuthenticationTest : IClassFixture<WebApplicationFactory<api.Startup>>
 {
         private readonly WebApplicationFactory<api.Startup> WebApp;
@@ -152,8 +167,10 @@ public class AuthenticationTest : IClassFixture<WebApplicationFactory<api.Startu
         }
   }
 ```
+
 ### Sample Negative test
-``` csharp
+
+```csharp
 public class AuthenticationTest : IClassFixture<WebApplicationFactory<api.Startup>>
 {
         private readonly WebApplicationFactory<api.Startup> WebApp;
@@ -174,4 +191,3 @@ public class AuthenticationTest : IClassFixture<WebApplicationFactory<api.Startu
         }
   }
 ```
-

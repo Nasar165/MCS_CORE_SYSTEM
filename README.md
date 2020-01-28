@@ -1,33 +1,36 @@
-![Xeroxcore logo](https://github.com/Xeroxcore/Xeroxcore/blob/master/Xeroxcore_Logo.png)
+![Xeroxcore logo](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/Xeroxcore_Logo.png)
 <br/><br/>
 [![CodeFactor](https://www.codefactor.io/repository/github/nasar165/xeroxcore/badge/master)](https://www.codefactor.io/repository/github/nasar165/xeroxcore/overview/master)
+
 ## Introduction
+
 Xeroxcore system intends to resolve a business requirement concerning a framework fitted to handling
 multiple databases. The core system comes with pre-built-in tools & customer managment to speed up
 your development. The system is well suited for an organisation that needs a framework suited to
 handling multiple databases and more than one client.
 
 <!--ts-->
-## Table of Contents
-* [Getting started](#getting-started)
-* [Prerequisites](#prerequisites)
-* [Installing](#installing)
-  * [PostgreSQL](#postgresql)
-    * [Linux-CentOS](#linux-centos)
-    * [Windows 10](#windows-10)
-  * [SQL Script](#sql-script)
-  * [Dotnet core 3](#dotnet-core-3)
-    * [Linux-CentOS](#linux-centos-1)
-    * [Windows 10](#windows-10-1)
-* [Deployment](#deployment)
-* [Built With](#built-with)
-* [Contributing](#contributing)
-* [Versioning](#versioning)
-* [Authors](#authors)
-* [License](#license)
-* [Acknowledgments](#acknowledgments)
 
-  
+## Table of Contents
+
+- [Getting started](#getting-started)
+- [Prerequisites](#prerequisites)
+- [Installing](#installing)
+  - [PostgreSQL](#postgresql)
+    - [Linux-CentOS](#linux-centos)
+    - [Windows 10](#windows-10)
+  - [SQL Script](#sql-script)
+  - [Dotnet core 3](#dotnet-core-3)
+    - [Linux-CentOS](#linux-centos-1)
+    - [Windows 10](#windows-10-1)
+- [Deployment](#deployment)
+- [Built With](#built-with)
+- [Contributing](#contributing)
+- [Versioning](#versioning)
+- [Authors](#authors)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+
 <!--te-->
 
 ### Getting started
@@ -50,9 +53,12 @@ check the [Deployment section](#deployment). Since the app was developed in Cent
 commands might be centos related.
 
 #### PostgreSQL
+
 The following installation is made for Linux (centos 7) & Windows10. If you are using a different distribution or OS then
 please check PostgreSQL website or distribution website for more information
-##### Linux-CentOS 
+
+##### Linux-CentOS
+
 ```
 1. sudo yum install -y postgresql-server.x86_64
 
@@ -81,11 +87,13 @@ please check PostgreSQL website or distribution website for more information
   allow other forms of authentication like username and password;
 
 ```
-#### Windows 10 
+
+#### Windows 10
+
 ```
-1. Go to Enterprise DB Website and download the latest Postgres Version 
+1. Go to Enterprise DB Website and download the latest Postgres Version
 [Enterprise DB](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)
-2. Execute the downloaded file postgresql-x.x-x-windows-x64.exe and follow the 
+2. Execute the downloaded file postgresql-x.x-x-windows-x64.exe and follow the
 installation steps.
 2.1 Make sure to remember the password as you will need it later to sign in to PgAdmin.
 3. Go to start and search for PgAdmin and run it.
@@ -111,6 +119,7 @@ utilizing an alternative OS or distribution then please check the [.Net Core](ht
 third party repositories.
 
 ##### Linux-CentOS
+
 ```
 begin by opening a new shell window and follow the steps bellow:
 1. sudo rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
@@ -118,7 +127,9 @@ begin by opening a new shell window and follow the steps bellow:
 3. enter the following command after the installation is complete to verify the installation
   dotnet --version
 ```
-###### Windows 10 
+
+###### Windows 10
+
 ```
 1. Go tofollowing url and download the [.Net Core SDK](https://dotnet.microsoft.com/download).
 2. Open the install dotnet-sdk-3.x.x-win-x64.exe.
@@ -181,5 +192,6 @@ See also the list of [contributors](https://github.com/Xeroxcore/Xeroxcore//grap
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details
 
 ### Acknowledgments
+
 - [Hubspot](https://www.hubspot.com) - Inspiration source
 - [Chayapat Chuen A Rom ](https://github.com/freedombs) - Angular Developer helping us test the web api
