@@ -16,6 +16,7 @@ DROP TABLE IF EXISTS useraccount CASCADE;
 DROP TABLE IF EXISTS database_list CASCADE;
 DROP TABLE IF EXISTS tokenkey CASCADE;
 DROP TABLE IF EXISTS authactivity CASCADE;
+DROP TABLE IF EXISTS token CASCADE;
 DROP TABLE IF EXISTS roles CASCADE;
 DROP TABLE IF EXISTS roles_token CASCADE;
 DROP TABLE IF EXISTS roles_useraccount CASCADE;
@@ -46,6 +47,8 @@ values('Nasar', '{"telephone":"+660-955-886-699"}', 'test@xeroxcore.org', 'CEO',
 CREATE TABLE database_list(
     database_id SERIAL PRIMARY KEY NOT NULL,
     database_name VARCHAR(250) NOT NULL,
+    ip VARCHAR(20) NOT NULL DEFAULT '127.0.0.1', 
+    port INT NOT NULL DEFAULT 5432,
     username VARCHAR(50) NOT NULL,
     password VARCHAR(50) NOT NULL,
     dbm VARCHAR(100) DEFAULT 'NpgSQL' NOT NULL,
