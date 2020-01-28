@@ -12,7 +12,6 @@ namespace api.Controllers.Authentication
         public ApiAuthController(IAuthHelper auth)
             => Auth = auth;
 
-
         [HttpPost]
         public ActionResult Post([FromBody] AccessKey accessKey)
         {
