@@ -1,5 +1,7 @@
 # Deployment
 
+![Xeroxcore logo](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/microsoft-logo.png)
+
 ## Introduction
 
 Deploying the API to IIS is not difficult at all it is by far esier than docker and other forms of 
