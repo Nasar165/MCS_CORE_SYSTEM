@@ -24,6 +24,8 @@ as intended before deploying it to your hosting provider or cloud service provid
 
 ```
 1. docker build -t <account/appname> .
+ 1.2 If you are running in linux type the following 
+ docker build -t <account/appname> . --network=host
 2. verify after success docker ps
 ```
 
