@@ -4,6 +4,13 @@ namespace Components
 {
     public static class Validation
     {
+
+        public static bool DirecortyPathExists(string direcortyPath)
+            => Directory.Exists(direcortyPath);
+
+        public static bool FilePathExists(string filePath)
+            => File.Exists(filePath);
+
         public static bool StringsAreEqual(string one, string two)
            => one.ToLower() == two.ToLower() ? true : false;
 

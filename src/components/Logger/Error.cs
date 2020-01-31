@@ -1,6 +1,6 @@
-using Components.Errorhandler.Interface;
+using Components.Logger.Interface;
 
-namespace Components.Errorhandler
+namespace Components.Logger
 {
     public class Error : IError
     {
@@ -8,6 +8,7 @@ namespace Components.Errorhandler
         public string E_Date { get; set; }
         public string E_Class { get; set; }
         public string E_Method { get; set; }
+        public int E_Row { get; set; }
         public string E_Message { get; set; }
     }
 }

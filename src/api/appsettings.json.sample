@@ -2,10 +2,12 @@
   "AppSettings": {
     "SecretKey": "MyNewSuperMegeKeyForJwt11",
     "SymmetricKey": "b14ca5898a4e4133bbce2ea2315a1916",
-    "Domain": "yourdomain.com"
+    "Domain": "yourdomain.com",
+    "ExportLogHttp":true,
+    "LogAsJson":true
   },
   "ConnectionStrings": {
-    "DefaultConnection": "Server=127.0.0.1;Database=mcsunity;Uid=mcsuser;Pwd=Nasar165;"
+    "default": "Server=127.0.0.1;Database=mcsunity;Uid=mcsuser;Pwd=Nasar165;"
   },
   "Smtp": {
     "server": "url",

@@ -1,8 +1,9 @@
 using System;
 using System.Diagnostics;
-using Components.Errorhandler.Interface;
+using Components.Logger.Interface;
+using Newtonsoft.Json;
 
-namespace Components.Errorhandler
+namespace Components.Logger
 {
     public class ExceptionHelper : IExceptionHelper
     {
@@ -29,32 +30,45 @@ namespace Components.Errorhandler
             return StackFrame;
         }
 
-        public int GetRowThatTrewException()
+        private int GetRowThatTrewException()
             => GetErrorFrame().GetFileLineNumber();
 
-        public string GetMethodThatTrewException()
+        private string GetMethodThatTrewException()
             => GetErrorFrame().GetMethod().Name;
 
-        public string GetClassThatTrewException()
+        private string GetClassThatTrewException()
             => GetErrorFrame().GetMethod().ReflectedType.Name;
-        public string GetMessage()
+        private string GetMessage()
             => _Error.Message;
 
-        public string GetFormatedErrorMessage()
+        private string GetDate()
+            => DateTime.Now.ToString("yyyy-MM-dd HH:mm tt;");
+
+        private string GetErrorAsJson()
+            => JsonConvert.SerializeObject(new Error());
+
+        private string GetErrorAsText()
+            => string.Format(
+                $"Date:{GetDate()}; ErrorClass:{GetClassThatTrewException()} " +
+                $"Method:{GetMethodThatTrewException()}; Row:{GetRowThatTrewException()} " + 
+                $"Message:{GetMessage()}");
+
+        public string GetFormatedErrorMessage(bool logAsJson)
         {
-            var newError = string.Format("Date:{0}; ErrorClass:{1}; Method:{2}; Row:{3} Message:{4}",
-             DateTime.Now.ToString("yyyy-MM-dd HH:mm tt"), GetClassThatTrewException(),
-             GetMethodThatTrewException(), GetRowThatTrewException(), GetMessage());
-            return newError;
+            var error = GetErrorAsText();
+            if(logAsJson)
+                error = GetErrorAsJson();
+            return error;
         }
 
         public IError GetFormatedErrorObject()
         {
             return new Error
             {
-                E_Date = DateTime.Now.ToString("yyyy-MM-dd HH:mm tt"),
+                E_Date = GetDate(),
                 E_Class = GetClassThatTrewException(),
                 E_Method = GetMethodThatTrewException(),
+                E_Row = GetRowThatTrewException(),
                 E_Message = GetMessage()
             };
         }

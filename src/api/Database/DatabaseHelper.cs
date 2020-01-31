@@ -2,25 +2,27 @@ using System;
 using api.Models;
 using Components;
 using Components.DbConnection;
-using Components.Errorhandler;
 using Components.Security;
 using Components.DbConnection.Interface;
 using api.Database.Interface;
 using api.Security.AuthTemplate;
 using System.Collections.Generic;
 using api.Security.Interface;
+using Components.Logger.Interface;
 
 namespace api.Database
 {
     public class DatabaseHelper : IDatabaseHelper
     {
         private string DefaultConnection { get; }
-        private IClaimHelper ClaimHelper { get; set; }
+        private IClaimHelper ClaimHelper { get; }
+        private ILogger Logger { get; }
 
-        public DatabaseHelper(IClaimHelper claimHelper)
+        public DatabaseHelper(IClaimHelper claimHelper, ILogger logger)
         {
             ClaimHelper = claimHelper;
-            DefaultConnection = AppConfigHelper.Instance.GetDbConnection();
+            Logger = logger;
+            DefaultConnection = AppConfigHelper.Instance.GetDefaultSQlConnection();
         }
 
         public ISqlHelper GetDefaultConnection()
@@ -107,7 +109,7 @@ namespace api.Database
             }
             catch (Exception error)
             {
-                ErrorLogger.Instance.LogErrorAsync(error);
+                Logger.LogEventAsync(error);
                 throw;
             }
         }

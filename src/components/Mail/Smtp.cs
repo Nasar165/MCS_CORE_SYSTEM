@@ -1,7 +1,6 @@
 using System;
 using System.Net.Mail;
 using System.Threading.Tasks;
-using Components.Errorhandler;
 using Components.Mail.Interface;
 
 namespace Components.Mail
@@ -52,9 +51,8 @@ namespace Components.Mail
                 var result = AddRecipiants(mailMessage, to);
                 SmtpSender.Send(mailMessage);
             }
-            catch (Exception error)
+            catch (Exception)
             {
-                ErrorLogger.Instance.LogError(error);
                 throw;
             }
         }

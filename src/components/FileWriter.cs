@@ -7,27 +7,21 @@ namespace Components
 {
     public class FileWriter : IFileWriter
     {
-        public bool DirecortyPathExists(string direcortyPath)
-            => Directory.Exists(direcortyPath);
-
-        public bool FilePathExists(string filePath)
-            => File.Exists(filePath);
-
         public void DeleteFile(string filePath)
         {
-            if (FilePathExists(filePath))
+            if (Validation.FilePathExists(filePath))
                 File.Delete(filePath);
         }
 
         public void CreateDirectoryPath(string directoryPath)
         {
-            if (!DirecortyPathExists(directoryPath))
+            if (!Validation.DirecortyPathExists(directoryPath))
                 Directory.CreateDirectory(directoryPath);
         }
 
         public void CreateFile(string filePath)
         {
-            if (!FilePathExists(filePath))
+            if (!Validation.FilePathExists(filePath))
             {
                 var file = File.Create(filePath);
                 file.Close();
@@ -49,9 +43,27 @@ namespace Components
                     AddTextToFile(fs, text);
                 }
             }
-            catch (Exception error)
+            catch (Exception)
             {
-                throw error;
+                throw;
+            }
+        }
+
+        public string ReadTextFromFile(string filePath)
+        {
+              try
+            {
+                using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    using(StreamReader reader = new StreamReader(fs))
+                    {
+                        return reader.ReadToEnd();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
     }

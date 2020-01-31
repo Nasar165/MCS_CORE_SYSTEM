@@ -7,7 +7,7 @@ using api.Security.AuthTemplate.Interface;
 using api.Security.Interface;
 using Components;
 using Components.DbConnection;
-using Components.Errorhandler;
+using Components.Logger.Interface;
 using Components.Security;
 
 namespace api.Security
@@ -15,15 +15,17 @@ namespace api.Security
     public delegate void AuthAction();
     public class AuthHelper : IAuthHelper
     {
-        IClaimHelper _ClaimHelper { get; set; }
-        IJwtAuthenticator _JwtAuthenticator { get; set; }
-        IDatabaseHelper DatabaseHelper { get; }
+        private IClaimHelper _ClaimHelper { get; }
+        private IJwtAuthenticator _JwtAuthenticator { get; }
+        private IDatabaseHelper DatabaseHelper { get; }
+        private ILogger Logger { get; }
         public AuthHelper(IJwtAuthenticator jwtAuthenticator
-                , IDatabaseHelper database, IClaimHelper claimHelper)
+                , IDatabaseHelper database, IClaimHelper claimHelper, ILogger logger)
         {
             _ClaimHelper = claimHelper;
             _JwtAuthenticator = jwtAuthenticator;
             DatabaseHelper = database;
+            Logger = logger;
         }
 
         private T GetCredentialsFromSql<T>(string tableQuery, SqlCommandHelper<T> account, string name)
@@ -40,8 +42,10 @@ namespace api.Security
         {
             var sql = DatabaseHelper.GetDefaultConnection();
             var authLogg = new AuthLogg() { Username = name };
-            ErrorLogger.Instance.LogAuthentication(sql, authLogg);
+            Logger.LogAuthentication(sql, authLogg);
         }
+        public string GetDoamin()
+            => AppConfigHelper.Instance.GetValueFromAppConfig("AppSettings","Domain");
 
         private object GenerateToken<T>(T data, string audiance, params string[] roles)
         {
@@ -51,7 +55,7 @@ namespace api.Security
                 if (!Validation.ObjectIsNull(roles))
                     claimList = _ClaimHelper.AddRolesToClaim(claimList, roles);
                 var Token = _JwtAuthenticator.CreateJwtToken(claimList
-                    , audiance, "mcsunity.net");
+                    , audiance, GetDoamin());
                 return Token;
             }
             catch (Exception error)
@@ -82,7 +86,7 @@ namespace api.Security
             }
             catch (Exception error)
             {
-                ErrorLogger.Instance.LogErrorAsync(error);
+                Logger.LogEventAsync(error);
                 return false;
             }
         }
@@ -108,7 +112,7 @@ namespace api.Security
             }
             catch (Exception error)
             {
-                ErrorLogger.Instance.LogErrorAsync(error);
+                Logger.LogEventAsync(error);
                 return false;
             }
         }

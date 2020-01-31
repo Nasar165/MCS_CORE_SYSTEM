@@ -1,7 +1,7 @@
 using System;
 using System.IO;
-using Components.Errorhandler;
-using Components.Errorhandler.Interface;
+using Components.Logger;
+using Components.Logger.Interface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Components.Test
@@ -10,25 +10,35 @@ namespace Components.Test
     [TestClass]
     public class ErrorHandlerTest
     {
-        private IErrorLogger logger { get; }
-
-        public ErrorHandlerTest()
-            => logger = new ErrorLogger();
-
         [TestMethod]
-        public void RegisterError()
+        public void RegisterErrorAsText()
         {
-            var workingDirectory = Directory.GetCurrentDirectory();
-            logger.SetWorkingDirectory($"{workingDirectory}/test_folder/");
+            var logger = new ErrorLogger(false);
             try
             {
                 throw new NotImplementedException();
             }
             catch (Exception error)
             {
-                logger.LogError(error);
+                logger.LogEvent(error);
             }
-            var text = File.ReadAllText($"{workingDirectory}/test_folder/logs/error/error.txt");
+            var text = File.ReadAllText($"logs/error/error.txt");
+            Assert.IsTrue(text.Contains("The method or operation is not implemented."));
+        }
+
+        [TestMethod]
+        public void RegisterErrorAsJson()
+        {
+            var logger = new ErrorLogger(true);
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception error)
+            {
+                logger.LogEvent(error);
+            }
+            var text = File.ReadAllText($"logs/error/error.txt");
             Assert.IsTrue(text.Contains("The method or operation is not implemented."));
         }
     }

@@ -30,7 +30,7 @@ namespace api.test
         {
             var client = WebApp.CreateClient();
             var response = await client.PostAsync(url,
-                CreateJsonContent("{\"Username\":\"nasar2\", \"Password\":\"nasar165\"}"));
+                CreateJsonContent("{\"Username\":\"nasar\", \"Password\":\"nasar165\"}"));
             Assert.Equal(System.Net.HttpStatusCode.OK, response.StatusCode);
         }
 

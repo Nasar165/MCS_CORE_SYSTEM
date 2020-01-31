@@ -13,8 +13,8 @@ namespace api.Security
     {
         public delegate string ClaimAction(string data);
         IEnumerable<Claim> Claims { get; }
-        public ClaimHelper(IHttpContextAccessor claims)
-            => Claims = claims.HttpContext.User.Claims;
+        public ClaimHelper(IHttpContextAccessor httpContxt)
+            => Claims = httpContxt.HttpContext.User.Claims;
 
         public string GetValueFromClaim(string type)
         {

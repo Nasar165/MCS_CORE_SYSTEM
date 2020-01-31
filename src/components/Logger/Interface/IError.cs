@@ -1,4 +1,4 @@
-namespace Components.Errorhandler.Interface
+namespace Components.Logger.Interface
 {
     public interface IError
     {
@@ -6,6 +6,8 @@ namespace Components.Errorhandler.Interface
         string E_Date { get; set; }
         string E_Class { get; set; }
         string E_Method { get; set; }
+
+        int E_Row { get; set; }
         string E_Message { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace api.HealthChecks
             {
                 var writer = new FileWriter();
                 var filepath = $"{Directory.GetCurrentDirectory()}/logs/health_cheack.txt";
-                if (!writer.DirecortyPathExists(filepath))
+                if (!Validation.DirecortyPathExists(filepath))
                     writer.CreateFile(filepath);
                 writer.AppendTextToFile("Appending Text to File", filepath);
                 writer.DeleteFile(filepath);

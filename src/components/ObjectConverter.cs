@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
-using Components.Errorhandler;
 
 namespace Components
 {
@@ -62,10 +61,9 @@ namespace Components
                 }
                 return data;
             }
-            catch (Exception error)
+            catch (Exception)
             {
-                ErrorLogger.Instance.LogErrorAsync(error);
-                throw error;
+                throw;
             }
         }
 
@@ -78,7 +76,6 @@ namespace Components
             }
             catch (Exception error)
             {
-                ErrorLogger.Instance.LogErrorAsync(error);
                 throw error;
             }
         }

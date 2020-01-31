@@ -163,11 +163,18 @@ this is a simple test and will only verify that the installation was successful.
 
 ### Deployment
 
-Deployment section is comming soon
+Deploying the API to a real server requires minmal configuration depending
+on you server enviroement we currenlty support IIS and Docker. We have listed
+our supported deployment options down bellow for you to read. Please note 
+That under no circumstances is deployment related to server configurations.
+
+* [Docker](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/deployment/Docker.md) - Partialy Supported
+* [IIS](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/deployment/IIS.md) - Full support
+
 
 ### Built With
 
-This web API was built with the following tools in a Linux Environment (CentOS 7).
+API was built with the following tools in a Linux Environment (CentOS 7).
 
 - [Visual Studio Code](https://code.visualstudio.com/) - Code Editor
 - [PostgreSQL](https://www.postgresql.org/) - SQL Database

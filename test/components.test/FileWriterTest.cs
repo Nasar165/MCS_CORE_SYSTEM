@@ -10,14 +10,14 @@ namespace Components.Test
     public class FileWriterTest
     {
         // Each file or folder that is created can be
-        // found in the bin/debug folder under home.
+        // found in the bin/debug/netcoreapp3.0
         private FileWriter writer = new FileWriter();
         private string WorkingDirectory = Directory.GetCurrentDirectory();
 
         [TestMethod]
         public void DirectoryExists()
         {
-            var direcrotyExists = writer.DirecortyPathExists(WorkingDirectory);
+            var direcrotyExists = Validation.DirecortyPathExists(WorkingDirectory);
             Assert.IsTrue(direcrotyExists);
         }
 
@@ -26,7 +26,7 @@ namespace Components.Test
         {
             var direcrotyPath = $"{WorkingDirectory}/test_folder";
             writer.CreateDirectoryPath(direcrotyPath);
-            Assert.IsTrue(writer.DirecortyPathExists(direcrotyPath));
+            Assert.IsTrue(Validation.DirecortyPathExists(direcrotyPath));
         }
 
         [TestMethod]
@@ -34,7 +34,7 @@ namespace Components.Test
         {
             var filePath = $"{WorkingDirectory}/test_folder/test_file.txt";
             writer.CreateFile(filePath);
-            Assert.IsTrue(writer.FilePathExists(filePath));
+            Assert.IsTrue(Validation.FilePathExists(filePath));
         }
 
         [TestMethod]

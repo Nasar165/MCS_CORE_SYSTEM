@@ -4,8 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using api.Models;
-using System.IO;
-using Components.Errorhandler;
 
 namespace api
 {
@@ -14,7 +12,6 @@ namespace api
         public Startup(IConfiguration configuration)
         {
             AppConfigHelper.Instance.SetIConfiguration(configuration);
-            ErrorLogger.Instance.SetWorkingDirectory(Directory.GetCurrentDirectory());
             EncrypterStarter.SetupEncryption();
         }
 
@@ -32,9 +29,8 @@ namespace api
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
+            
             ApplicationStarter.SetApplicationSettings(app);
         }
     }

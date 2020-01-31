@@ -10,7 +10,7 @@ namespace api.HealthChecks
     {
         public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
         {
-            var sql = new NpgsqlConnection(AppConfigHelper.Instance.GetDbConnection());
+            var sql = new NpgsqlConnection(AppConfigHelper.Instance.GetDefaultSQlConnection());
             try
             {
                 sql.Open();
