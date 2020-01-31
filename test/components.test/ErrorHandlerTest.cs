@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using Components.Logger;
-using Components.Logger.Interface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Components.Test
@@ -39,7 +38,7 @@ namespace Components.Test
                 logger.LogEvent(error);
             }
             var text = File.ReadAllText($"logs/error/error.txt");
-            Assert.IsTrue(text.Contains("The method or operation is not implemented."));
+            Assert.IsTrue(text.Contains("\"E_Message\":\"The method or operation is not implemented.\""));
         }
     }
 }

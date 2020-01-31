@@ -17,6 +17,7 @@ namespace Components.Logger
 
         public ErrorLogger(bool logAsJson)
         {
+            LogAsJson = logAsJson;
             FileWriter = new FileWriter();
         }
         

@@ -13,8 +13,6 @@ namespace api.Controllers
             => Logger = logger;
 
         public ActionResult GetErrorLog()
-        {
-            return Ok(Logger.GetTextFromLogFile("error/error.txt"));
-        }
+            => Ok(Logger.GetTextFromLogFile("error/error.txt"));
     }
 }

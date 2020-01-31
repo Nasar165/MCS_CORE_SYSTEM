@@ -45,7 +45,7 @@ namespace Components.Logger
             => DateTime.Now.ToString("yyyy-MM-dd HH:mm tt;");
 
         private string GetErrorAsJson()
-            => JsonConvert.SerializeObject(new Error());
+            => JsonConvert.SerializeObject(GetFormatedErrorObject());
 
         private string GetErrorAsText()
             => string.Format(

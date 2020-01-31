@@ -29,9 +29,7 @@ namespace api
         {
             Services.AddHttpContextAccessor();
             Services.AddSingleton<ILogger, ErrorLogger>(ServiceProvider=>
-            {
-                return new ErrorLogger(GetLoggingStyle());
-            });
+                { return new ErrorLogger(GetLoggingStyle()); });
         }
 
         public static void RegisterSingleton(IServiceCollection services)
