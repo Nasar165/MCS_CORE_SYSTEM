@@ -1,11 +1,10 @@
 name: Evaluate
 
-on: 
+on:
     push:
        branches:
-        - master 
+        - master
         - Release
-        
     pull_request:
       branches:
         - master
