@@ -24,9 +24,6 @@ jobs:
     - name: Test Components
       working-directory: ./test/components.test/
       run: dotnet test --filter TestCategory=GithubAction
-    - name: Test API
-      working-directory: ./test/api.test/
-      run: dotnet test
     - name: Relaese API
       working-directory: ./src/api/
       run: dotnet publish -c Release -o out
