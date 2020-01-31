@@ -11,7 +11,10 @@ namespace api.Security.AuthTemplate
         public string Username { get; set; }
         [Required]
         public string Password { get; set; }      
-        public void EncryptPassword()
-            => Password = AesEncrypter._instance.EncryptData(Password);
+        public void EncryptInfo()
+        {
+            Password = AesEncrypter._instance.EncryptData(Password);
+            Username = AesEncrypter._instance.EncryptData(Username);
+        } 
     }
 }
