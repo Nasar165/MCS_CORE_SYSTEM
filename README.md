@@ -1,7 +1,7 @@
 ![Xeroxcore logo](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/Xeroxcore_Logo.png)
 <br/><br/>
 [![CodeFactor](https://www.codefactor.io/repository/github/xeroxcore/xeroxcore/badge)](https://www.codefactor.io/repository/github/xeroxcore/xeroxcore)
-
+![Xeroxcore logo](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/docker-supported.png)
 ## Introduction
 
 Xeroxcore system intends to resolve a business requirement concerning a framework fitted to handling

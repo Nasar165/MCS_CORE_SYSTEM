@@ -1,15 +1,14 @@
 name: Evaluate
 
-on: 
+on:
     push:
-       branches:    
-        - master 
-        - Release  
-        
+       branches:
+        - master
+        - Release
     pull_request:
-      branches:    
-        - master 
-        - Release  
+      branches:
+        - master
+        - Release
 
 jobs:
   build:
@@ -22,15 +21,12 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
-        
     - name: Test Components
       working-directory: ./test/components.test/
       run: dotnet test --filter TestCategory=GithubAction
-      
     - name: Test API
       working-directory: ./test/api.test/
       run: dotnet test
-      
     - name: Relaese API
       working-directory: ./src/api/
       run: dotnet publish -c Release -o out
