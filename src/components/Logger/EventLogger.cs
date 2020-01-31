@@ -8,14 +8,14 @@ using System.IO;
 
 namespace Components.Logger
 {
-    public class ErrorLogger : ILogger
+    public class EventLogger : ILogger
     {
         private IFileWriter FileWriter { get; }
         private readonly string DirectoryPath = 
             Directory.GetCurrentDirectory();
         private bool LogAsJson { get; }
 
-        public ErrorLogger(bool logAsJson)
+        public EventLogger(bool logAsJson)
         {
             LogAsJson = logAsJson;
             FileWriter = new FileWriter();

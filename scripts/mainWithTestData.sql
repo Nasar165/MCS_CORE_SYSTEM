@@ -71,15 +71,14 @@ insert into token (tokenkey,groupkey,database_id,active) values('#we321$$awe',12
 
 CREATE TABLE useraccount (
     useraccount_id SERIAL PRIMARY KEY NOT NULL,
-    username VARCHAR(50) NOT NULL,
+    username VARCHAR(250) NOT NULL,
     password VARCHAR(250) NOT NULL,
     database_id int NOT NULL,
     active BOOLEAN DEFAULT '0' NOT NULL,
     FOREIGN KEY (database_id) REFERENCES database_list(database_id)
 );
 
-insert into useraccount (username,password,database_id,active) values('nasar','0zrYwyRKtp35kFlnsQPfgw==',1,'1');
-insert into useraccount (username,password,database_id,active) values('nasar2','0zrYwyRKtp35kFlnsQPfgw==',1,'1');
+insert into useraccount (username,password,database_id,active) values('0zrYwyRKtp35kFlnsQPfgw','0zrYwyRKtp35kFlnsQPfgw==',1,'1');
 
 CREATE TABLE authactivity(
     authactivity_id SERIAL PRIMARY KEY NOT NULL,
@@ -115,7 +114,6 @@ CREATE TABLE roles_useraccount(
 
 INSERT INTO roles_useraccount (role_id, useraccount_id) values(1,1);
 INSERT INTO roles_useraccount (role_id, useraccount_id) values(2,1);
-INSERT INTO roles_useraccount (role_id, useraccount_id) values(2,2);
 
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO mcsuser;
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO mcsuser;

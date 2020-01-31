@@ -12,7 +12,7 @@ namespace Components.Test
         [TestMethod]
         public void RegisterErrorAsText()
         {
-            var logger = new ErrorLogger(false);
+            var logger = new EventLogger(false);
             try
             {
                 throw new NotImplementedException();
@@ -28,7 +28,7 @@ namespace Components.Test
         [TestMethod]
         public void RegisterErrorAsJson()
         {
-            var logger = new ErrorLogger(true);
+            var logger = new EventLogger(true);
             try
             {
                 throw new NotImplementedException();

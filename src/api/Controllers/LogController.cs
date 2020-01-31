@@ -8,7 +8,7 @@ namespace api.Controllers
     [Route("[controller]/[action]")]
     public class LogController : ControllerBase
     {
-        private ILogger Logger {get;}
+        private ILogger Logger { get; }
         public LogController(ILogger logger)
             => Logger = logger;
 

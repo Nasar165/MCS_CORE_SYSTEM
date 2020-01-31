@@ -95,12 +95,14 @@ namespace api.Security
         {
             try
             {
+                 if (method != null)
+                    method();
+
+                var name = user.Username;
                 var sqlcommand = new SqlCommandHelper<UserAccount>(
                     (UserAccount)user, "password");
                 var dbuser = GetCredentialsFromSql<UserAccount>(
                     $"useraccount where username = @username", sqlcommand, user.Username);
-                if (method != null)
-                    method();
                 if (user.Username == dbuser.Username && user.Password == dbuser.Password)
                 {
                     LogAuthentication(user.Username);

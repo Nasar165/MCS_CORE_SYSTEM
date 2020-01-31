@@ -4,7 +4,6 @@ namespace Components
 {
     public static class Validation
     {
-
         public static bool DirecortyPathExists(string direcortyPath)
             => Directory.Exists(direcortyPath);
 

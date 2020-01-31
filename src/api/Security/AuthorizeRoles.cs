@@ -23,7 +23,7 @@ namespace Components.Security
         {
             UserAssignedRole = roles;
             var logAsJson = bool.Parse(AppConfigHelper.Instance.GetValueFromAppConfig("AppSettings","LogAsJson"));
-            Logger = new ErrorLogger(logAsJson);
+            Logger = new EventLogger(logAsJson);
         }
 
         private HttpContextAccessor CreateHttpContextAccessor()

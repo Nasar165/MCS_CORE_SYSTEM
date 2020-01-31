@@ -28,8 +28,8 @@ namespace api
         private static void AddSingleton()
         {
             Services.AddHttpContextAccessor();
-            Services.AddSingleton<ILogger, ErrorLogger>(ServiceProvider=>
-                { return new ErrorLogger(GetLoggingStyle()); });
+            Services.AddSingleton<ILogger, EventLogger>(ServiceProvider=>
+                { return new EventLogger(GetLoggingStyle()); });
         }
 
         public static void RegisterSingleton(IServiceCollection services)
@@ -38,7 +38,6 @@ namespace api
             Services.AddHttpContextAccessor();
             AddScoped();
             AddSingleton();
-
         }
     }
 }

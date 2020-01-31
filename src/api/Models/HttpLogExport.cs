@@ -10,7 +10,6 @@ namespace api.Models
             => bool.Parse(AppConfigHelper.
                     Instance.GetValueFromAppConfig("AppSettings","ExportLogHttp"));
         
-
         public void OnAuthorization(AuthorizationFilterContext context)
         {
             if(!ExportLogHttpEnabled())
