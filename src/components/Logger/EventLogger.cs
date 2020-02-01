@@ -11,7 +11,7 @@ namespace Components.Logger
     public class EventLogger : ILogger
     {
         private IFileWriter FileWriter { get; }
-        private readonly string DirectoryPath = 
+        private readonly string DirectoryPath =
             Directory.GetCurrentDirectory();
         private bool LogAsJson { get; }
 
@@ -20,7 +20,7 @@ namespace Components.Logger
             LogAsJson = logAsJson;
             FileWriter = new FileWriter();
         }
-        
+
         private void IsErrorLogFilePathValid()
         {
             if (!Validation.DirecortyPathExists($"{DirectoryPath}logs/error/"))
@@ -30,6 +30,15 @@ namespace Components.Logger
                 FileWriter.CreateFile($"{DirectoryPath}/logs/error/error.txt");
         }
 
+        private void IsEventLogFilePathValid()
+        {
+            if (!Validation.DirecortyPathExists($"{DirectoryPath}logs/event/"))
+                FileWriter.CreateDirectoryPath($"{DirectoryPath}/logs/event/");
+
+            if (!Validation.FilePathExists($"{DirectoryPath}/logs/event/event.txt"))
+                FileWriter.CreateFile($"{DirectoryPath}/logs/event/event.txt");
+        }
+
         public async void LogEventAsync(string text)
         {
             await Task.Run(() => { LogEvent(text); });
@@ -37,7 +46,8 @@ namespace Components.Logger
 
         public void LogEvent(string text)
         {
-            FileWriter.AppendTextToFile(text, $"{DirectoryPath}/logs/error/error.txt");
+            IsEventLogFilePathValid();
+            FileWriter.AppendTextToFile(text, $"{DirectoryPath}/logs/event/event.txt");
         }
 
         public async void LogEventAsync(Exception error)

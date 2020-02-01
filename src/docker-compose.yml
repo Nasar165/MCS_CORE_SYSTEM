@@ -1,12 +1,14 @@
 version: '3'
 services:
-  postgres-db:
+  db:
     image: postgres
     restart: always
     ports:
       - '8082:5432'
     environment:
-      POSTGRES_PASSWORD: 4-B&RtP;(
+      POSTGRES_USER: defaultuser
+      POSTGRES_DB: defaultdatabase
+      POSTGRES_PASSWORD: SG,npuLc2?
     volumes:
       - db-data:/var/lib/postgresql/data
 
@@ -19,7 +21,9 @@ services:
     volumes:
       - xeroxcore-data:/app
     depends_on:
-      - postgres-db
+      - db
+    links:
+      - 'db:database'
 
 volumes:
   db-data:
