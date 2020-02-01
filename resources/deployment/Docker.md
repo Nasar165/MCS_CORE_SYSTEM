@@ -45,7 +45,7 @@ as intended before deploying it to your hosting provider or cloud service provid
 3. now print the log to the console cat error.txt
 ```
 
-## Altering PostgreSQL Settings
+## Altering PostgreSQL Settings (Skip this step if you are running Postgres in a container)
 
 A few settings have to be altered for the API to function well with docker. This is only
 relevant if you are using posgreSQL outside of docker. if your postgresql is stored
@@ -55,7 +55,7 @@ multiple containers.
 ### Linux Centos 7
 
 This section explains how to alter PostgreSQL settings in Linux Centos 7 to function
-properly with the API when it's being runned in a container.
+properly with the API when it's runnning in a container.
 
 #### pg_hba.cong
 
@@ -70,7 +70,6 @@ allow other forms of authentication like username and password.
 #### postgresql.conf
 
 ```
-1. login to psql then enter show hba_file ;
 1. locate postgresql.conf file located in PostgreSQL\<Version>\data
 2. alter the following values from listen_address='127.0.0.1' to listen_addresses = '*'
 3. now
@@ -79,7 +78,7 @@ allow other forms of authentication like username and password.
 ### Windows 10
 
 This section explains how to alter PostgreSQL settings in windows 10 to function
-properly with the API when it's being runned in a container.
+properly with the API when it's runnning in a container.
 
 #### pg_hba.cong
 
