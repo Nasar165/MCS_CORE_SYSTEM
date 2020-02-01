@@ -1,6 +1,16 @@
-version: "3"
+version: '3'
 services:
-    web:
-        build: .
-        ports:
-            - "8000:80"
+  web:
+    image: mcsunity/xeroxcore
+    build: .
+    ports:
+      - '8080:80'
+      - '8181:443'
+
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - '24000:5432'
+    environment:
+      POSTGRES_PASSWORD: 4-B&RtP;(

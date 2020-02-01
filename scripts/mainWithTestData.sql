@@ -1,6 +1,6 @@
-CREATE DATABASE mcsunity;
+CREATE DATABASE defaultdatabase;
 
-CREATE USER mcsuser WITH
+CREATE USER defaultuser WITH
     LOGIN
     NOSUPERUSER
     NOCREATEDB
@@ -8,7 +8,7 @@ CREATE USER mcsuser WITH
     INHERIT
     NOREPLICATION
     CONNECTION LIMIT -1
-    PASSWORD 'Nasar165';
+    PASSWORD 'SG,npuLc2?';
           
 DROP TABLE IF EXISTS customer CASCADE;
 DROP TABLE IF EXISTS contact CASCADE;
@@ -115,5 +115,5 @@ CREATE TABLE roles_useraccount(
 INSERT INTO roles_useraccount (role_id, useraccount_id) values(1,1);
 INSERT INTO roles_useraccount (role_id, useraccount_id) values(2,1);
 
-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO mcsuser;
-GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO mcsuser;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO defaultuser;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO defaultuser;
