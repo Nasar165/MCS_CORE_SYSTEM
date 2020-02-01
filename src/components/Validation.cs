@@ -58,5 +58,15 @@ namespace Components
                     return false;
             }
         }
+
+        public static void ValidateLogFile(string directoryPath, string filename)
+        {
+            var fileWriter = new FileWriter();
+            if (!DirecortyPathExists($"{directoryPath}"))
+                fileWriter.CreateDirectoryPath($"{directoryPath}");
+
+            if (!FilePathExists($"{directoryPath}{filename}"))
+                fileWriter.CreateFile($"{directoryPath}{filename}");
+        }
     }
 }

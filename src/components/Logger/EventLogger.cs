@@ -23,26 +23,18 @@ namespace Components.Logger
 
         private void IsErrorLogFilePathValid()
         {
-            if (!Validation.DirecortyPathExists($"{DirectoryPath}logs/error/"))
-                FileWriter.CreateDirectoryPath($"{DirectoryPath}/logs/error/");
-
-            if (!Validation.FilePathExists($"{DirectoryPath}/logs/error/error.txt"))
-                FileWriter.CreateFile($"{DirectoryPath}/logs/error/error.txt");
+            var DirecortyPath = $"{DirectoryPath}/logs/error/";
+            Validation.ValidateLogFile(DirecortyPath, "error.txt");
         }
 
         private void IsEventLogFilePathValid()
         {
-            if (!Validation.DirecortyPathExists($"{DirectoryPath}logs/event/"))
-                FileWriter.CreateDirectoryPath($"{DirectoryPath}/logs/event/");
-
-            if (!Validation.FilePathExists($"{DirectoryPath}/logs/event/event.txt"))
-                FileWriter.CreateFile($"{DirectoryPath}/logs/event/event.txt");
+            var DirecortyPath = $"{DirectoryPath}/logs/event/";
+            Validation.ValidateLogFile(DirecortyPath, "event.txt");
         }
 
         public async void LogEventAsync(string text)
-        {
-            await Task.Run(() => { LogEvent(text); });
-        }
+            => await Task.Run(() => { LogEvent(text); });
 
         public void LogEvent(string text)
         {
@@ -51,9 +43,7 @@ namespace Components.Logger
         }
 
         public async void LogEventAsync(Exception error)
-        {
-            await Task.Run(() => { LogEvent(error); });
-        }
+            => await Task.Run(() => { LogEvent(error); });
 
         public void LogEvent(Exception error)
         {

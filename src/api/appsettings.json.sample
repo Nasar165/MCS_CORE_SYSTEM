@@ -8,7 +8,7 @@
   },
   "ConnectionStrings": {
      "default": "Server=127.0.0.1;port=5432;Database=defaultdatabase;Uid=defaultuser;Pwd=SG,npuLc2?;",
-    "docker": "Server=127.0.0.1;port=8082;Database=defaultdatabase;Uid=defaultuser;Pwd=SG,npuLc2?;"
+     "docker": "Server=database;port=5432;Database=defaultdatabase;Uid=defaultuser;Pwd=SG,npuLc2?;"
   },
   "Smtp": {
     "server": "url",
