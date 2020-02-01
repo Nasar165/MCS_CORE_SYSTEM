@@ -20,7 +20,6 @@ namespace api.Models
         {
             if (Validation.IsDocker())
                 return GetValueFromAppConfig("ConnectionStrings", "docker");
-
             else
                 return GetValueFromAppConfig("ConnectionStrings", "default");
         }
