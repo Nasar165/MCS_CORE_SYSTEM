@@ -19,9 +19,10 @@ namespace api.Models
         public string GetDefaultSQlConnection()
         {
             if (Validation.IsDocker())
-                return GetValueFromAppConfig("ConnectionStrings", "default");
-            else
                 return GetValueFromAppConfig("ConnectionStrings", "docker");
+
+            else
+                return GetValueFromAppConfig("ConnectionStrings", "default");
         }
 
         public void SetIConfiguration(IConfiguration config)

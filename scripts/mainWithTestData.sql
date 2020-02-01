@@ -9,18 +9,7 @@ CREATE USER defaultuser WITH
     NOREPLICATION
     CONNECTION LIMIT -1
     PASSWORD 'SG,npuLc2?';
-          
-DROP TABLE IF EXISTS customer CASCADE;
-DROP TABLE IF EXISTS contact CASCADE;
-DROP TABLE IF EXISTS useraccount CASCADE;
-DROP TABLE IF EXISTS database_list CASCADE;
-DROP TABLE IF EXISTS tokenkey CASCADE;
-DROP TABLE IF EXISTS authactivity CASCADE;
-DROP TABLE IF EXISTS token CASCADE;
-DROP TABLE IF EXISTS roles CASCADE;
-DROP TABLE IF EXISTS roles_token CASCADE;
-DROP TABLE IF EXISTS roles_useraccount CASCADE;
-    
+           
 CREATE TABLE customer(
     customer_id SERIAL PRIMARY KEY NOT NULL,
     company_name VARCHAR(250) DEFAULT 'name not set' NOT NULL,
@@ -78,7 +67,7 @@ CREATE TABLE useraccount (
     FOREIGN KEY (database_id) REFERENCES database_list(database_id)
 );
 
-insert into useraccount (username,password,database_id,active) values('0zrYwyRKtp35kFlnsQPfgw','0zrYwyRKtp35kFlnsQPfgw==',1,'1');
+insert into useraccount (username,password,database_id,active) values('0mFrB1cJ995oZj1wb1N6YA==','0zrYwyRKtp35kFlnsQPfgw==',1,'1');
 
 CREATE TABLE authactivity(
     authactivity_id SERIAL PRIMARY KEY NOT NULL,

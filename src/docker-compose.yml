@@ -1,16 +1,26 @@
 version: '3'
 services:
+  postgres-db:
+    image: postgres
+    restart: always
+    ports:
+      - '8082:5432'
+    environment:
+      POSTGRES_PASSWORD: 4-B&RtP;(
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
   web:
     image: mcsunity/xeroxcore
     build: .
     ports:
       - '8080:80'
       - '8181:443'
+    volumes:
+      - xeroxcore-data:/app
+    depends_on:
+      - postgres-db
 
-  db:
-    image: postgres
-    restart: always
-    ports:
-      - '24000:5432'
-    environment:
-      POSTGRES_PASSWORD: 4-B&RtP;(
+volumes:
+  db-data:
+  xeroxcore-data:
