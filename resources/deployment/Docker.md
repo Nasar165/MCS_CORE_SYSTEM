@@ -41,6 +41,7 @@ to function properly since the IP / domain has changed.
 2. go to ConnectionStrings and alter the connection string with the name docker.
 3. now you will have to adjust the connection string as needed to connect to your 
 postgresql server.
+```
 
 ### Building Docker image
 
