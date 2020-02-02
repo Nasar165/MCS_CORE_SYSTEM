@@ -1,3 +1,4 @@
+using Components;
 using Microsoft.Extensions.Configuration;
 using System;
 
@@ -13,10 +14,15 @@ namespace api.Models
             => AppConfig.GetSection(section).GetSection(name).Value;
 
         public string GetSecreatKey()
-            => AppConfig.GetSection("AppSettings").GetSection("SecretKey").Value;
+            => GetValueFromAppConfig("AppSettings", "SecretKey");
 
         public string GetDefaultSQlConnection()
-            => AppConfig.GetSection("ConnectionStrings").GetSection("default").Value;
+        {
+            if (Validation.IsDocker())
+                return GetValueFromAppConfig("ConnectionStrings", "docker");
+            else
+                return GetValueFromAppConfig("ConnectionStrings", "default");
+        }
 
         public void SetIConfiguration(IConfiguration config)
             => AppConfig = config;

@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 
 namespace Components
@@ -42,5 +43,30 @@ namespace Components
 
         public static bool StringContainsValue(string text, string value)
              => text.Contains(value) ? true : false;
+
+        public static bool IsDocker()
+        {
+            var inContainer = Environment.
+                    GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER");
+            switch (inContainer)
+            {
+                case null:
+                    return false;
+                case "True":
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        public static void ValidateLogFile(string directoryPath, string filename)
+        {
+            var fileWriter = new FileWriter();
+            if (!DirecortyPathExists($"{directoryPath}"))
+                fileWriter.CreateDirectoryPath($"{directoryPath}");
+
+            if (!FilePathExists($"{directoryPath}{filename}"))
+                fileWriter.CreateFile($"{directoryPath}{filename}");
+        }
     }
 }

@@ -50,7 +50,7 @@ namespace Components.DbConnection
 
         public DataTable ReadDataFromDatabase(NpgsqlCommand sqlCommand)
         {
-            NpgsqlDataReader reader = sqlCommand.ExecuteReader();
+            var reader = sqlCommand.ExecuteReader();
             var dataTable = new DataTable();
             dataTable.Load(reader);
             return dataTable;

@@ -15,6 +15,7 @@ handling multiple databases and more than one client.
 
 - [Getting started](#getting-started)
 - [Prerequisites](#prerequisites)
+- [Appsettings configuration] (#appsettings-configuration)
 - [Installing](#installing)
   - [PostgreSQL](#postgresql)
     - [Linux-CentOS](#linux-centos)
@@ -45,6 +46,18 @@ are installed and if not, install them utilizing the providers main pages.
 
 - [.Net Core](https://dotnet.microsoft.com/download/dotnet-core/3.0) - dotnet core 3 and greater
 - [PostgreSQL](https://www.postgresql.org/) - PostgreSQL (Required by default)
+
+### Appsettings Configuration
+
+#### Symetrickeys
+
+##### SecretKey
+
+##### Symmetrickey
+
+####  Logging
+
+#### Smtp credentials
 
 ### Installing
 

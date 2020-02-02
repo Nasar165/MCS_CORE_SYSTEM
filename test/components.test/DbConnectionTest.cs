@@ -10,7 +10,8 @@ namespace Components.Test
     [TestClass]
     public class DbConnectiontest
     {
-        private ISqlHelper Connecter { get; } = new NpgSqlHelper("Server=127.0.0.1;Database=mcsunity;Uid=mcsuser;Pwd=Nasar165;");
+        private readonly ISqlHelper Connecter =
+             new NpgSqlHelper("Server=127.0.0.1;port=5432;Database=defaultdatabase;Uid=defaultuser;Pwd=SG,npuLc2?;");
         private int Id { get; set; }
 
         private authactivity CreateAauthUser()
