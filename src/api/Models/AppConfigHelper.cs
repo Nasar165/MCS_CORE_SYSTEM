@@ -16,9 +16,12 @@ namespace api.Models
         public string GetSecreatKey()
             => GetValueFromAppConfig("AppSettings", "SecretKey");
 
+        private bool IsDocker()
+            => bool.Parse(GetValueFromAppConfig("AppSettings", "Docker"));
+
         public string GetDefaultSQlConnection()
         {
-            if (Validation.IsDocker())
+            if (IsDocker())
                 return GetValueFromAppConfig("ConnectionStrings", "docker");
             else
                 return GetValueFromAppConfig("ConnectionStrings", "default");

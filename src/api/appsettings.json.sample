@@ -4,7 +4,8 @@
     "SymmetricKey": "b14ca5898a4e4133bbce2ea2315a1916",
     "Domain": "yourdomain.com",
     "ExportLogHttp":true,
-    "LogAsJson":true
+    "LogAsJson":true,
+    "Docker": true
   },
   "ConnectionStrings": {
      "default": "Server=127.0.0.1;port=5432;Database=defaultdatabase;Uid=defaultuser;Pwd=SG,npuLc2?;",
