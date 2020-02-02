@@ -27,7 +27,6 @@ namespace api
 
         private static void AddSingleton()
         {
-            Services.AddHttpContextAccessor();
             Services.AddSingleton<ILogger, EventLogger>(ServiceProvider=>
                 { return new EventLogger(GetLoggingStyle()); });
         }
