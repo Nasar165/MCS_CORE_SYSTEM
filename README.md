@@ -16,7 +16,7 @@ handling multiple databases and more than one client.
 
 - [Getting started](#getting-started)
 - [Prerequisites](#prerequisites)
-- [Appsettings configuration] (#appsettings-configuration)
+- [Appsettings configuration](#appsettings-configuration)
 - [Installing](#installing)
   - [PostgreSQL](#postgresql)
     - [Linux-CentOS](#linux-centos)
