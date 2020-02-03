@@ -5,11 +5,11 @@ namespace api
 {
     public static class EncrypterStarter
     {
-        public static string GetSymmetricKey()
-            => AppConfigHelper.Instance.GetValueFromAppConfig("AppSettings", "JWTKey");
+        public static string GetAesKey()
+            => AppConfigHelper.Instance.GetValueFromAppConfig("AppSettings", "AESKey");
         public static void SetupEncryption()
         {
-            AesEncrypter._instance = new AesEncrypter(GetSymmetricKey());
+            AesEncrypter._instance = new AesEncrypter(GetAesKey());
         }
     }
 }

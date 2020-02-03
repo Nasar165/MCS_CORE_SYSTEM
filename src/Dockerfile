@@ -10,3 +10,4 @@ WORKDIR /app
 EXPOSE 80 443
 COPY --from=build-env /app/out .
 ENTRYPOINT [ "dotnet", "api.dll" ]
+
