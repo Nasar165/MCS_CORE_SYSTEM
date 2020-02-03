@@ -14,7 +14,7 @@ namespace api.Models
             => AppConfig.GetSection(section).GetSection(name).Value;
 
         public string GetSecreatKey()
-            => GetValueFromAppConfig("AppSettings", "SecretKey");
+            => GetValueFromAppConfig("AppSettings", "JWTkey");
 
         private bool IsDocker()
             => bool.Parse(GetValueFromAppConfig("AppSettings", "Docker"));

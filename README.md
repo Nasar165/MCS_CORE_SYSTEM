@@ -15,7 +15,7 @@ handling multiple databases and more than one client.
 
 - [Getting started](#getting-started)
 - [Prerequisites](#prerequisites)
-- [Appsettings configuration] (#appsettings-configuration)
+- [Appsettings configuration](#appsettings-configuration)
 - [Installing](#installing)
   - [PostgreSQL](#postgresql)
     - [Linux-CentOS](#linux-centos)
@@ -49,15 +49,63 @@ are installed and if not, install them utilizing the providers main pages.
 
 ### Appsettings Configuration
 
-#### Symetrickeys
+Configuring your application before deployment is cruisal for smoth operation. This section will
+help you understand how altering values in the settings file impacts your applications behauvior.
+keep in mind that altering certain settings during production might have unforsean effects so 
+be careful and thes the API before deploying it to production.
+```
+Filepath src/api/appsettings.json
+```
 
-##### SecretKey
+#### JWTKey
 
-##### Symmetrickey
+The symmetric key is linked to JWT token authentication, it is highly important that you set a 
+key that is secure and keep it safe. Altering this key value while users are authenticated will
+cause their keys to become invalid.
 
-####  Logging
+##### AesKey
+
+AesKey is used in AES encryption that is used to encrypt data before being stored in the database.
+the key is also used to decrypt data. Changing this key will cause all data stored in the to 
+remain in a permanent encrypted state. Trying to decrypt the data will result in a failure.
+
+##### ExportLogHttp
+
+ExportLogHttp allows you the toggle between true and false setting it to true allows the application 
+to export your log files trough HTTP protocol. The default value is set to false. 
+
+###### LogAsJson
+
+LogAsJson tells the EventLogger class to log all events as a json string allowing you the user
+to get the result as a JSON string when using ExportLogHttp. The default value is set to true.
+
+#### Docker
+
+Docker informs the API if it is being run in a container that has been deployed using 
+docker-compose this is important to make sure that the API connects to postgresql container.
+set to true if using docker-compose false of running with kestrel or IIS. The default value 
+is set to false.
+
+#### ConnectionStrings
+
+SQL connections strings are stored in this section check scenarioss bellow and adjust your
+connection string according to your specifications.
+
+##### Default
+
+Alter this connection string if you are planning to run your own SQL server or if the connection
+string requires additional parameters. PS make sure that Docker is set to false.
+
+##### Docker
+
+Alter this connectionstring according to your specificcations if you have multiple conttainers
+connected to each other. PS make sure that Docker is set to true.
 
 #### Smtp credentials
+
+Here you will configure the mailserver that will be used as the primary mail for sending 
+errors informing you if somethings has gone wrong or if a specific event has occured 
+that requires your attenttion.
 
 ### Installing
 

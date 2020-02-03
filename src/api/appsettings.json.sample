@@ -1,29 +1,30 @@
 {
-  "AppSettings": {
-    "SecretKey": "MyNewSuperMegeKeyForJwt11",
-    "SymmetricKey": "b14ca5898a4e4133bbce2ea2315a1916",
-    "Domain": "yourdomain.com",
-    "ExportLogHttp":true,
-    "LogAsJson":true,
-    "Docker": false
-  },
-  "ConnectionStrings": {
-     "default": "Server=127.0.0.1;port=5432;Database=defaultdatabase;Uid=defaultuser;Pwd=SG,npuLc2?;",
-     "docker": "Server=database;port=5432;Database=defaultdatabase;Uid=defaultuser;Pwd=SG,npuLc2?;"
-  },
-  "Smtp": {
-    "server": "url",
-    "username": "mail",
-    "password": "pw",
-    "Port": 465,
-    "SSl": true
-  },
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft": "Warning",
-      "Microsoft.Hosting.Lifetime": "Information"
-    }
-  },
-  "AllowedHosts": "*"
-}
+    "AppSettings": {
+      "JWTKey": "MyNewSuperMegeKeyForJwt11",
+      "AESKey": "b14ca5898a4e4133bbce2ea2315a1916",
+      "Domain": "yourdomain.com",
+      "ExportLogHttp":true,
+      "LogAsJson":true,
+      "Docker": true
+    },
+    "ConnectionStrings": {
+       "default": "Server=127.0.0.1;port=5432;Database=defaultdatabase;Uid=defaultuser;Pwd=SG,npuLc2?;",
+       "docker": "Server=database;port=5432;Database=defaultdatabase;Uid=defaultuser;Pwd=SG,npuLc2?;"
+    },
+    "Smtp": {
+      "server": "url",
+      "username": "mail",
+      "password": "pw",
+      "Port": 465,
+      "SSl": true
+    },
+    "Logging": {
+      "LogLevel": {
+        "Default": "Information",
+        "Microsoft": "Warning",
+        "Microsoft.Hosting.Lifetime": "Information"
+      }
+    },
+    "AllowedHosts": "*"
+  }
+  
