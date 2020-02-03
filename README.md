@@ -64,18 +64,18 @@ The symmetric key is linked to JWT token authentication, it is highly important 
 key that is secure and keep it safe. Altering this key value while users are authenticated will
 cause their keys to become invalid.
 
-##### AesKey
+#### AesKey
 
 AesKey is used in AES encryption that is used to encrypt data before being stored in the database.
 the key is also used to decrypt data. Changing this key will cause all data stored in the to 
 remain in a permanent encrypted state. Trying to decrypt the data will result in a failure.
 
-##### ExportLogHttp
+#### ExportLogHttp
 
 ExportLogHttp allows you the toggle between true and false setting it to true allows the application 
 to export your log files trough HTTP protocol. The default value is set to false. 
 
-###### LogAsJson
+##### LogAsJson
 
 LogAsJson tells the EventLogger class to log all events as a json string allowing you the user
 to get the result as a JSON string when using ExportLogHttp. The default value is set to true.
