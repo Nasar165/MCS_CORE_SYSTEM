@@ -1,16 +1,5 @@
 version: '3'
 services:
-  db:
-    image: postgres
-    restart: always
-    ports:
-      - '8082:5432'
-    environment:
-      POSTGRES_PASSWORD: SG,npuLc2?
-    volumes:
-      - db-data:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-
   web:
     image: mcsunity/xeroxcore
     build: .
@@ -25,6 +14,16 @@ services:
     links:
       - 'db:database'
 
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - '8082:5432'
+    environment:
+      POSTGRES_PASSWORD: SG,npuLc2?
+    volumes:
+      - xeroxcore-data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
 volumes:
-  db-data:
   xeroxcore-data:
