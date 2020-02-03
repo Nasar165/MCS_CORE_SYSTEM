@@ -15,7 +15,6 @@ are installed and if not, install them utilizing the provider's main pages.
 
 - [Docker](https://www.docker.com/) - Docker Container
 - [PostgreSQL](https://www.postgresql.org/) - PostgreSQL (Required by default)
-- [.Net Core](https://dotnet.microsoft.com/download/dotnet-core/3.0) - dotnet core 3 and greater
 
 ## Deploying Docker with docker-compose
 ## Running Docker compose
