@@ -136,7 +136,7 @@ third party repositories.
 ```
 begin by opening a new shell window and follow the steps bellow:
 1. sudo rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm
-2. sudo yum install dotnet-runtime-3.0.x86_64 -y
+2. sudo yum install dotnet-sdk-3.0.x86_64 -y
 3. enter the following command after the installation is complete to verify the installation
   dotnet --version
 ```
