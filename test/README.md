@@ -1,4 +1,4 @@
-# Unit Testing Codeing Guidline
+# Unit Testing Coding Guideline
 
 ### Intro
 
@@ -10,8 +10,8 @@ more reliable.
 
 ### .Net Core Command Line
 
-This section explains how to generate a unit test utilizing .Net Core with commandline.
-wich test to use dependend entirly to you. We reccomend that you use Xunit for testing
+This section explains how to generate a unit test utilizing a .Net Core with a command line.
+wich test to use depends entirely to you. We recommend that you use Xunit for testing
 Controllers while using MS Unit test for testing components.
 
 MS Unit Test
@@ -26,7 +26,7 @@ Make sure that you are in the main directory before running any of the following
 1. dotnet new mstest -o /test/api.test
 2. cd /test/api.test
 3. dotnet add reference ../../src/api
-You will now have access to the api's functionality
+You will now have access to the API's functionality
 ```
 
 Xunit
@@ -41,13 +41,13 @@ Make sure that you are in the main directory before running any of the following
 1. dotnet new xunit -o /test/api.test
 2. cd /test/api.test
 3. dotnet add reference ../../src/api
-You will now have access to the api's functionality
+You will now have access to the API's functionality
 ```
 
 ### Comments
 
-A developer committing code must only apply comments if necessary. Mainly because comments
-might become outdated, confusing other developers trying to improve an already exisitng test.
+A developer committing code must only apply comments if necessary. Mainly because of comments
+might become outdated, confusing other developers trying to improve an already existing test.
 To combat comments please choose good variable, method and class names instead of adding
 comments.
 
@@ -99,7 +99,7 @@ Negative Test helps us to find bugs within our code making the framework more st
 #### Positive tests
 
 A positive test aims at testing a method or class that it functions as intended. The test's
-the main focus is to provide a positive result showing that all is working as it should given
+the main focus is to provide a positive result showing that all is working as it should be given
 that all the inputs are correct.
 
 ##### Sample
@@ -117,8 +117,8 @@ public void EncryptData()
 #### Negative Tests
 
 Negative tests your class or method for faults, it's designed to break your code. This is
-helpful when trying to identify bugs within your code and what better way then to break it
-yourself. So a succesfull negative test is where your code breaks and wont give the expected
+helpful when trying to identify bugs within your code and what better way than to break it
+yourself. So a successful negative test is where your code breaks and won't give the expected
 result.
 
 ##### Sample
