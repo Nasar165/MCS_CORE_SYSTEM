@@ -3,6 +3,12 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/xeroxcore/xeroxcore/badge)](https://www.codefactor.io/repository/github/xeroxcore/xeroxcore)
 [![Xeroxcore logo](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/docker-supported.png)](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/deployment/Docker.md)
 
+###### Docker Deployemnts
+[![Azure](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/Azure.png)](https://azure.microsoft.com/en-us/)
+[![AWS](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/aws.png)](https://azure.microsoft.com/en-us/)
+[![Digitalocaen](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/digitalocean.png)](https://azure.microsoft.com/en-us/) <br/>
+<sup>* P = Pass * PE = Pending * F = failed</sup>
+
 ## Introduction
 
 Xeroxcore system intends to resolve a business requirement concerning a framework fitted to handling

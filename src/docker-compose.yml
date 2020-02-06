@@ -1,29 +1,25 @@
 version: '3'
 services:
-  web:
+  xeroxcore:
     image: mcsunity/xeroxcore:3.50.2
     build: .
     restart: always
     ports:
       - '8080:80'
-      - '8181:443'
     volumes:
       - xeroxcore-data:/app/logs
     depends_on:
       - db
-    links:
-      - 'db:database'
 
   db:
-    image: mcsunity/postgres:1.0.0
+    image: mcsunity/xeroxcore-db:1.0.0
     restart: always
     ports:
-      - '8082:5432'
+      - '5432:5432'
     environment:
       POSTGRES_PASSWORD: SG,npuLc2?
     volumes:
       - xeroxcore-data:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
 volumes:
   xeroxcore-data:
