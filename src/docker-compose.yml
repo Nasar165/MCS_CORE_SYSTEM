@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    image: mcsunity/xeroxcore
+    image: mcsunity/xeroxcore:3.50.2
     build: .
     restart: always
     ports:
@@ -15,7 +15,7 @@ services:
       - 'db:database'
 
   db:
-    image: postgres
+    image: mcsunity/postgres:1.0.0
     restart: always
     ports:
       - '8082:5432'
