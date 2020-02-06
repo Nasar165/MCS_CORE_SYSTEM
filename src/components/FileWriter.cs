@@ -51,7 +51,7 @@ namespace Components
 
         public string ReadTextFromFile(string filePath)
         {
-              try
+            try
             {
                 using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                 {

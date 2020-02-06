@@ -29,14 +29,15 @@ namespace api
         {
             Services.AddSingleton<ILogger, EventLogger>(ServiceProvider=>
                 { return new EventLogger(GetLoggingStyle()); });
+            Services.AddSingleton<IQueryHelper, SqlQueryHelper>();
         }
 
         public static void RegisterSingleton(IServiceCollection services)
         {
             Services = services;
             Services.AddHttpContextAccessor();
-            AddScoped();
             AddSingleton();
+            AddScoped();
         }
     }
 }

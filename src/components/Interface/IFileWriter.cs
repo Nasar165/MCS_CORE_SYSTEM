@@ -1,6 +1,6 @@
 namespace Components.Interface
 {
-    interface IFileWriter
+    public interface IFileWriter
     {
         void CreateDirectoryPath(string directoryPath);
         void CreateFile(string filePath);

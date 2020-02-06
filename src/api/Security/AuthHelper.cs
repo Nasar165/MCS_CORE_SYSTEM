@@ -19,19 +19,26 @@ namespace api.Security
         private IJwtAuthenticator _JwtAuthenticator { get; }
         private IDatabaseHelper DatabaseHelper { get; }
         private ILogger Logger { get; }
+        private IQueryHelper QueryHeler { get; }
         public AuthHelper(IJwtAuthenticator jwtAuthenticator
-                , IDatabaseHelper database, IClaimHelper claimHelper, ILogger logger)
+                , IDatabaseHelper database, IClaimHelper claimHelper, ILogger logger, 
+                IQueryHelper queryHelper)
         {
             _ClaimHelper = claimHelper;
             _JwtAuthenticator = jwtAuthenticator;
             DatabaseHelper = database;
             Logger = logger;
+            QueryHeler = queryHelper;
         }
 
-        private T GetCredentialsFromSql<T>(string tableQuery, SqlCommandHelper<T> account, string name)
+
+        private SqlCommandHelper<T> CreateSqlCommand<T>(T data, params string[] ignore)
+            => new SqlCommandHelper<T>(data, ignore);
+
+        private T GetCredentialsFromSql<T>(string procedureName, SqlCommandHelper<T> account, string name)
         {
             var sql = DatabaseHelper.GetDefaultConnection();
-            var dataTable = sql.SelectQuery($"Select * from {tableQuery};", account);
+            var dataTable = sql.SelectQuery(QueryHeler.GetSqlQuery(procedureName), account);
             if (dataTable.Rows.Count > 0)
                 return ObjectConverter.ConvertDataTableToList<T>(dataTable)[0];
             else
@@ -44,6 +51,11 @@ namespace api.Security
             var authLogg = new AuthLogg() { Username = name };
             Logger.LogAuthentication(sql, authLogg);
         }
+
+
+        private TokenKey ProvideMinimalDataToToken(int key)
+            => new TokenKey() { Key = key };
+
         public string GetDoamin()
             => AppConfigHelper.Instance.GetValueFromAppConfig("AppSettings","Domain");
 
@@ -63,24 +75,23 @@ namespace api.Security
                 throw error;
             }
         }
-
-        private TokenKey ProvideMinimalDataToToken(int key)
-            => new TokenKey() { Key = key };
+        
+        private object AuthorizationProcedure(int key, string authName){
+            LogAuthentication(authName);
+            var tokenClaim = ProvideMinimalDataToToken(key);
+            var Token = GenerateToken(tokenClaim, "API", null);
+            return Token;
+        }
 
         public object AuthentiacteAPI(IAccessKey apiKey)
         {
             try
             {
-                var sqlcommand = new SqlCommandHelper<AccessKey>(
-                    (AccessKey)apiKey, "groupkey");
-                var dbApiKey = GetCredentialsFromSql<AccessKey>(
-                    $"token where tokenkey = @tokenkey", sqlcommand, apiKey.TokenKey);
+                var sqlcommand = CreateSqlCommand((AccessKey)apiKey, "groupkey");    
+                var dbApiKey = GetCredentialsFromSql<AccessKey>("apiauth", sqlcommand, apiKey.TokenKey);
                 if (apiKey.TokenKey == dbApiKey.TokenKey && apiKey.GroupKey == dbApiKey.GroupKey && dbApiKey.Active == true)
                 {
-                    LogAuthentication(dbApiKey.TokenKey);
-                    var tokenClaim = ProvideMinimalDataToToken(dbApiKey.TokenKey_Id);
-                    var Token = GenerateToken(tokenClaim, "API", null);
-                    return Token;
+                    return AuthorizationProcedure(dbApiKey.TokenKey_Id, dbApiKey.TokenKey);
                 }
                 return false;
             }
@@ -97,18 +108,11 @@ namespace api.Security
             {
                  if (method != null)
                     method();
-
-                var name = user.Username;
-                var sqlcommand = new SqlCommandHelper<UserAccount>(
-                    (UserAccount)user, "password");
-                var dbuser = GetCredentialsFromSql<UserAccount>(
-                    $"useraccount where username = @username", sqlcommand, user.Username);
+                var sqlcommand = CreateSqlCommand((UserAccount)user, "password");
+                var dbuser = GetCredentialsFromSql<UserAccount>("userauth", sqlcommand, user.Username);
                 if (user.Username == dbuser.Username && user.Password == dbuser.Password)
                 {
-                    LogAuthentication(user.Username);
-                    var tokenClaim = ProvideMinimalDataToToken(dbuser.UserAccount_Id);
-                    var Token = GenerateToken(tokenClaim, "User", null);
-                    return Token;
+                    return AuthorizationProcedure(dbuser.UserAccount_Id, dbuser.Username);
                 }
                 return false;
             }
