@@ -3,8 +3,10 @@ using api.Database.Interface;
 using api.Models;
 using api.Security;
 using api.Security.Interface;
+using Components.Interface;
 using Components.Logger;
 using Components.Logger.Interface;
+using Components.Security;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace api
@@ -30,6 +32,7 @@ namespace api
             Services.AddSingleton<ILogger, EventLogger>(ServiceProvider=>
                 { return new EventLogger(GetLoggingStyle()); });
             Services.AddSingleton<IQueryHelper, SqlQueryHelper>();
+            Services.AddSingleton<IFileIntegrity, FileIntegrity>();
         }
 
         public static void RegisterSingleton(IServiceCollection services)
