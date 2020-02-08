@@ -1,7 +1,10 @@
 ![Xeroxcore logo](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/Xeroxcore_Logo.png)
 <br/><br/>
 [![CodeFactor](https://www.codefactor.io/repository/github/xeroxcore/xeroxcore/badge)](https://www.codefactor.io/repository/github/xeroxcore/xeroxcore)
-[![Xeroxcore logo](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/docker-supported.png)](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/deployment/Docker.md)
+[![Xeroxcore logo](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/docker-supported.png)](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/deployment/Docker.md)<br/>
+
+###### Security
+[![Black Duck Security Risk](https://copilot.blackducksoftware.com/github/repos/Xeroxcore/Xeroxcore/branches/master/badge-risk.svg)](https://copilot.blackducksoftware.com/github/repos/Xeroxcore/Xeroxcore/branches/master)
 
 ###### Docker Deployemnts
 [![Azure](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/Azure.png)](https://azure.microsoft.com/en-us/)
