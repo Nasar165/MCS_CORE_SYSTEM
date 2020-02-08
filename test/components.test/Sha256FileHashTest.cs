@@ -15,12 +15,15 @@ namespace Components.Test
         [TestMethod]
         public void AddFileHashToList()
         {
-            var dir = Directory.GetCurrentDirectory() + "/integrityTestFile.txt";
-            FileWriter.CreateFile(dir);
-            FileWriter.AppendTextToFile("Hello world", dir, FileMode.Append);
-            FileIntegrity.AddFileHashToIntegrityStore("sqltest", "/integrityTestFile.txt");
+            var dir = Directory.GetCurrentDirectory() + "/scripts";
+            FileWriter.CreateDirectoryPath(dir);
+            var file = dir + "/sqlqueries.json";
+            FileWriter.CreateFile(file);
+            FileWriter.AppendTextToFile("[{\"procedure\": \"apiauth\", \"query\": \"select * from token where tokenkey = @tokenkey\" }]"
+                            , file, FileMode.Truncate);
+            FileIntegrity.AddFileHashToIntegrityStore("sqltest", "scripts/sqlqueries.json");
             FileIntegrity.AddFileHashToIntegrityStore("sqlquery", "scripts/sqlqueries.json");
-            Assert.IsTrue(FileIntegrity.FileIntegrityIsIntact("sqltest"));
+            Assert.IsTrue(FileIntegrity.FileIntegrityIsIntact("sqlquery"));
         }
 
         [TestMethod]
