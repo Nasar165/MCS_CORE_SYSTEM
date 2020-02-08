@@ -6,7 +6,8 @@ using api.Security.AuthTemplate;
 using api.Security.AuthTemplate.Interface;
 using api.Security.Interface;
 using Components;
-using Components.DbConnection;
+using Components.Database;
+using Components.Database.Interface;
 using Components.Logger.Interface;
 using Components.Security;
 
@@ -21,7 +22,7 @@ namespace api.Security
         private ILogger Logger { get; }
         private IQueryHelper QueryHeler { get; }
         public AuthHelper(IJwtAuthenticator jwtAuthenticator
-                , IDatabaseHelper database, IClaimHelper claimHelper, ILogger logger, 
+                , IDatabaseHelper database, IClaimHelper claimHelper, ILogger logger,
                 IQueryHelper queryHelper)
         {
             _ClaimHelper = claimHelper;
@@ -57,7 +58,7 @@ namespace api.Security
             => new TokenKey() { Key = key };
 
         public string GetDoamin()
-            => AppConfigHelper.Instance.GetValueFromAppConfig("AppSettings","Domain");
+            => AppConfigHelper.Instance.GetValueFromAppConfig("AppSettings", "Domain");
 
         private object GenerateToken<T>(T data, string audiance, params string[] roles)
         {
@@ -75,8 +76,9 @@ namespace api.Security
                 throw error;
             }
         }
-        
-        private object AuthorizationProcedure(int key, string authName){
+
+        private object AuthorizationProcedure(int key, string authName)
+        {
             LogAuthentication(authName);
             var tokenClaim = ProvideMinimalDataToToken(key);
             var Token = GenerateToken(tokenClaim, "API", null);
@@ -87,7 +89,7 @@ namespace api.Security
         {
             try
             {
-                var sqlcommand = CreateSqlCommand((AccessKey)apiKey, "groupkey");    
+                var sqlcommand = CreateSqlCommand((AccessKey)apiKey, "groupkey");
                 var dbApiKey = GetCredentialsFromSql<AccessKey>("apiauth", sqlcommand, apiKey.TokenKey);
                 if (apiKey.TokenKey == dbApiKey.TokenKey && apiKey.GroupKey == dbApiKey.GroupKey && dbApiKey.Active == true)
                 {
@@ -106,7 +108,7 @@ namespace api.Security
         {
             try
             {
-                 if (method != null)
+                if (method != null)
                     method();
                 var sqlcommand = CreateSqlCommand((UserAccount)user, "password");
                 var dbuser = GetCredentialsFromSql<UserAccount>("userauth", sqlcommand, user.Username);

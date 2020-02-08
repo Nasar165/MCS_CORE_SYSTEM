@@ -13,6 +13,12 @@ namespace Components
                 File.Delete(filePath);
         }
 
+        public void DeleteDirectory(string directoryPath)
+        {
+            if (Validation.DirecortyPathExists(directoryPath))
+                Directory.Delete(directoryPath);
+        }
+
         public void CreateDirectoryPath(string directoryPath)
         {
             if (!Validation.DirecortyPathExists(directoryPath))
@@ -30,16 +36,18 @@ namespace Components
 
         private void AddTextToFile(FileStream fs, string text)
         {
-            byte[] byteArray = new UTF8Encoding(true).GetBytes(text + Environment.NewLine);
+            byte[] byteArray = new UTF8Encoding(true).GetBytes(text);
             fs.Write(byteArray, 0, byteArray.Length);
         }
 
-        public void AppendTextToFile(string text, string filePath)
+        public void AppendTextToFile(string text, string filePath, FileMode fileMode)
         {
             try
             {
-                using (FileStream fs = new FileStream(filePath, FileMode.Append, FileAccess.Write))
+                using (FileStream fs = new FileStream(filePath, fileMode, FileAccess.Write))
                 {
+                    if (fileMode == FileMode.Append)
+                        text += Environment.NewLine;
                     AddTextToFile(fs, text);
                 }
             }
@@ -55,7 +63,7 @@ namespace Components
             {
                 using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
                 {
-                    using(StreamReader reader = new StreamReader(fs))
+                    using (StreamReader reader = new StreamReader(fs))
                     {
                         return reader.ReadToEnd();
                     }

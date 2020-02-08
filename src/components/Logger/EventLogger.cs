@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Components.DbConnection;
-using Components.DbConnection.Interface;
+using Components.Database;
+using Components.Database.Interface;
 using Components.Logger.Interface;
 using Components.Interface;
 using System.IO;
@@ -39,7 +39,7 @@ namespace Components.Logger
         public void LogEvent(string text)
         {
             IsEventLogFilePathValid();
-            FileWriter.AppendTextToFile(text, $"{DirectoryPath}/logs/event/event.txt");
+            FileWriter.AppendTextToFile(text, $"{DirectoryPath}/logs/event/event.txt", FileMode.Append);
         }
 
         public async void LogEventAsync(Exception error)
@@ -50,7 +50,7 @@ namespace Components.Logger
             var exceptionHelper = new ExceptionHelper(error);
             IsErrorLogFilePathValid();
             FileWriter.AppendTextToFile(
-                exceptionHelper.GetFormatedErrorMessage(LogAsJson), $"{DirectoryPath}/logs/error/error.txt");
+                exceptionHelper.GetFormatedErrorMessage(LogAsJson), $"{DirectoryPath}/logs/error/error.txt", FileMode.Append);
         }
 
         // Potentially create a new class for database logging.

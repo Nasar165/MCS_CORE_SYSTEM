@@ -1,6 +1,6 @@
 using Npgsql;
 
-namespace Components.DbConnection
+namespace Components.Database
 {
     public class SqlCommandHelper<T>
     {

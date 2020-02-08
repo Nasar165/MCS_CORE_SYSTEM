@@ -1,9 +1,9 @@
 using System;
 using System.Data;
-using Components.DbConnection.Interface;
+using Components.Database.Interface;
 using Npgsql;
 
-namespace Components.DbConnection
+namespace Components.Database
 {
     public class NpgSqlHelper : ISqlHelper
     {

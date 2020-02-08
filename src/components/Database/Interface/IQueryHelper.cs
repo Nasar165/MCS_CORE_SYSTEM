@@ -1,4 +1,4 @@
-namespace api.Database.Interface
+namespace Components.Database.Interface
 {
     public interface IQueryHelper
     {

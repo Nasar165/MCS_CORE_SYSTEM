@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using api.Security.AuthTemplate;
-using Components.DbConnection;
-using Components.DbConnection.Interface;
+using Components.Database;
+using Components.Database.Interface;
 
 namespace api.Database.Interface
 {
