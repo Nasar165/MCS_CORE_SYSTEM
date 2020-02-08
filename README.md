@@ -5,7 +5,6 @@
 
 ###### Security
 [![Black Duck Security Risk](https://copilot.blackducksoftware.com/github/repos/Xeroxcore/Xeroxcore/branches/master/badge-risk.svg)](https://copilot.blackducksoftware.com/github/repos/Xeroxcore/Xeroxcore/branches/master)
-[![Known Vulnerabilities](https://snyk.io/test/github/Xeroxcore/Xeroxcore/badge.svg?targetFile=src/api/api.csproj)](https://snyk.io/test/github/Xeroxcore/Xeroxcore?targetFile=src/api/api.csproj)
 
 ###### Docker Deployemnts
 [![Azure](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/Azure.png)](https://azure.microsoft.com/en-us/)
