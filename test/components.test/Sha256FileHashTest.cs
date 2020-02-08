@@ -15,6 +15,9 @@ namespace Components.Test
         [TestMethod]
         public void AddFileHashToList()
         {
+            var dir = Directory.GetCurrentDirectory() + "/integrityTestFile.txt";
+            FileWriter.CreateFile(dir);
+            FileWriter.AppendTextToFile("Hello world", dir, FileMode.Append);
             FileIntegrity.AddFileHashToIntegrityStore("sqltest", "/integrityTestFile.txt");
             FileIntegrity.AddFileHashToIntegrityStore("sqlquery", "scripts/sqlqueries.json");
             Assert.IsTrue(FileIntegrity.FileIntegrityIsIntact("sqltest"));
