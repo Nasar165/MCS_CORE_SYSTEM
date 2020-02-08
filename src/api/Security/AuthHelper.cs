@@ -32,7 +32,6 @@ namespace api.Security
             QueryHeler = queryHelper;
         }
 
-
         private SqlCommandHelper<T> CreateSqlCommand<T>(T data, params string[] ignore)
             => new SqlCommandHelper<T>(data, ignore);
 
@@ -52,7 +51,6 @@ namespace api.Security
             var authLogg = new AuthLogg() { Username = name };
             Logger.LogAuthentication(sql, authLogg);
         }
-
 
         private TokenKey ProvideMinimalDataToToken(int key)
             => new TokenKey() { Key = key };

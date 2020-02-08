@@ -74,7 +74,6 @@ namespace Components.Security
                 JsonConvert.SerializeObject(FileHashList), $"{DirectoryPath}/filehash.json"
                 , FileMode.Truncate);
 
-
         public void AddFileHashToIntegrityStore(string fileName, string filePath)
         {
             var dir = Directory.GetCurrentDirectory();
