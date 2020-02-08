@@ -3,8 +3,13 @@ using api.Database.Interface;
 using api.Models;
 using api.Security;
 using api.Security.Interface;
+using Components;
+using Components.Database;
+using Components.Database.Interface;
+using Components.Interface;
 using Components.Logger;
 using Components.Logger.Interface;
+using Components.Security;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace api
@@ -23,20 +28,23 @@ namespace api
         }
 
         private static bool GetLoggingStyle()
-            => bool.Parse(AppConfigHelper.Instance.GetValueFromAppConfig("AppSettings","LogAsJson"));
+            => bool.Parse(AppConfigHelper.Instance.GetValueFromAppConfig("AppSettings", "LogAsJson"));
 
         private static void AddSingleton()
         {
-            Services.AddSingleton<ILogger, EventLogger>(ServiceProvider=>
+            Services.AddSingleton<ILogger, EventLogger>(ServiceProvider =>
                 { return new EventLogger(GetLoggingStyle()); });
+            Services.AddSingleton<IQueryHelper, SqlQueryHelper>();
+            Services.AddSingleton<IFileWriter, FileWriter>();
+            Services.AddSingleton<IFileIntegrity, SHA256FileHash>();
         }
 
         public static void RegisterSingleton(IServiceCollection services)
         {
             Services = services;
             Services.AddHttpContextAccessor();
-            AddScoped();
             AddSingleton();
+            AddScoped();
         }
     }
 }

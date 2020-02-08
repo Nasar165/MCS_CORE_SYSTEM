@@ -1,7 +1,7 @@
 using System;
 using components.test.Models;
-using Components.DbConnection;
-using Components.DbConnection.Interface;
+using Components.Database;
+using Components.Database.Interface;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Components.Test

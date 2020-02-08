@@ -1,0 +1,10 @@
+[
+    {
+        "procedure": "userauth",
+        "query": "select * from useraccount where username = @username"
+    },
+    {
+        "procedure": "apiauth",
+        "query": "select * from token where tokenkey = @tokenkey" 
+    }
+]

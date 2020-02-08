@@ -1,9 +1,9 @@
 using System;
 using api.Models;
 using Components;
-using Components.DbConnection;
+using Components.Database;
 using Components.Security;
-using Components.DbConnection.Interface;
+using Components.Database.Interface;
 using api.Database.Interface;
 using api.Security.AuthTemplate;
 using System.Collections.Generic;

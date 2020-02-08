@@ -1,5 +1,5 @@
 using System;
-using Components.DbConnection.Interface;
+using Components.Database.Interface;
 
 namespace Components.Logger.Interface
 {

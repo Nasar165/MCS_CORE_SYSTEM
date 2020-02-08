@@ -1,5 +1,4 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Components;
 using System.IO;
 using System;
 
@@ -42,7 +41,7 @@ namespace Components.Test
         {
             var filePath = $"{WorkingDirectory}/test_folder/test_file.txt";
             var text = "This is a test " + DateTime.Now;
-            writer.AppendTextToFile(text, filePath);
+            writer.AppendTextToFile(text, filePath, FileMode.Append);
             var textfile = File.ReadAllText(filePath);
             Assert.IsTrue(textfile.Contains(text));
         }

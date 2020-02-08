@@ -12,7 +12,7 @@ namespace api.HealthChecks
         {
             if (!Validation.DirecortyPathExists(filepath))
                 writer.CreateDirectoryPath(filepath);
-            if(!Validation.FilePathExists($"{filepath}health_cheack.txt"))
+            if (!Validation.FilePathExists($"{filepath}health_cheack.txt"))
                 writer.CreateFile($"{filepath}health_cheack.txt");
         }
 
@@ -23,7 +23,7 @@ namespace api.HealthChecks
                 var writer = new FileWriter();
                 var filepath = $"{Directory.GetCurrentDirectory()}/logs/";
                 EnsureThatFilePathExists(filepath, writer);
-                writer.AppendTextToFile("Appending Text to File", $"{filepath}health_cheack.txt");
+                writer.AppendTextToFile("Appending Text to File", $"{filepath}health_cheack.txt", FileMode.Append);
                 writer.DeleteFile($"{filepath}/health_cheack.txt");
                 return Task.FromResult(HealthCheckResult.Healthy("Passed"));
             }
