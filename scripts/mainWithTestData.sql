@@ -1,5 +1,7 @@
+/* Create Database */
 CREATE DATABASE defaultdatabase;
 
+/* Create Useraccount */
 CREATE USER defaultuser WITH
     LOGIN
     NOSUPERUSER
@@ -9,7 +11,8 @@ CREATE USER defaultuser WITH
     NOREPLICATION
     CONNECTION LIMIT -1
     PASSWORD 'SG,npuLc2?';
-           
+
+/* Create Tables */
 CREATE TABLE customer(
     customer_id SERIAL PRIMARY KEY NOT NULL,
     company_name VARCHAR(250) DEFAULT 'name not set' NOT NULL,
@@ -48,7 +51,7 @@ CREATE TABLE database_list(
 insert into database_list (database_name,username,password,dbm, customer_id) values('testdb','mcsuser','Nasar165','NpgSql', 1);
 
 CREATE TABLE token (
-    tokenkey_id SERIAL PRIMARY KEY NOT NULL,
+    token_id SERIAL PRIMARY KEY NOT NULL,
     tokenkey VARCHAR(50) NOT NULL,
     groupkey VARCHAR(50) NOT NULL,
     database_id int NOT NULL,
@@ -104,5 +107,44 @@ CREATE TABLE roles_useraccount(
 INSERT INTO roles_useraccount (role_id, useraccount_id) values(1,1);
 INSERT INTO roles_useraccount (role_id, useraccount_id) values(2,1);
 
+/* Grant Privilages to tables */
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO defaultuser;
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO defaultuser;
+
+/* Start functions*/
+CREATE OR REPLACE FUNCTION selectuser(userid int)
+  RETURNS TABLE (username TEXT, password TEXT, database_id INT, active BOOLEAN)
+AS $$
+SELECT username, password,database_id,active 
+FROM useraccount 
+WHERE useraccount_id = userid;
+$$ LANGUAGE SQL;
+
+CREATE OR REPLACE FUNCTION selectuser(username TEXT)
+  RETURNS TABLE (username TEXT, password TEXT, database_id INT, active BOOLEAN)
+AS $$
+SELECT username, password,database_id,active 
+FROM useraccount 
+WHERE username = username;
+$$ LANGUAGE SQL;
+
+CREATE OR REPLACE FUNCTION selecttoken(tokenk VARCHAR(50))
+  RETURNS TABLE (tokenkey VARCHAR(50), groupkey VARCHAR(50), database_id INT, active BOOLEAN)
+AS $$
+SELECT tokenkey, groupkey, database_id, active 
+FROM token 
+WHERE tokenkey = tokenk;
+$$ LANGUAGE SQL;
+
+CREATE OR REPLACE FUNCTION selecttoken(tokenid TEXT)
+  RETURNS TABLE (tokenkey TEXT, groupkey int, database_id INT, active BOOLEAN)
+AS $$
+SELECT tokenkey, groupkey, database_id, active 
+FROM token 
+WHERE token_id = tokenid;
+$$ LANGUAGE SQL;
+
+/* Start procedures */
+
+
+

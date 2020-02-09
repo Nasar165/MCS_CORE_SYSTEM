@@ -4,6 +4,7 @@ Content/Images
 logs
 *.jpg
 *.txt
+/docker
 
 
 *.swp

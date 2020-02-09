@@ -52,7 +52,7 @@ CREATE TABLE database_list(
 );
 
 CREATE TABLE token (
-    tokenkey_id SERIAL PRIMARY KEY NOT NULL,
+    token_id SERIAL PRIMARY KEY NOT NULL,
     tokenkey VARCHAR(50) NOT NULL,
     groupkey VARCHAR(50) NOT NULL,
     database_id int NOT NULL,

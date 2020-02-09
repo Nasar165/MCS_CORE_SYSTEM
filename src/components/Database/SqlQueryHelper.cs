@@ -12,11 +12,8 @@ namespace Components.Database
         private readonly string QueryFile =
             $"{Directory.GetCurrentDirectory()}/scripts/sqlqueries.json";
         private IReadOnlyCollection<SqlProcedures> SqlProcedureList { get; set; }
-        public SqlQueryHelper(IFileIntegrity fileIntegrity)
-        {
-            QueryFileIntergrityIsIntact(fileIntegrity);
-            GetProcedureList();
-        }
+        public SqlQueryHelper()
+            => GetProcedureList();
 
         private void QueryFileIntergrityIsIntact(IFileIntegrity fileIntegrity)
         {
