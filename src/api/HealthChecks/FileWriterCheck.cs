@@ -8,13 +8,6 @@ namespace api.HealthChecks
 {
     public class FileWriterCheck : IHealthCheck
     {
-        private void EnsureThatFilePathExists(string filepath, FileWriter writer)
-        {
-            if (!Validation.DirecortyPathExists(filepath))
-                writer.CreateDirectoryPath(filepath);
-            if (!Validation.FilePathExists($"{filepath}health_cheack.txt"))
-                writer.CreateFile($"{filepath}health_cheack.txt");
-        }
 
         public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
         {
@@ -22,7 +15,7 @@ namespace api.HealthChecks
             {
                 var writer = new FileWriter();
                 var filepath = $"{Directory.GetCurrentDirectory()}/logs/";
-                EnsureThatFilePathExists(filepath, writer);
+                writer.EnsureThatFilePathExists(filepath, "health_cheack.txt");
                 writer.AppendTextToFile("Appending Text to File", $"{filepath}health_cheack.txt", FileMode.Append);
                 writer.DeleteFile($"{filepath}/health_cheack.txt");
                 return Task.FromResult(HealthCheckResult.Healthy("Passed"));

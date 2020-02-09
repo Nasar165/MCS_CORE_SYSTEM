@@ -21,17 +21,9 @@ namespace Components.Security
             FileHashList = LoadFilesHashesFromFile();
         }
 
-        private void EnsureFileAccess()
-        {
-            if (!Validation.DirecortyPathExists(DirectoryPath))
-                FileWriter.CreateDirectoryPath(DirectoryPath);
-            if (!Validation.FilePathExists($"{DirectoryPath}filehash.json"))
-                FileWriter.CreateFile($"{DirectoryPath}filehash.json");
-        }
-
         private List<FileHash> LoadFilesHashesFromFile()
         {
-            EnsureFileAccess();
+            FileWriter.EnsureThatFilePathExists(DirectoryPath, "filehash.json");
             var list = new List<FileHash>();
             var text = FileWriter.ReadTextFromFile($"{DirectoryPath}filehash.json");
             var newList = JsonConvert.DeserializeObject<List<FileHash>>(text);
