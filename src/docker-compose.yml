@@ -1,21 +1,21 @@
-version: '3'
+version: "3"
 services:
   xeroxcore:
     image: mcsunity/xeroxcore:3.50.2
     build: .
     restart: always
     ports:
-      - '8080:80'
+      - "8080:80"
     volumes:
       - xeroxcore-data:/app/logs
     depends_on:
       - db
 
   db:
-    image: mcsunity/xeroxcore-db:1.0.0
+    image: mcsunity/xeroxcore-db:1.0.1
     restart: always
     ports:
-      - '5432:5432'
+      - "5432:5432"
     environment:
       POSTGRES_PASSWORD: SG,npuLc2?
     volumes:
