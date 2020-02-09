@@ -4,6 +4,7 @@ namespace Components.Interface
 {
     public interface IFileWriter
     {
+        void EnsureThatFilePathExists(string direcrotyPath, string fileName);
         void DeleteFile(string filePath);
         void DeleteDirectory(string directoryPath);
         void CreateDirectoryPath(string directoryPath);

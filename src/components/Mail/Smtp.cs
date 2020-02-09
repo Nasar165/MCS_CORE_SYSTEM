@@ -43,11 +43,11 @@ namespace Components.Mail
             };
         }
 
-        public void SendMail(string subject, string from, string message, bool IsHtml, params string[] to)
+        public void SendMail(MailDetails mail, params string[] to)
         {
             try
             {
-                var mailMessage = GenerateMailMessage(subject, from, message, IsHtml);
+                var mailMessage = GenerateMailMessage(mail.Subject, mail.From, mail.Message, mail.IsHtml);
                 var result = AddRecipiants(mailMessage, to);
                 SmtpSender.Send(mailMessage);
             }
@@ -57,11 +57,11 @@ namespace Components.Mail
             }
         }
 
-        public async void SendMailAsync(string subject, string from, string message, bool IsHtml, params string[] to)
+        public async void SendMailAsync(MailDetails mail, params string[] to)
         {
             try
             {
-                await Task.Run(() => { SendMail(subject, from, message, IsHtml, to); });
+                await Task.Run(() => { SendMail(mail, to); });
             }
             catch (Exception)
             {

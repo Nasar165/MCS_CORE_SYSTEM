@@ -5,6 +5,7 @@ using api.Models;
 using api.Models.Error;
 using api.Security;
 using api.Security.AuthTemplate;
+using Components.Database;
 using Components.Logger;
 using Components.Logger.Interface;
 using Microsoft.AspNetCore.Http;
@@ -22,7 +23,7 @@ namespace Components.Security
         public AuthorizeRoles(params string[] roles)
         {
             UserAssignedRole = roles;
-            var logAsJson = bool.Parse(AppConfigHelper.Instance.GetValueFromAppConfig("AppSettings","LogAsJson"));
+            var logAsJson = bool.Parse(AppConfigHelper.Instance.GetValueFromAppConfig("AppSettings", "LogAsJson"));
             Logger = new EventLogger(logAsJson);
         }
 
@@ -65,7 +66,7 @@ namespace Components.Security
                 try
                 {
                     var ClaimHelper = new ClaimHelper(CreateHttpContextAccessor());
-                    var databaseHelper = new DatabaseHelper(ClaimHelper, Logger);
+                    var databaseHelper = new DatabaseHelper(ClaimHelper, Logger, new SqlQueryHelper());
                     IEnumerable<Roles> roles = null;
                     var key = AesEncrypter._instance.DecryptyData(
                         ClaimHelper.GetValueFromClaim("key"));

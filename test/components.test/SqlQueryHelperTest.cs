@@ -1,6 +1,5 @@
 using Components.Database;
 using Components.Database.Interface;
-using Components.Security;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Components.Test
@@ -12,7 +11,7 @@ namespace Components.Test
         [TestMethod]
         public void GetQuery()
         {
-            IQueryHelper SqlQueryHelp = new SqlQueryHelper(new SHA256FileHash(new FileWriter()));
+            IQueryHelper SqlQueryHelp = new SqlQueryHelper();
             var query = SqlQueryHelp.GetSqlQuery("apiauth");
             Assert.AreEqual("select * from token where tokenkey = @tokenkey", query);
         }

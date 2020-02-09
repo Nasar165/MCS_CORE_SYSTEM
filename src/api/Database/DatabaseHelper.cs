@@ -17,28 +17,24 @@ namespace api.Database
         private string DefaultConnection { get; }
         private IClaimHelper ClaimHelper { get; }
         private ILogger Logger { get; }
+        private IQueryHelper QueryHelper { get; }
 
-        public DatabaseHelper(IClaimHelper claimHelper, ILogger logger)
+        public DatabaseHelper(IClaimHelper claimHelper, ILogger logger, IQueryHelper queryHelper)
         {
             ClaimHelper = claimHelper;
             Logger = logger;
             DefaultConnection = AppConfigHelper.Instance.GetDefaultSQlConnection();
+            QueryHelper = queryHelper;
         }
 
         public ISqlHelper GetDefaultConnection()
             => new NpgSqlHelper(DefaultConnection);
 
         private object CreateClientId(string id)
-        {
-            return new
-            {
-                Id = ObjectConverter.ConvertStringToInt(id)
-            };
-        }
+            => new { Id = ObjectConverter.ConvertStringToInt(id) };
+
         public SqlCommandHelper<T> CreateSqlCommand<T>(T data, params string[] ignore)
-        {
-            return new SqlCommandHelper<T>(data, ignore);
-        }
+            => new SqlCommandHelper<T>(data, ignore);
 
         private IList<T> FetchDataFromDB<T>(string key, string querry)
         {
@@ -52,15 +48,15 @@ namespace api.Database
 
         public DataExtension GetUserFromDatabase(string key)
             => FetchDataFromDB<DataExtension>(key
-                                , "Select * from useraccount where useraccount_id = @id")[0];
+                                , QueryHelper.GetSqlQuery("getuseraccount"))[0];
 
         public DataExtension GetTokenFromDatabase(string key)
             => FetchDataFromDB<DataExtension>(key
-                                , "Select * from token where database_id = @id")[0];
+                                , QueryHelper.GetSqlQuery("gettoken"))[0];
 
         private ClientDatabase FetchClientDataBase(string dbKey)
             => FetchDataFromDB<ClientDatabase>(dbKey.ToString()
-                                , "Select * from database_list where database_id = @id")[0];
+                                , QueryHelper.GetSqlQuery("getdatabase"))[0];
 
         private ClientDatabase FetchUserDb(string key)
         {
@@ -79,32 +75,35 @@ namespace api.Database
         public IEnumerable<Roles> GetRolesFromUser(string key)
         {
             var roles = FetchDataFromDB<Roles>(key,
-            $"select name from roles inner join roles_useraccount on roles_useraccount.role_id " +
-            " = roles.role_id Where roles_useraccount.useraccount_id = @id");
+                QueryHelper.GetSqlQuery("getuserroles"));
             return roles;
         }
 
         public IEnumerable<Roles> GetRolesFromToken(string key)
         {
             var roles = FetchDataFromDB<Roles>(key,
-             $"select name from roles inner join roles_token on roles_token.role_id" +
-             " = roles.role_id Where roles_token.tokenkey_id = @id");
+                QueryHelper.GetSqlQuery("gettokenroles"));
             return roles;
+        }
+
+        private string GetConnectionString(string audiance, string key)
+        {
+            var connectionString = "";
+            if (Validation.StringsAreEqual(audiance, "User"))
+                connectionString = FetchUserDb(key).GetConnectionString();
+            else
+                connectionString = FetchTokenDb(key).GetConnectionString();
+            return connectionString;
         }
 
         public string GetClientDatabase()
         {
             try
             {
-                var audiance = ClaimHelper.GetValueFromClaim("aud");
-                var connectionString = "";
                 var key = AesEncrypter._instance.DecryptyData(
                     ClaimHelper.GetValueFromClaim("key"));
-                if (Validation.StringsAreEqual(audiance, "User"))
-                    connectionString = FetchUserDb(key).GetConnectionString();
-                else
-                    connectionString = FetchTokenDb(key).GetConnectionString();
-
+                var audiance = ClaimHelper.GetValueFromClaim("aud");
+                var connectionString = GetConnectionString(audiance, key);
                 return connectionString;
             }
             catch (Exception error)

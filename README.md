@@ -1,7 +1,12 @@
 ![Xeroxcore logo](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/Xeroxcore_Logo.png)
 <br/><br/>
+###### Supported Deployments
+[![Docker supported](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/docker-supported.png)](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/deployment/Docker.md)<br/>
+
+###### Security, Maintainability & Code Quality
+[![Black Duck Security Risk](https://copilot.blackducksoftware.com/github/repos/Xeroxcore/Xeroxcore/branches/master/badge-risk.svg)](https://copilot.blackducksoftware.com/github/repos/Xeroxcore/Xeroxcore/branches/master)
+[![Maintainability](https://api.codeclimate.com/v1/badges/cbf2ad9723fb91ae9ea0/maintainability)](https://codeclimate.com/github/Xeroxcore/Xeroxcore/maintainability)
 [![CodeFactor](https://www.codefactor.io/repository/github/xeroxcore/xeroxcore/badge)](https://www.codefactor.io/repository/github/xeroxcore/xeroxcore)
-[![Xeroxcore logo](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/docker-supported.png)](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/deployment/Docker.md)
 
 ###### Docker Deployemnts
 [![Azure](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/Azure.png)](https://azure.microsoft.com/en-us/)

@@ -7,6 +7,15 @@ namespace Components
 {
     public class FileWriter : IFileWriter
     {
+
+        public void EnsureThatFilePathExists(string direcrotyPath, string fileName)
+        {
+            if (!Validation.DirecortyPathExists(direcrotyPath))
+                CreateDirectoryPath(direcrotyPath);
+            if (!Validation.FilePathExists($"{direcrotyPath}/{fileName}"))
+                CreateFile($"{direcrotyPath}/{fileName}");
+        }
+
         public void DeleteFile(string filePath)
         {
             if (Validation.FilePathExists(filePath))
