@@ -1,10 +1,42 @@
 [
-    {
-        "procedure": "userauth",
-        "query": "select * from useraccount where username = @username"
-    },
-    {
-        "procedure": "apiauth",
-        "query": "select * from token where tokenkey = @tokenkey" 
-    }
+  {
+    "procedure": "userauth",
+    "query": "SELECT * FROM selectuser(@username)"
+  },
+  {
+    "procedure": "apiauth",
+    "query": "SELECT * FROM selecttoken(@tokenkey)"
+  },
+  {
+    "procedure": "getuseraccount",
+    "query": "SELECT * FROM select(@id)"
+  },
+  {
+    "procedure": "gettoken",
+    "query": "SELECT * FROM token WHERE token_id = @id"
+  },
+  {
+    "procedure": "getdatabase",
+    "query": "SELECT * FROM database_list WHERE database_id = @id"
+  },
+  {
+    "procedure": "getuserroles",
+    "query": "select name from roles inner join roles_useraccount on roles_useraccount.role_id = roles.role_id Where roles_useraccount.useraccount_id = @id"
+  },
+  {
+    "procedure": "gettokenroles",
+    "query": "select name from roles inner join roles_token on roles_token.role_id = roles.role_id Where roles_token.tokenkey_id = @id"
+  },
+  {
+    "procedure": "createdatabase",
+    "query": "CREATE DATABASE $databasename;"
+  },
+  {
+    "procedure": "createuser",
+    "query": "CREATE USER $username WITH LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE INHERIT NOREPLICATION CONNECTION LIMIT -1 PASSWORD '$password';"
+  },
+  {
+    "procedure": "grantprivilages",
+    "query": "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO $username; GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO $username;"
+  }
 ]
