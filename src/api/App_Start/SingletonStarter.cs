@@ -1,5 +1,7 @@
 using api.Database;
 using api.Database.Interface;
+using api.Middleware;
+using api.Middleware.Interface;
 using api.Models;
 using api.Security;
 using api.Security.Interface;
@@ -37,6 +39,7 @@ namespace api
             Services.AddSingleton<IQueryHelper, SqlQueryHelper>();
             Services.AddSingleton<IFileWriter, FileWriter>();
             Services.AddSingleton<IFileIntegrity, SHA256FileHash>();
+            Services.AddSingleton<IHeaderPolicy, OWASPHeaderPolicy>();
         }
 
         public static void RegisterSingleton(IServiceCollection services)
