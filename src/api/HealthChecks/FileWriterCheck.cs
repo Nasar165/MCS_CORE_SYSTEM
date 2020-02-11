@@ -8,7 +8,6 @@ namespace api.HealthChecks
 {
     public class FileWriterCheck : IHealthCheck
     {
-
         public Task<HealthCheckResult> CheckHealthAsync(HealthCheckContext context, CancellationToken cancellationToken = default)
         {
             try
