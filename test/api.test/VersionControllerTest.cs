@@ -9,6 +9,7 @@ namespace api.test
         public VersionControllerTest(WebApplicationFactory<api.Startup> webapp)
             => WebApp = webapp;
 
+        [Trait("GithubAction", "version")]
         [Theory]
         [InlineData("/version")]
         public async void TestVersionController(string url)

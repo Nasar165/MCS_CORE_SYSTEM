@@ -35,6 +35,7 @@ namespace api.test
         }
 
         #region Negative Tests
+        [Trait("GithubAction", "auth")]
         [Theory]
         [InlineData("/apiauth")]
         public async void APIAuthControllerNegativeTestBadRequest(string url)
@@ -45,6 +46,7 @@ namespace api.test
             Assert.Equal(System.Net.HttpStatusCode.BadRequest, response.StatusCode);
         }
 
+        [Trait("GithubAction", "auth")]
         [Theory]
         [InlineData("/userauth")]
         public async void UserAuthControllerNegativeTestBadRequest(string url)
