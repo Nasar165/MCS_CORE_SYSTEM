@@ -36,7 +36,6 @@ namespace api
                 app.UseDeveloperExceptionPage();
             app.UseMiddleware<SecureHeaderMiddleware>();
             ApplicationStarter.SetApplicationSettings(app);
-
         }
     }
 }
