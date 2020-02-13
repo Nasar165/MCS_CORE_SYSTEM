@@ -1,0 +1,5 @@
+FROM library/postgres
+ENV POSTGRES_PASSWORD SG,npuLc2?
+COPY ./initdb.sql /docker-entrypoint-initdb.d/initdb.sql
+EXPOSE 5432
+VOLUME  ["/etc/postgresql", "/var/log/postgresql", "/var/lib/postgresql"]

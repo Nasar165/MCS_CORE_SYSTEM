@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using api.Models;
 using Components;
 using Components.Security;
+using api.Middleware;
 
 namespace api
 {
@@ -33,7 +34,7 @@ namespace api
         {
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
-
+            app.UseMiddleware<SecureHeaderMiddleware>();
             ApplicationStarter.SetApplicationSettings(app);
         }
     }

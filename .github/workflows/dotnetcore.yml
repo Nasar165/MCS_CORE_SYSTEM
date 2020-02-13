@@ -1,36 +1,28 @@
-name: Evaluate
+name: .Net Core Evaluate
 
 on:
-    push:
-       branches:
-        - master
-        - Release
-    pull_request:
-      branches:
-        - master
-        - Release
+  push:
+    branches:
+      - master
+      - Release
+  pull_request:
+    branches:
+      - master
+      - Release
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.101
-    - name: Test Components
-      working-directory: ./test/components.test/
-      run: dotnet test --filter TestCategory=GithubAction
-    - name: Relaese API
-      working-directory: ./src/api/
-      run: dotnet publish -c Release -o out
-    - name: Set up Java (CoPilot)
-      uses: actions/setup-java@v1
-      with:
-        java-version: 1.8
-    - name: Upload to CoPilot
-      if: github.event_name == 'push' || github.event_name == 'pull_request'
-      run: bash <(curl -s https://copilot.blackducksoftware.com/ci/githubactions/scripts/upload)
+      - uses: actions/checkout@v1
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.101
+      - name: Test Components
+        working-directory: ./test/components.test/
+        run: dotnet test --filter TestCategory=GithubAction
+      - name: Relaese API
+        working-directory: ./src/api/
+        run: dotnet publish -c Release -o out
