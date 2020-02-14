@@ -1,11 +1,6 @@
-using System;
 using System.Collections.Generic;
 using api.Middleware.Constants;
 using api.Middleware.Interface;
-using Components;
-using Components.Logger.Interface;
-using Microsoft.AspNetCore.Http;
-
 
 namespace api.Middleware
 {
