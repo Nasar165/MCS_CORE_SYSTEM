@@ -1,34 +1,56 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
 using api.Middleware.Interface;
+using Components.Interface;
+using Components.Logger.Interface;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace api.Middleware
 {
     public class OWASPHeaderPolicy : IHeaderPolicy
     {
+        private IFileWriter FileWriter { get; }
         private IHeaderDictionary Header { get; set; }
-        private void AddSecurityToHeader()
+        private ILogger EventLogger { get; }
+        public OWASPHeaderPolicy(IFileWriter fileWriter, ILogger eventLogger)
         {
-            Header.Add("X-Content-Type-Options", "nosniff");
-            Header.Add("X-Frame-Options", "deny");
-            Header.Add("X-XSS-Protection", "1; mode=block");
-            Header.Add("Content-Security-Policy", "default-src 'none'");
-            Header.Add("content-type", "application/json");
-            Header.Add("X-Permitted-Cross-Domain-Policies", "none");
-            Header.Add("Referrer-Policy", "no-referrer");
-            Header.Add("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
-            Header.Add("Expect-CT", "max-age=86400, enforce");
+            FileWriter = fileWriter;
+            EventLogger = eventLogger;
+        }
+        private void AddSecurityToHeader(string key, string value)
+        {
+            Header.Add(key, value);
         }
 
-        private void RemoveVaulnerabiltiesFromHeader()
+        private void RemoveVaulnerabiltiesFromHeader(string key, string value)
         {
             Header.Remove("Server");
         }
 
+        private IReadOnlyCollection<Policy> GetPolicies()
+        {
+            var filePath = $"{Directory.GetCurrentDirectory()}/Middleware/owasp.json";
+            var textFile = FileWriter.ReadTextFromFile(filePath);
+            return JsonConvert.DeserializeObject<List<Policy>>(textFile);
+        }
+
         public void AddPolicyToHeader(IHeaderDictionary header)
         {
-            Header = header;
-            AddSecurityToHeader();
-            RemoveVaulnerabiltiesFromHeader();
+            try
+            {
+                Header = header;
+                foreach (var policy in GetPolicies())
+                {
+                    if (policy.AddToHeader)
+                        AddSecurityToHeader(policy.Key, policy.Value);
+                }
+            }
+            catch (Exception error)
+            {
+                EventLogger.LogEvent(error);
+            }
         }
     }
 }
