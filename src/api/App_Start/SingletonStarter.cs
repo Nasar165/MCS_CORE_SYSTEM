@@ -39,7 +39,7 @@ namespace api
             Services.AddSingleton<IQueryHelper, SqlQueryHelper>();
             Services.AddSingleton<IFileWriter, FileWriter>();
             Services.AddSingleton<IFileIntegrity, SHA256FileHash>();
-            Services.AddSingleton<IHeaderPolicy, OWASPHeaderPolicy>();
+            Services.AddSingleton<IHeaderPolicy, OWASPPolicy>();
         }
 
         public static void RegisterSingleton(IServiceCollection services)
