@@ -4,8 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using api.Models;
-using Components;
-using Components.Security;
 using api.Middleware;
 
 namespace api
