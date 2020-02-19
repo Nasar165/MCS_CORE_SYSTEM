@@ -86,7 +86,7 @@ Filepath src/api/appsettings.json
     "Domain": "yourdomain.com",
     "ExportLogHttp": true,
     "LogAsJson": true,
-    "Docker": true
+    "Docker": false
   },
   "ConnectionStrings": {
     "default": "Server=127.0.0.1;port=5432;Database=defaultdatabase;Uid=defaultuser;Pwd=SG,npuLc2?;",
