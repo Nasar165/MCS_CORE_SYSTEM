@@ -69,6 +69,8 @@ CREATE TABLE useraccount (
     password VARCHAR(250) NOT NULL,
     database_id INT NOT NULL,
     active BOOLEAN DEFAULT '0' NOT NULL,
+    athempts INT NOT NULL DEFAULT 0,
+    lockout TIMESTAMP,
     FOREIGN KEY (database_id) REFERENCES database_list(database_id)
 );
 
