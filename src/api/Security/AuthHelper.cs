@@ -75,11 +75,11 @@ namespace api.Security
             }
         }
 
-        private object AuthorizationProcedure(int key, string authName)
+        private object AuthorizationProcedure(string authType, int key, string authName)
         {
             LogAuthentication(authName);
             var tokenClaim = ProvideMinimalDataToToken(key);
-            var Token = GenerateToken(tokenClaim, "API", null);
+            var Token = GenerateToken(tokenClaim, authType, null);
             return Token;
         }
 
@@ -91,7 +91,7 @@ namespace api.Security
                 var dbApiKey = GetCredentialsFromSql<AccessKey>("apiauth", sqlcommand, apiKey.TokenKey);
                 if (apiKey.TokenKey == dbApiKey.TokenKey && apiKey.GroupKey == dbApiKey.GroupKey && dbApiKey.Active == true)
                 {
-                    return AuthorizationProcedure(dbApiKey.TokenKey_Id, dbApiKey.TokenKey);
+                    return AuthorizationProcedure("api", dbApiKey.TokenKey_Id, dbApiKey.TokenKey);
                 }
                 return false;
             }
@@ -112,7 +112,7 @@ namespace api.Security
                 var dbuser = GetCredentialsFromSql<UserAccount>("userauth", sqlcommand, user.Username);
                 if (user.Username == dbuser.Username && user.Password == dbuser.Password)
                 {
-                    return AuthorizationProcedure(dbuser.UserAccount_Id, dbuser.Username);
+                    return AuthorizationProcedure("user", dbuser.UserAccount_Id, dbuser.Username);
                 }
                 return false;
             }

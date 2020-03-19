@@ -126,9 +126,9 @@ WHERE useraccount_id = userid;
 $$ LANGUAGE SQL;
 
 CREATE OR REPLACE FUNCTION selectuser(username TEXT)
-  RETURNS TABLE (username TEXT, password TEXT, database_id INT, active BOOLEAN)
+  RETURNS TABLE (useraccount_id INT, username TEXT, password TEXT, active BOOLEAN)
 AS $$
-SELECT username, password,database_id,active 
+SELECT  useraccount_id, username, password, active 
 FROM useraccount 
 WHERE username = username;
 $$ LANGUAGE SQL;

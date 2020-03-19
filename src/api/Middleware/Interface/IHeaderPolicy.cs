@@ -1,9 +1,10 @@
-using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 
 namespace api.Middleware.Interface
 {
     public interface IHeaderPolicy
     {
-        void AddPolicyToHeader(IHeaderDictionary header);
+        IList<Policy> Headers { get; }
+        void BuildPolicies();
     }
 }

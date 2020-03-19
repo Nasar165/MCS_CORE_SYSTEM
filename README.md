@@ -18,8 +18,8 @@
 ###### Docker Deployemnts
 
 [![Azure](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/Azure.png)](https://azure.microsoft.com/en-us/)
-[![AWS](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/aws.png)](https://azure.microsoft.com/en-us/)
-[![Digitalocaen](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/digitalocean.png)](https://azure.microsoft.com/en-us/) <br/>
+[![AWS](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/aws.png)](https://aws.amazon.com/)
+[![Digitalocaen](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/digitalocean.png)](https://www.digitalocean.com/) <br/>
 <sup>_ P = Pass _ PE = Pending \* F = failed</sup>
 
 ## Introduction
@@ -86,7 +86,7 @@ Filepath src/api/appsettings.json
     "Domain": "yourdomain.com",
     "ExportLogHttp": true,
     "LogAsJson": true,
-    "Docker": true
+    "Docker": false
   },
   "ConnectionStrings": {
     "default": "Server=127.0.0.1;port=5432;Database=defaultdatabase;Uid=defaultuser;Pwd=SG,npuLc2?;",

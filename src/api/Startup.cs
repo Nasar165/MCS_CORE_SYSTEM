@@ -4,8 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using api.Models;
-using Components;
-using Components.Security;
 using api.Middleware;
 
 namespace api
@@ -16,7 +14,6 @@ namespace api
         {
             AppConfigHelper.Instance.SetIConfiguration(configuration);
             EncrypterStarter.SetupEncryption();
-            var fileTest = new SHA256FileHash(new FileWriter());
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
