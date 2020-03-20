@@ -1,14 +1,16 @@
 using System.Collections.Generic;
 using api.Middleware.Constants;
-using api.Middleware.Interface;
+using Components;
+using xheaderSecurity.Interface;
 
 namespace api.Middleware
 {
     public class OWASPPolicy : IHeaderPolicy
     {
-        public IList<Policy> Headers { get; }
+        public IList<IPolicy> Headers { get; }
+
         public OWASPPolicy()
-            => Headers = new List<Policy>();
+            => Headers = new List<IPolicy>();
 
         private void AddPolicy(string header, string value, bool remove = false)
             => Headers.Add(new Policy() { Header = header, Value = value, Remove = remove });
@@ -26,12 +28,15 @@ namespace api.Middleware
             => AddPolicy("Server", "", true);
         public void BuildPolicies()
         {
-            SetXContentType();
-            SetFrameOption();
-            SetXssProtection();
-            SetXPermitedCrossDomain();
-            SetReferrerPolicy();
-            RemoveServer();
+            if (!Validation.ValueIsGreateherThan(Headers.Count, 0))
+            {
+                SetXContentType();
+                SetFrameOption();
+                SetXssProtection();
+                SetXPermitedCrossDomain();
+                SetReferrerPolicy();
+                RemoveServer();
+            }
         }
     }
 }

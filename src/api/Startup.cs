@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using api.Models;
-using api.Middleware;
+using xheaderSecurity;
 
 namespace api
 {

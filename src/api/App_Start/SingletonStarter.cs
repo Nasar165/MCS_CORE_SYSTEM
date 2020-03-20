@@ -1,7 +1,6 @@
 using api.Database;
 using api.Database.Interface;
 using api.Middleware;
-using api.Middleware.Interface;
 using api.Models;
 using api.Security;
 using api.Security.Interface;
@@ -13,6 +12,7 @@ using Components.Logger;
 using Components.Logger.Interface;
 using Components.Security;
 using Microsoft.Extensions.DependencyInjection;
+using xheaderSecurity.Interface;
 
 namespace api
 {

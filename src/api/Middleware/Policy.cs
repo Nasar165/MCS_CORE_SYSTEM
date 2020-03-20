@@ -1,6 +1,8 @@
+using xheaderSecurity.Interface;
+
 namespace api.Middleware
 {
-    public class Policy
+    public class Policy : IPolicy
     {
         public string Header { get; set; }
         public string Value { get; set; }
