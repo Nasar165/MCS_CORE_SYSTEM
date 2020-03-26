@@ -1,6 +1,6 @@
 using api.Models;
-using Components.Logger.Interface;
 using Microsoft.AspNetCore.Mvc;
+using xEventLogger.Interface;
 
 namespace api.Controllers
 {
@@ -8,14 +8,14 @@ namespace api.Controllers
     [Route("[controller]/[action]")]
     public class LogController : ControllerBase
     {
-        private ILogger Logger { get; }
-        public LogController(ILogger logger)
+        private IEventLogger Logger { get; }
+        public LogController(IEventLogger logger)
             => Logger = logger;
 
         public ActionResult GetErrorLog()
-            => Ok(Logger.GetTextFromLogFile("error/error.txt"));
+            => Ok(Logger.GetLogFile("error.txt"));
 
         public ActionResult GetEventLog()
-            => Ok(Logger.GetTextFromLogFile("event/event.txt"));
+            => Ok(Logger.GetLogFile("event.txt"));
     }
 }

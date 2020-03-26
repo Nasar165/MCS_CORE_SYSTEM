@@ -4,14 +4,13 @@ using api.Middleware;
 using api.Models;
 using api.Security;
 using api.Security.Interface;
-using Components;
 using Components.Database;
 using Components.Database.Interface;
-using Components.Interface;
-using Components.Logger;
-using Components.Logger.Interface;
-using Components.Security;
 using Microsoft.Extensions.DependencyInjection;
+using xEventLogger;
+using xEventLogger.Interface;
+using xFilewriter;
+using xFilewriter.Interface;
 using xheaderSecurity.Interface;
 
 namespace api
@@ -34,11 +33,10 @@ namespace api
 
         private static void AddSingleton()
         {
-            Services.AddSingleton<ILogger, EventLogger>(ServiceProvider =>
-                { return new EventLogger(GetLoggingStyle()); });
+            Services.AddSingleton<IEventLogger, EventLogger>(ServiceProvider =>
+                { return new EventLogger(new FileWriter()); });
             Services.AddSingleton<IQueryHelper, SqlQueryHelper>();
             Services.AddSingleton<IFileWriter, FileWriter>();
-            Services.AddSingleton<IFileIntegrity, SHA256FileHash>();
             Services.AddSingleton<IHeaderPolicy, OWASPPolicy>();
         }
 

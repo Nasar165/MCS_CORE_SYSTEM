@@ -6,10 +6,11 @@ using api.Models.Error;
 using api.Security;
 using api.Security.AuthTemplate;
 using Components.Database;
-using Components.Logger;
-using Components.Logger.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
+using xEventLogger;
+using xEventLogger.Interface;
+using xFilewriter;
 
 namespace Components.Security
 {
@@ -19,12 +20,11 @@ namespace Components.Security
         private AuthorizationFilterContext Context { get; set; }
         /// Clean up the constructor to better fit the what its supposed to do 
         // The first parameter should be roles only and the rest should be injected after
-        private ILogger Logger { get; }
+        private IEventLogger Logger { get; }
         public AuthorizeRoles(params string[] roles)
         {
             UserAssignedRole = roles;
-            var logAsJson = bool.Parse(AppConfigHelper.Instance.GetValueFromAppConfig("AppSettings", "LogAsJson"));
-            Logger = new EventLogger(logAsJson);
+            Logger = new EventLogger(new FileWriter());
         }
 
         private HttpContextAccessor CreateHttpContextAccessor()
@@ -80,7 +80,7 @@ namespace Components.Security
                 }
                 catch (Exception error)
                 {
-                    Logger.LogEventAsync(error);
+                    Logger.LogEventAsync(error, "error.json");
                     RejectRequest("An unhandled Exception has occured", 500);
                 }
             else

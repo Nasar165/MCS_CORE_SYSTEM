@@ -14,6 +14,7 @@ namespace api
         {
             AppConfigHelper.Instance.SetIConfiguration(configuration);
             EncrypterStarter.SetupEncryption();
+            StartFileHasher.RegisterFiles();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.

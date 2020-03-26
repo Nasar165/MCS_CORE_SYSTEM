@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Components.Database.Interface;
-using Components.Interface;
 using Newtonsoft.Json;
+using xFilewriter;
 
 namespace Components.Database
 {
@@ -14,12 +14,6 @@ namespace Components.Database
         private IReadOnlyCollection<SqlProcedures> SqlProcedureList { get; set; }
         public SqlQueryHelper()
             => GetProcedureList();
-
-        private void QueryFileIntergrityIsIntact(IFileIntegrity fileIntegrity)
-        {
-            if (!fileIntegrity.FileIntegrityIsIntact("sqlquery"))
-                throw new System.Exception("SQL Script File file integrity has failed");
-        }
 
         private void GetProcedureList()
         {

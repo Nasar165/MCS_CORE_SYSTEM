@@ -8,7 +8,7 @@ using api.Database.Interface;
 using api.Security.AuthTemplate;
 using System.Collections.Generic;
 using api.Security.Interface;
-using Components.Logger.Interface;
+using xEventLogger.Interface;
 
 namespace api.Database
 {
@@ -16,10 +16,10 @@ namespace api.Database
     {
         private string DefaultConnection { get; }
         private IClaimHelper ClaimHelper { get; }
-        private ILogger Logger { get; }
+        private IEventLogger Logger { get; }
         private IQueryHelper QueryHelper { get; }
 
-        public DatabaseHelper(IClaimHelper claimHelper, ILogger logger, IQueryHelper queryHelper)
+        public DatabaseHelper(IClaimHelper claimHelper, IEventLogger logger, IQueryHelper queryHelper)
         {
             ClaimHelper = claimHelper;
             Logger = logger;
@@ -108,7 +108,7 @@ namespace api.Database
             }
             catch (Exception error)
             {
-                Logger.LogEventAsync(error);
+                Logger.LogEventAsync(error, "error.json");
                 throw;
             }
         }

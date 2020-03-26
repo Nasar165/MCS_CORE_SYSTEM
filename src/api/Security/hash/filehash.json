@@ -1,7 +1,1 @@
-[
-  {
-    "FileName": "sqlquery",
-    "Hash": "2asAUma/kHPaRaqItLq8KWME0OQ1a0EvsKtzWUCJmx0=",
-    "FilePath": "/scripts/sqlqueries.json"
-  }
-]
+[{"FileName":"sqlquery","Hash":"2asAUma/kHPaRaqItLq8KWME0OQ1a0EvsKtzWUCJmx0=","FilePath":"/scripts/sqlqueries.json"},{"FileName":"sqlqueries","Hash":"HfAE1iGFVDJzIF4fRAuHGZ4wrCxlVTxjCz491DrQOtA=","FilePath":"/home/nasareddaoui/mcs/git/Xeroxcore/src/api/scripts/sqlqueries.json"}]

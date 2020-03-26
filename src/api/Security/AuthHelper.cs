@@ -8,8 +8,8 @@ using api.Security.Interface;
 using Components;
 using Components.Database;
 using Components.Database.Interface;
-using Components.Logger.Interface;
 using Components.Security;
+using xEventLogger.Interface;
 
 namespace api.Security
 {
@@ -19,10 +19,10 @@ namespace api.Security
         private IClaimHelper _ClaimHelper { get; }
         private IJwtAuthenticator _JwtAuthenticator { get; }
         private IDatabaseHelper DatabaseHelper { get; }
-        private ILogger Logger { get; }
+        private IEventLogger Logger { get; }
         private IQueryHelper QueryHeler { get; }
         public AuthHelper(IJwtAuthenticator jwtAuthenticator
-                , IDatabaseHelper database, IClaimHelper claimHelper, ILogger logger,
+                , IDatabaseHelper database, IClaimHelper claimHelper, IEventLogger logger,
                 IQueryHelper queryHelper)
         {
             _ClaimHelper = claimHelper;
@@ -49,7 +49,7 @@ namespace api.Security
         {
             var sql = DatabaseHelper.GetDefaultConnection();
             var authLogg = new AuthLogg() { Username = name };
-            Logger.LogAuthentication(sql, authLogg);
+            Logger.LogEventAsync(authLogg, "authentication.json");
         }
 
         private TokenKey ProvideMinimalDataToToken(int key)
@@ -97,7 +97,7 @@ namespace api.Security
             }
             catch (Exception error)
             {
-                Logger.LogEventAsync(error);
+                Logger.LogEventAsync(error, "error.json");
                 return false;
             }
         }
@@ -118,7 +118,7 @@ namespace api.Security
             }
             catch (Exception error)
             {
-                Logger.LogEventAsync(error);
+                Logger.LogEventAsync(error, "error.json");
                 return false;
             }
         }
