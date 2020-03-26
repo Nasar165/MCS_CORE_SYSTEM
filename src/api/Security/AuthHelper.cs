@@ -32,10 +32,7 @@ namespace api.Security
             QueryHeler = queryHelper;
         }
 
-        private SqlCommandHelper<T> CreateSqlCommand<T>(T data, params string[] ignore)
-            => new SqlCommandHelper<T>(data, ignore);
-
-        private T GetCredentialsFromSql<T>(string procedureName, SqlCommandHelper<T> account, string name)
+        private T GetCredentialsFromSql<T>(string procedureName, object account, string name)
         {
             var sql = DatabaseHelper.GetDefaultConnection();
             var dataTable = sql.SelectQuery(QueryHeler.GetSqlQuery(procedureName), account);
@@ -87,8 +84,8 @@ namespace api.Security
         {
             try
             {
-                var sqlcommand = CreateSqlCommand((AccessKey)apiKey, "groupkey");
-                var dbApiKey = GetCredentialsFromSql<AccessKey>("apiauth", sqlcommand, apiKey.TokenKey);
+                var TokenKey = new { tokenkey = apiKey.TokenKey };
+                var dbApiKey = GetCredentialsFromSql<AccessKey>("apiauth", TokenKey, apiKey.TokenKey);
                 if (apiKey.TokenKey == dbApiKey.TokenKey && apiKey.GroupKey == dbApiKey.GroupKey && dbApiKey.Active == true)
                 {
                     return AuthorizationProcedure("api", dbApiKey.TokenKey_Id, dbApiKey.TokenKey);
@@ -108,8 +105,8 @@ namespace api.Security
             {
                 if (method != null)
                     method();
-                var sqlcommand = CreateSqlCommand((UserAccount)user, "password");
-                var dbuser = GetCredentialsFromSql<UserAccount>("userauth", sqlcommand, user.Username);
+                var userName = new { username = user.Username };
+                var dbuser = GetCredentialsFromSql<UserAccount>("userauth", userName, user.Username);
                 if (user.Username == dbuser.Username && user.Password == dbuser.Password)
                 {
                     return AuthorizationProcedure("user", dbuser.UserAccount_Id, dbuser.Username);

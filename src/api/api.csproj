@@ -15,6 +15,7 @@
     <PackageReference Include="xEventLogger" Version="1.0.2" />
     <PackageReference Include="xFilehash-security" Version="2.0.1" />
     <PackageReference Include="xheader-security" Version="1.2.6" />
+    <PackageReference Include="xSql" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

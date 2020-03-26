@@ -13,9 +13,9 @@ namespace api.Controllers
             => Logger = logger;
 
         public ActionResult GetErrorLog()
-            => Ok(Logger.GetLogFile("error.txt"));
+            => Ok(Logger.GetLogFile("error.json"));
 
         public ActionResult GetEventLog()
-            => Ok(Logger.GetLogFile("event.txt"));
+            => Ok(Logger.GetLogFile("event.json"));
     }
 }

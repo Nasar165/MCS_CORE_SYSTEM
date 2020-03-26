@@ -1,7 +1,6 @@
 using System;
 using api.Models;
 using Components;
-using Components.Database;
 using Components.Security;
 using Components.Database.Interface;
 using api.Database.Interface;
@@ -9,6 +8,8 @@ using api.Security.AuthTemplate;
 using System.Collections.Generic;
 using api.Security.Interface;
 using xEventLogger.Interface;
+using xSql.Interface;
+using xSql;
 
 namespace api.Database
 {
@@ -28,21 +29,17 @@ namespace api.Database
         }
 
         public ISqlHelper GetDefaultConnection()
-            => new NpgSqlHelper(DefaultConnection);
+            => new NpgSql(DefaultConnection);
 
         private object CreateClientId(string id)
             => new { Id = ObjectConverter.ConvertStringToInt(id) };
-
-        public SqlCommandHelper<T> CreateSqlCommand<T>(T data, params string[] ignore)
-            => new SqlCommandHelper<T>(data, ignore);
 
         private IList<T> FetchDataFromDB<T>(string key, string querry)
         {
             var sql = GetDefaultConnection();
             var id = CreateClientId(key);
-            var sqlCommand = CreateSqlCommand<object>(id, "");
             var dataTable = sql.SelectQuery(
-                            querry, sqlCommand);
+                            querry, id);
             return ObjectConverter.ConvertDataTableToList<T>(dataTable);
         }
 

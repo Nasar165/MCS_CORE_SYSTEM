@@ -4,7 +4,6 @@
     "AESKey": "b14ca5898a4e4133bbce2ea2315a1916",
     "Domain": "yourdomain.com",
     "ExportLogHttp":false,
-    "LogAsJson":true,
     "Docker": false
   },
   "ConnectionStrings": {
