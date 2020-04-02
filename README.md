@@ -18,9 +18,8 @@
 ###### Docker Deployemnts
 
 [![Azure](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/Azure.png)](https://azure.microsoft.com/en-us/)
-[![AWS](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/aws.png)](https://aws.amazon.com/)
 [![Digitalocaen](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/digitalocean.png)](https://www.digitalocean.com/) <br/>
-<sup>_ P = Pass _ PE = Pending \* F = failed</sup>
+<sup>\* P = Pass \* PE = Pending \* F = failed</sup>
 
 ## Introduction
 
@@ -298,7 +297,7 @@ on your server environment we currently support IIS and Docker. We have listed
 our supported deployment options down below for you to read. Please note
 That under no circumstances is deployment related to server configurations.
 
-- [Docker](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/deployment/Docker.md) - Partialy Supported
+- [Docker](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/deployment/Docker.md) - Full support
 - [IIS](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/deployment/IIS.md) - Full support
 
 ### Built With
@@ -328,6 +327,6 @@ See also the list of [contributors](https://github.com/Xeroxcore/Xeroxcore//grap
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details
 
 ### Acknowledgments
-
+- [Masterkey](https://www.gomasterkey.com/) - Inspiration source
 - [Hubspot](https://www.hubspot.com) - Inspiration source
 - [Chayapat Chuen A Rom ](https://github.com/freedombs) - Angular Developer helping us test the web api
