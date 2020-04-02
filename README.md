@@ -18,9 +18,8 @@
 ###### Docker Deployemnts
 
 [![Azure](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/Azure.png)](https://azure.microsoft.com/en-us/)
-[![AWS](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/aws.png)](https://aws.amazon.com/)
 [![Digitalocaen](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/digitalocean.png)](https://www.digitalocean.com/) <br/>
-<sup>_ P = Pass _ PE = Pending \* F = failed</sup>
+<sup>\* P = Pass \* PE = Pending \* F = failed</sup>
 
 ## Introduction
 
