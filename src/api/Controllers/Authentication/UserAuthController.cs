@@ -29,5 +29,28 @@ namespace api.Authentication.Controllers
                 return Unauthorized();
             }
         }
+
+        [HttpPost]
+        [Route("[controller]/RefreshToken")]
+        public ActionResult RefreshToken([FromBody] RefreshToken token)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        var result = Auth.RefreshToken(token.Token, "token", "localhost", null);
+                        return Ok(result);
+                    }
+                    return Unauthorized();
+                }
+                return Unauthorized();
+            }
+            catch
+            {
+                return Unauthorized();
+            }
+        }
     }
 }
