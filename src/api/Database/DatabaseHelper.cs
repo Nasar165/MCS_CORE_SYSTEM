@@ -1,15 +1,13 @@
-using System;
 using api.Models;
 using Components;
-using Components.Security;
 using Components.Database.Interface;
-using api.Database.Interface;
 using api.Security.AuthTemplate;
 using System.Collections.Generic;
 using api.Security.Interface;
 using xEventLogger.Interface;
 using xSql.Interface;
 using xSql;
+using api.Database.Interface;
 
 namespace api.Database
 {
@@ -43,32 +41,6 @@ namespace api.Database
             return ObjectConverter.ConvertDataTableToList<T>(dataTable);
         }
 
-        public DataExtension GetUserFromDatabase(string key)
-            => FetchDataFromDB<DataExtension>(key
-                                , QueryHelper.GetSqlQuery("getuseraccount"))[0];
-
-        public DataExtension GetTokenFromDatabase(string key)
-            => FetchDataFromDB<DataExtension>(key
-                                , QueryHelper.GetSqlQuery("gettoken"))[0];
-
-        private ClientDatabase FetchClientDataBase(string dbKey)
-            => FetchDataFromDB<ClientDatabase>(dbKey.ToString()
-                                , QueryHelper.GetSqlQuery("getdatabase"))[0];
-
-        private ClientDatabase FetchUserDb(string key)
-        {
-            var user = GetUserFromDatabase(key);
-            var database = FetchClientDataBase(user.Database_Id.ToString());
-            return database;
-        }
-
-        private ClientDatabase FetchTokenDb(string key)
-        {
-            var token = GetTokenFromDatabase(key);
-            var database = FetchClientDataBase(token.Database_Id.ToString());
-            return database;
-        }
-
         public IEnumerable<Roles> GetRolesFromUser(string key)
         {
             var roles = FetchDataFromDB<Roles>(key,
@@ -81,33 +53,6 @@ namespace api.Database
             var roles = FetchDataFromDB<Roles>(key,
                 QueryHelper.GetSqlQuery("gettokenroles"));
             return roles;
-        }
-
-        private string GetConnectionString(string audiance, string key)
-        {
-            var connectionString = "";
-            if (Validation.StringsAreEqual(audiance, "User"))
-                connectionString = FetchUserDb(key).GetConnectionString();
-            else
-                connectionString = FetchTokenDb(key).GetConnectionString();
-            return connectionString;
-        }
-
-        public string GetClientDatabase()
-        {
-            try
-            {
-                var key = AesEncrypter._instance.DecryptyData(
-                    ClaimHelper.GetValueFromClaim("key"));
-                var audiance = ClaimHelper.GetValueFromClaim("aud");
-                var connectionString = GetConnectionString(audiance, key);
-                return connectionString;
-            }
-            catch (Exception error)
-            {
-                Logger.LogEventAsync(error, "error.json");
-                throw;
-            }
         }
     }
 }

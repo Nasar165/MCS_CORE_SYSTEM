@@ -1,6 +1,6 @@
-using api.Security.AuthTemplate;
-using api.Security.Interface;
 using Microsoft.AspNetCore.Mvc;
+using xAuth;
+using xAuth.Interface;
 
 namespace api.Controllers.Authentication
 {
@@ -8,21 +8,31 @@ namespace api.Controllers.Authentication
     [Route("[controller]")]
     public class ApiAuthController : ControllerBase
     {
-        private IAuthHelper Auth { get; }
-        public ApiAuthController(IAuthHelper auth)
+        private IAuth Auth { get; }
+        public ApiAuthController(TokenAuth auth)
             => Auth = auth;
 
         [HttpPost]
-        public ActionResult Post([FromBody] AccessKey accessKey)
+        public ActionResult Post([FromBody] TokenKey accessKey)
         {
-            if (ModelState.IsValid)
+
+            try
             {
-                var result = Auth.AuthentiacteAPI(accessKey);
-                if (result is bool)
+                if (ModelState.IsValid)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        var result = Auth.Authentiacte(accessKey, "token", "localhost", null);
+                        return Ok(result);
+                    }
                     return Unauthorized();
-                return Ok(result);
+                }
+                return Unauthorized();
             }
-            return Unauthorized();
+            catch
+            {
+                return Unauthorized();
+            }
         }
     }
 }
