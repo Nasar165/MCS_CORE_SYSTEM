@@ -24,9 +24,9 @@
 ## Introduction
 
 Xeroxcore system intends to resolve a business requirement concerning a framework fitted to handling
-multiple databases. The core system comes with pre-built-in tools & customer management to speed up
-your development. The system is well suited for an organisation that needs a framework suited to
-handling multiple databases and more than one client.
+single databases. The core system comes with pre-built-in tools to speed up your development.
+The system is well suited for an organisation that needs to work fast and security with focus on 
+generating value to their clients.
 
 <!--ts-->
 
