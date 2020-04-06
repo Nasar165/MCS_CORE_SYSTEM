@@ -25,4 +25,4 @@ jobs:
         run: dotnet test --filter TestCategory=GithubAction
       - name: Relaese API
         working-directory: ./src/api/
-        run: dotnet publish -c Release -o out
+        run: dotnet publish -f netcoreapp3.1 -c Release -o out

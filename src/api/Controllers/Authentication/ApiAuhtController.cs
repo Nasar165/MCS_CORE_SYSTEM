@@ -1,6 +1,6 @@
-using api.Security.AuthTemplate;
 using api.Security.Interface;
 using Microsoft.AspNetCore.Mvc;
+using xAuth;
 
 namespace api.Controllers.Authentication
 {
@@ -8,17 +8,31 @@ namespace api.Controllers.Authentication
     [Route("[controller]")]
     public class ApiAuthController : ControllerBase
     {
-        private IAuthHelper Auth { get; }
-        public ApiAuthController(IAuthHelper auth)
+        private IAuthHandler Auth { get; }
+        public ApiAuthController(IAuthHandler auth)
             => Auth = auth;
 
         [HttpPost]
-        public ActionResult Post([FromBody] AccessKey accessKey)
+        public ActionResult Post([FromBody] TokenKey accessKey)
         {
             if (ModelState.IsValid)
             {
-                var result = Auth.AuthentiacteAPI(accessKey);
-                if (result is bool)
+                var result = Auth.TokenAuthentication(accessKey);
+                if (result is null)
+                    return Unauthorized();
+                return Ok(result);
+            }
+            return Unauthorized();
+        }
+
+        [HttpPost]
+        [Route("RefreshToken")]
+        public ActionResult RefreshToken([FromBody] RefreshToken token)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = Auth.TokenRefreshToken(token.Token);
+                if (result is null)
                     return Unauthorized();
                 return Ok(result);
             }

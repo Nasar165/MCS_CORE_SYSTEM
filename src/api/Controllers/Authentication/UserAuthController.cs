@@ -1,6 +1,7 @@
-using api.Security.AuthTemplate;
-using api.Security.Interface;
 using Microsoft.AspNetCore.Mvc;
+using xAuth;
+using api.Security.Interface;
+using Components.Security;
 
 namespace api.Authentication.Controllers
 {
@@ -8,8 +9,8 @@ namespace api.Authentication.Controllers
     [Route("[controller]")]
     public class UserAuthController : ControllerBase
     {
-        private IAuthHelper Auth { get; }
-        public UserAuthController(IAuthHelper auth)
+        private IAuthHandler Auth { get; }
+        public UserAuthController(IAuthHandler auth)
             => Auth = auth;
 
         [HttpPost]
@@ -17,8 +18,22 @@ namespace api.Authentication.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = Auth.AuthenticateUser(userAccount, userAccount.EncryptInfo);
-                if (result is bool)
+                var result = Auth.UserAuthentication(userAccount);
+                if (result is null)
+                    return Unauthorized();
+                return Ok(result);
+            }
+            return Unauthorized();
+        }
+
+        [HttpPost]
+        [Route("[controller]")]
+        public ActionResult RefreshToken([FromBody] RefreshToken token)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = Auth.UserRefreshToken(token.Token);
+                if (result is null)
                     return Unauthorized();
                 return Ok(result);
             }

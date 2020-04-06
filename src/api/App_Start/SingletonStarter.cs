@@ -7,11 +7,15 @@ using api.Security.Interface;
 using Components.Database;
 using Components.Database.Interface;
 using Microsoft.Extensions.DependencyInjection;
+using xAuth;
+using xAuth.Interface;
 using xEventLogger;
 using xEventLogger.Interface;
 using xFilewriter;
 using xFilewriter.Interface;
 using xheaderSecurity.Interface;
+using xSql;
+using xSql.Interface;
 
 namespace api
 {
@@ -19,13 +23,26 @@ namespace api
     {
         private static IServiceCollection Services { get; set; }
 
+        private static void RegisterAuthentication()
+        {
+            Services.AddScoped<IJwtGenerator, JwtGenerator>(ServiceProvider =>
+            {
+                return new JwtGenerator(AppConfigHelper.Instance.GetSecreatKey(), "HS256");
+            });
+
+            Services.AddScoped<ISqlHelper, NpgSql>(ServiceProvider =>
+            {
+                return new NpgSql(AppConfigHelper.Instance.GetDefaultSQlConnection());
+            });
+
+            Services.AddScoped<IAuthHandler, AuthHandler>();
+        }
+
         private static void AddScoped()
         {
             Services.AddHttpContextAccessor();
-            Services.AddScoped<IJwtAuthenticator, JwtAuthenticator>();
             Services.AddScoped<IClaimHelper, ClaimHelper>();
             Services.AddScoped<IDatabaseHelper, DatabaseHelper>();
-            Services.AddScoped<IAuthHelper, AuthHelper>();
         }
 
         private static bool GetLoggingStyle()
@@ -46,6 +63,7 @@ namespace api
             Services.AddHttpContextAccessor();
             AddSingleton();
             AddScoped();
+            RegisterAuthentication();
         }
     }
 }

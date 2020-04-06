@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using api.Database;
-using api.Models;
 using api.Models.Error;
 using api.Security;
 using api.Security.AuthTemplate;
@@ -34,7 +33,7 @@ namespace Components.Security
             => Context.Result = new ErrorRespons(message, statusCode);
 
         private bool IsUser(string value)
-            => Validation.StringsAreEqual(value, "User");
+            => Validation.StringsAreEqual(value.ToLower(), "user");
 
         public bool HasPermission(string role)
         {
