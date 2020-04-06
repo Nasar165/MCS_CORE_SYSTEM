@@ -16,7 +16,6 @@ namespace api.Authentication.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] UserAccount userAccount)
         {
-
             if (ModelState.IsValid)
             {
                 var result = Auth.UserAuthentication(userAccount);
@@ -25,8 +24,6 @@ namespace api.Authentication.Controllers
                 return Ok(result);
             }
             return Unauthorized();
-
-
         }
 
         [HttpPost]

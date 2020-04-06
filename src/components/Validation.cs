@@ -10,6 +10,5 @@ namespace Components
 
         public static bool ValueIsGreateherThan(int value, int greater)
             => value > greater ? true : false;
-
     }
 }

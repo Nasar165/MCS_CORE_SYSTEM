@@ -8,7 +8,5 @@ namespace api.Security.Interface
         ITokenRespons UserRefreshToken(string refreshToken);
         ITokenRespons TokenAuthentication(IToken tokenKey);
         ITokenRespons TokenRefreshToken(string refreshToken);
-
-
     }
 }

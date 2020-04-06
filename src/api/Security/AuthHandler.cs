@@ -14,7 +14,6 @@ namespace api.Security
 {
     public class AuthHandler : IAuthHandler
     {
-
         private IAuth UserAuth { get; }
         private IAuth TokenAuth { get; }
         private IEventLogger Logger { get; }
