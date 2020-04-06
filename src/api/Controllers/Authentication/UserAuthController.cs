@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using xAuth;
-using xAuth.Interface;
+using api.Security.Interface;
 
 namespace api.Authentication.Controllers
 {
@@ -8,49 +8,38 @@ namespace api.Authentication.Controllers
     [Route("[controller]")]
     public class UserAuthController : ControllerBase
     {
-        private IAuth Auth { get; }
-        public UserAuthController(UserAuth auth)
+        private IAuthHandler Auth { get; }
+        public UserAuthController(IAuthHandler auth)
             => Auth = auth;
 
         [HttpPost]
         public IActionResult Post([FromBody] UserAccount userAccount)
         {
-            try
+
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    var result = Auth.Authentiacte(userAccount, "user", "localhost", null);
-                    return Ok(result);
-                }
-                return Unauthorized();
+                var result = Auth.UserAuthentication(userAccount);
+                if (result is null)
+                    return Unauthorized();
+                return Ok(result);
             }
-            catch
-            {
-                return Unauthorized();
-            }
+            return Unauthorized();
+
+
         }
 
         [HttpPost]
         [Route("[controller]/RefreshToken")]
         public ActionResult RefreshToken([FromBody] RefreshToken token)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    if (ModelState.IsValid)
-                    {
-                        var result = Auth.RefreshToken(token.Token, "token", "localhost", null);
-                        return Ok(result);
-                    }
+                var result = Auth.UserRefreshToken(token.Token);
+                if (result is null)
                     return Unauthorized();
-                }
-                return Unauthorized();
+                return Ok(result);
             }
-            catch
-            {
-                return Unauthorized();
-            }
+            return Unauthorized();
         }
     }
 }

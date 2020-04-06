@@ -23,24 +23,26 @@ namespace api
     {
         private static IServiceCollection Services { get; set; }
 
+        private static void RegisterAuthentication()
+        {
+            Services.AddScoped<IJwtGenerator, JwtGenerator>(ServiceProvider =>
+            {
+                return new JwtGenerator(AppConfigHelper.Instance.GetSecreatKey(), "HS256");
+            });
+
+            Services.AddScoped<ISqlHelper, NpgSql>(ServiceProvider =>
+            {
+                return new NpgSql(AppConfigHelper.Instance.GetDefaultSQlConnection());
+            });
+
+            Services.AddScoped<IAuthHandler, AuthHandler>();
+        }
+
         private static void AddScoped()
         {
             Services.AddHttpContextAccessor();
             Services.AddScoped<IClaimHelper, ClaimHelper>();
             Services.AddScoped<IDatabaseHelper, DatabaseHelper>();
-
-            var encryptionKey = AppConfigHelper.Instance.GetValueFromAppConfig("AppSettings", "JWTKey");
-            Services.AddScoped<IJwtGenerator, JwtGenerator>(ServiceProvider =>
-           { return new JwtGenerator(encryptionKey, "HS256"); });
-
-            var dbString = (AppConfigHelper.Instance.GetValueFromAppConfig("ConnectionStrings", "default"));
-            Services.AddScoped<ISqlHelper, NpgSql>(ServiceProvider =>
-            {
-                return new NpgSql(dbString);
-            });
-
-            Services.AddScoped<TokenAuth>();
-            Services.AddScoped<UserAuth>();
         }
 
         private static bool GetLoggingStyle()
@@ -61,6 +63,7 @@ namespace api
             Services.AddHttpContextAccessor();
             AddSingleton();
             AddScoped();
+            RegisterAuthentication();
         }
     }
 }
