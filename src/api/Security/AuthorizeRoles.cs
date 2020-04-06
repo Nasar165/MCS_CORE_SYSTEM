@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using api.Database;
-using api.Models;
 using api.Models.Error;
 using api.Security;
 using api.Security.AuthTemplate;
