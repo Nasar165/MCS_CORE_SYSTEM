@@ -6,7 +6,6 @@ namespace api
 {
     public class StartFileHasher
     {
-
         private static List<FileHash> Files()
         {
             return new List<FileHash>(){
