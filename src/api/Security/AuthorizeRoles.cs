@@ -34,7 +34,7 @@ namespace Components.Security
             => Context.Result = new ErrorRespons(message, statusCode);
 
         private bool IsUser(string value)
-            => Validation.StringsAreEqual(value, "User");
+            => Validation.StringsAreEqual(value.ToLower(), "user");
 
         public bool HasPermission(string role)
         {

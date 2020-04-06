@@ -26,7 +26,7 @@ namespace api.Controllers.Authentication
         }
 
         [HttpPost]
-        [Route("[controller]/RefreshToken")]
+        [Route("RefreshToken")]
         public ActionResult RefreshToken([FromBody] RefreshToken token)
         {
             if (ModelState.IsValid)

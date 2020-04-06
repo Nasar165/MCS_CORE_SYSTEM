@@ -21,11 +21,11 @@
   },
   {
     "procedure": "getuserroles",
-    "query": "SELECT * FROM getuserroles(@id)"
+    "query": "SELECT * FROM getuserroles(@Id)"
   },
   {
     "procedure": "gettokenroles",
-    "query": "SELECT * FROM gettokenroles(@id)"
+    "query": "SELECT * FROM gettokenroles(@Id)"
   },
   {
     "procedure": "createdatabase",

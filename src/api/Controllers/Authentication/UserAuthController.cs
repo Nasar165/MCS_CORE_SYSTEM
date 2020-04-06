@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using xAuth;
 using api.Security.Interface;
+using Components.Security;
 
 namespace api.Authentication.Controllers
 {
@@ -29,7 +30,7 @@ namespace api.Authentication.Controllers
         }
 
         [HttpPost]
-        [Route("[controller]/RefreshToken")]
+        [Route("[controller]")]
         public ActionResult RefreshToken([FromBody] RefreshToken token)
         {
             if (ModelState.IsValid)

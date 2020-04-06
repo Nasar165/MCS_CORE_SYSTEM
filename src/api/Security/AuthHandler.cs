@@ -1,32 +1,49 @@
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using api.Models;
 using api.Security.Interface;
+using Components.Security;
 using xAuth;
 using xAuth.Interface;
+using xEventLogger.Interface;
 using xSql.Interface;
 
 namespace api.Security
 {
     public class AuthHandler : IAuthHandler
     {
-        private IJwtGenerator Jwt { get; }
-        private ISqlHelper Sql { get; }
-        public AuthHandler(IJwtGenerator jwt, ISqlHelper sql)
+
+        private IAuth UserAuth { get; }
+        private IAuth TokenAuth { get; }
+        private IEventLogger Logger { get; }
+        private readonly string Domain = AppConfigHelper.Instance.GetValueFromAppConfig("AppSettings", "Domain");
+
+        public AuthHandler(IJwtGenerator jwt, ISqlHelper sql, IEventLogger logger)
         {
-            if (jwt is null)
-                throw new System.Exception("Constructor Jwt Handler is null");
+            if (jwt is null || sql is null || logger is null)
+                throw new Exception("AuthHandler:A constructor parameter is null");
 
-            if (sql is null)
-                throw new System.Exception("Constructor Sql handler is null");
+            UserAuth = new UserAuth(sql, jwt);
+            TokenAuth = new TokenAuth(sql, jwt);
+            Logger = logger;
+        }
 
-            Jwt = jwt;
-            Sql = sql;
+        public List<Claim> GenerateClaim(int id)
+        {
+            var claims = new List<Claim>();
+            claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
+            var encryptedId = AesEncrypter._instance.EncryptData(id.ToString());
+            claims.Add(new Claim("key", encryptedId));
+            return claims;
         }
 
         public ITokenRespons UserAuthentication(IUser user)
         {
             try
             {
-                var userAuth = new UserAuth(Sql, Jwt);
-                var token = userAuth.Authentiacte(user, "user", "localhost", null);
+                var token = UserAuth.Authentiacte(user, "user", Domain, GenerateClaim);
                 return token;
             }
             catch
@@ -39,8 +56,7 @@ namespace api.Security
         {
             try
             {
-                var userAuth = new UserAuth(Sql, Jwt);
-                var token = userAuth.RefreshToken(refreshToken, "user", "localhost", null);
+                var token = UserAuth.RefreshToken(refreshToken, "user", Domain, GenerateClaim);
                 return token;
             }
             catch
@@ -53,8 +69,7 @@ namespace api.Security
         {
             try
             {
-                var tokenAuth = new TokenAuth(Sql, Jwt);
-                var token = tokenAuth.Authentiacte(tokenKey, "token", "localhost", null);
+                var token = TokenAuth.Authentiacte(tokenKey, "token", Domain, GenerateClaim);
                 return token;
             }
             catch
@@ -67,8 +82,7 @@ namespace api.Security
         {
             try
             {
-                var userAuth = new UserAuth(Sql, Jwt);
-                var token = userAuth.RefreshToken(refreshToken, "user", "localhost", null);
+                var token = TokenAuth.RefreshToken(refreshToken, "token", Domain, GenerateClaim);
                 return token;
             }
             catch
