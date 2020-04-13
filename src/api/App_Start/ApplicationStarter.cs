@@ -7,8 +7,11 @@ namespace api
         public static void SetApplicationSettings(IApplicationBuilder app)
         {
             app.UseHttpsRedirection();
-
             app.UseRouting();
+            app.UseCors(x => x
+               .AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader());
 
             app.UseAuthentication();
             app.UseAuthorization();
@@ -17,11 +20,6 @@ namespace api
             {
                 endpoints.MapControllers();
             });
-
-            app.UseCors(x => x
-               .AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader());
         }
     }
 }
