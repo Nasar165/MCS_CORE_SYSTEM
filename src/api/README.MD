@@ -28,16 +28,16 @@ to fetch/post data to the API.
 | Error Code | Description                                                        |
 | :--------: | ------------------------------------------------------------------ |
 |   `200`    | OK : Request was successful                                        |
-|   `201`    | Created : A resourse has been created                              |
+|   `201`    | Created : A resource has been created                              |
 |   `204`    | No Content : The request response is empty                         |
 |   `400`    | Bad request : The server cant understand your syntax               |
 |   `401`    | Unauthorized : User not authenticated                              |
-|   `403`    | Forbidden : User dont have the right privilages                    |
+|   `403`    | Forbidden : User don't have the right privileges                    |
 |   `404`    | Not found : The url does not exist or has been moved               |
 |   `405`    | Method not allowed : Use the correct method GET, POST, PUT, DELETE |
 |   `415`    | Unsupported Media Type : Data is in format that is not supported   |
 |   `429`    | Too many requests : To many requests within a x amount of time     |
-|   `500`    | Internal Server Error : An error has occured server side           |
+|   `500`    | Internal Server Error : An error has occurred server side           |
 
 ## Authentication
 
@@ -47,8 +47,8 @@ either fetch, put, delete or create data.
 
 ### Tokenkey
 
-API token key is a key that is used for third party sites refered to as
-external domains that dont require administrative rights. sites with
+API token key is a key that is used for third party sites refereed to as
+external domains that don't require administrative rights. sites with
 token keys have limited access and is mostly used to fetch data.
 
 #### Sample API Entry
@@ -79,8 +79,8 @@ token keys have limited access and is mostly used to fetch data.
 ### Useraccount (AdminKey)
 
 A useraccount token key poses more rights then a token key it is used for
-adminiistrative purposes and thus has rights to access all controllers.
-Admink keys also have rights to put,create,delete rights if they are of the
+administrative purposes and thus has rights to access all controllers.
+Admin keys also have rights to put,create,delete rights if they are of the
 correct role.
 
 #### Sample Useraccount Entry

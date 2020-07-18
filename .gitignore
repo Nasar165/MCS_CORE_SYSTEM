@@ -4,7 +4,6 @@ Content/Images
 logs
 *.jpg
 *.txt
-
 *.swp
 *.*~
 project.lock.json
@@ -14,7 +13,7 @@ nupkg/
 
 # Visual Studio Code
 .vscode
-
+!settings.json
 # Rider
 .idea
 

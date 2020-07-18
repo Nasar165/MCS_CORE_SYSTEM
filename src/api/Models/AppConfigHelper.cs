@@ -12,7 +12,7 @@ namespace api.Models
         public string GetValueFromAppConfig(string section, string name)
             => AppConfig.GetSection(section).GetSection(name).Value;
 
-        public string GetSecreatKey()
+        public string GetSecretKey()
             => GetValueFromAppConfig("AppSettings", "JWTkey");
 
         private bool IsDocker()

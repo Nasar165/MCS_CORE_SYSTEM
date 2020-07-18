@@ -4,8 +4,10 @@ using api.Middleware;
 using api.Models;
 using api.Security;
 using api.Security.Interface;
+using Components;
 using Components.Database;
 using Components.Database.Interface;
+using Components.Interface;
 using Microsoft.Extensions.DependencyInjection;
 using xAuth;
 using xAuth.Interface;
@@ -27,7 +29,7 @@ namespace api
         {
             Services.AddScoped<IJwtGenerator, JwtGenerator>(ServiceProvider =>
             {
-                return new JwtGenerator(AppConfigHelper.Instance.GetSecreatKey(), "HS256");
+                return new JwtGenerator(AppConfigHelper.Instance.GetSecretKey(), "HS256");
             });
 
             Services.AddScoped<ISqlHelper, NpgSql>(ServiceProvider =>
@@ -55,6 +57,7 @@ namespace api
             Services.AddSingleton<IQueryHelper, SqlQueryHelper>();
             Services.AddSingleton<IFileWriter, FileWriter>();
             Services.AddSingleton<IHeaderPolicy, OWASPPolicy>();
+            Services.AddSingleton<IFileHandler, FileHandler>();
         }
 
         public static void RegisterSingleton(IServiceCollection services)

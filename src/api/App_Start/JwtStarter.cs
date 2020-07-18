@@ -17,7 +17,7 @@ namespace api
             })
             .AddJwtBearer(x =>
             {
-                var secretKey = AppConfigHelper.Instance.GetSecreatKey();
+                var secretKey = AppConfigHelper.Instance.GetSecretKey();
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = true;
                 x.TokenValidationParameters = new TokenValidationParameters

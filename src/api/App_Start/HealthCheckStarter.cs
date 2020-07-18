@@ -18,7 +18,7 @@ namespace api
                 .AddCheck<FileWriterCheck>("FileWriter Check");
         }
 
-        private static void AddSecurityToHealtCheck(IApplicationBuilder app)
+        private static void AddSecurityToHealthCheck(IApplicationBuilder app)
         {
             app.UseEndpoints(endpoints => endpoints.MapHealthChecks(
                 "/healthcheck").RequireAuthorization());
@@ -47,7 +47,7 @@ namespace api
                         JsonConvert.SerializeObject(Response));
                 }
             });
-            AddSecurityToHealtCheck(app);
+            AddSecurityToHealthCheck(app);
         }
     }
 }

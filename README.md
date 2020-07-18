@@ -15,7 +15,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/cbf2ad9723fb91ae9ea0/maintainability)](https://codeclimate.com/github/Xeroxcore/Xeroxcore/maintainability)
 [![CodeFactor](https://www.codefactor.io/repository/github/xeroxcore/xeroxcore/badge)](https://www.codefactor.io/repository/github/xeroxcore/xeroxcore)
 
-###### Docker Deployemnts
+###### Docker Deployments
 
 [![Azure](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/Azure.png)](https://azure.microsoft.com/en-us/)
 [![Digitalocaen](https://github.com/Xeroxcore/Xeroxcore/blob/master/resources/images/digitalocean.png)](https://www.digitalocean.com/) <br/>
@@ -25,7 +25,7 @@
 
 Xeroxcore system intends to resolve a business requirement concerning a framework fitted to handling
 single databases. The core system comes with pre-built-in tools to speed up your development.
-The system is well suited for an organisation that needs to work fast and security with focus on 
+The system is well suited for an organization that needs to work fast and security with focus on 
 generating value to their clients.
 
 <!--ts-->
@@ -69,7 +69,7 @@ are installed and if not, install them utilizing the provider's main pages.
 ### Appsettings Configuration
 
 Configuring your application before deployment is crucial for smooth operation. This section will
-help you understand how altering values in the settings file impacts the behaviour of your application.
+help you understand how altering values in the settings file impacts the behavior of your application.
 keep in mind that altering certain settings during production might have unforeseen effects so
 be careful and test the API before deploying it to production.
 
@@ -196,7 +196,7 @@ please check PostgreSQL website or distribution website for more information
   2. sudo systemctl start postgresql # to start PostgreSQL.
   3. sudo systemctl enable postgresql # Tell centos to start PostgreSQL on startup.
 
-3. Alter user password for posgres account
+3. Alter user password for postgre account
   1. sudo passwd posgres
   2. Enter a password and confirm.
 
@@ -307,7 +307,7 @@ API was built with the following tools in a Linux Environment (CentOS 7).
 - [Visual Studio Code](https://code.visualstudio.com/) - Code Editor
 - [PostgreSQL](https://www.postgresql.org/) - SQL Database
 - [.Net Core](https://dotnet.microsoft.com/) - Dotnet Core Runtime
-- [Postmam](https://getpostman.com/) - API Development Tool (Testing API)
+- [Postman](https://getpostman.com/) - API Development Tool (Testing API)
 
 ### Contributing
 
